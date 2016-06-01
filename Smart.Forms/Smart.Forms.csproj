@@ -42,6 +42,24 @@
     <Compile Include="ComponentModel\NotificationObject.cs" />
     <Compile Include="ComponentModel\NotificationValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\Data\NotConverter.cs" />
+    <Compile Include="Forms\Interactivity\BusyIndicatorMessageAction.cs" />
+    <Compile Include="Forms\Interactivity\CallMethodBehavior.cs" />
+    <Compile Include="Forms\Interactivity\DisplayActionSheetMessageAction.cs" />
+    <Compile Include="Forms\Interactivity\DisplayAlertMessageAction.cs" />
+    <Compile Include="Forms\Interactivity\IMessageAction.cs" />
+    <Compile Include="Forms\Interactivity\MessageAction.cs" />
+    <Compile Include="Forms\Interactivity\MessageBehavior.cs" />
+    <Compile Include="Forms\Interactivity\ParameterCallMethodBehavior.cs" />
+    <Compile Include="Forms\Interactivity\SetLabelTextMessageAction.cs" />
+    <Compile Include="Forms\Messaging\BusyIndicatorParameter.cs" />
+    <Compile Include="Forms\Messaging\CancelMessage.cs" />
+    <Compile Include="Forms\Messaging\DisplayActionSheetParameter.cs" />
+    <Compile Include="Forms\Messaging\DisplayAlertParameter.cs" />
+    <Compile Include="Forms\Messaging\IMessenger.cs" />
+    <Compile Include="Forms\Messaging\Messenger.cs" />
+    <Compile Include="Forms\Messaging\MessengerEventArgs.cs" />
+    <Compile Include="Forms\Messaging\MessengerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
