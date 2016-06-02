@@ -41,6 +41,7 @@
     <Compile Include="ComponentModel\IValueHolder.cs" />
     <Compile Include="ComponentModel\NotificationObject.cs" />
     <Compile Include="ComponentModel\NotificationValue.cs" />
+    <Compile Include="Forms\Markup\ImageResourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Data\NotConverter.cs" />
     <Compile Include="Forms\Interactivity\BusyIndicatorMessageAction.cs" />
