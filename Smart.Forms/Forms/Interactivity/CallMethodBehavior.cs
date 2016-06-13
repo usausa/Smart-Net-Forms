@@ -59,7 +59,7 @@
         ///
         /// </summary>
         /// <param name="bindable"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:パブリック メソッドの引数の検証", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(Element bindable)
         {
             base.OnAttachedTo(bindable);
@@ -83,7 +83,7 @@
         ///
         /// </summary>
         /// <param name="bindable"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:パブリック メソッドの引数の検証", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(Element bindable)
         {
             eventInfo?.RemoveMethod.Invoke(bindable, new object[] { handler });
