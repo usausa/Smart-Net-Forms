@@ -14,6 +14,9 @@
     [ContentProperty("Actions")]
     public class MessageBehavior : Behavior<Element>
     {
+        /// <summary>
+        ///
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MessengerProperty =
             BindableProperty.Create("MessengerProperty", typeof(Messenger), typeof(MessageBehavior), null, BindingMode.OneWay, null, MessengerPropertyChanged);

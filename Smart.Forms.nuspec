@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Usa.Smart.Forms</id>
+    <version>0.0.2</version>
+    <title>Smart.Forms .NET</title>
+    <authors>machi_pon</authors>
+    <owners>machi_pon</owners>
+    <description>Smart Xamarin support library for .NET</description>
+    <releaseNotes></releaseNotes>
+    <summary>Smart Xamarin support library for .NET</summary>
+    <projectUrl>https://github.com/usausa/Smart-Net-Forms</projectUrl>
+    <copyright></copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <dependency id="Usa.Smart.Core" version="0.0.2" />
+    </dependencies>
+    <tags>smart xamarin mvvm</tags>
+  </metadata>
+  <files>
+    <!-- PCL -->
+    <file src="Smart.Forms\bin\Release\Smart.Forms.dll" target="lib\portable-net45+win8+wpa81\Smart.Forms.dll" />
+    <file src="Smart.Forms\bin\Release\Smart.Forms.pdb" target="lib\portable-net45+win8+wpa81\Smart.Forms.pdb" />
+    <file src="Smart.Forms\bin\Release\Smart.Forms.xml" target="lib\portable-net45+win8+wpa81\Smart.Forms.xml" />
+  </files>
+</package>

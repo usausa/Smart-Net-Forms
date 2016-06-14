@@ -5,8 +5,14 @@
     /// </summary>
     public class BusyIndicatorParameter
     {
+        /// <summary>
+        ///
+        /// </summary>
         public static BusyIndicatorParameter True { get; } = new BusyIndicatorParameter(true);
 
+        /// <summary>
+        ///
+        /// </summary>
         public static BusyIndicatorParameter False { get; } = new BusyIndicatorParameter(false);
 
         /// <summary>

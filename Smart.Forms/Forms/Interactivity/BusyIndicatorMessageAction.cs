@@ -4,6 +4,9 @@
 
     using Xamarin.Forms;
 
+    /// <summary>
+    ///
+    /// </summary>
     public class BusyIndicatorMessageAction : MessageAction<Page, BusyIndicatorParameter>
     {
         /// <summary>

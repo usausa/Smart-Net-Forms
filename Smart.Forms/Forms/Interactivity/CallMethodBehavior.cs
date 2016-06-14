@@ -12,14 +12,23 @@
     {
         private static readonly Type[] EmptyTypes = new Type[0];
 
+        /// <summary>
+        ///
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty EventNameProperty =
             BindableProperty.Create("EventName", typeof(string), typeof(CallMethodBehavior));
 
+        /// <summary>
+        ///
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty =
             BindableProperty.Create("TargetObject", typeof(object), typeof(CallMethodBehavior));
 
+        /// <summary>
+        ///
+        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MethodNameProperty =
             BindableProperty.Create("MethodName", typeof(string), typeof(CallMethodBehavior));
