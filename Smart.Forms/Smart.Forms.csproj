@@ -39,6 +39,7 @@
     <DocumentationFile>bin\Release\Smart.Forms.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Forms\Input\DelegateCommand.cs" />
     <Compile Include="Forms\Markup\ImageResourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Data\NotConverter.cs" />
