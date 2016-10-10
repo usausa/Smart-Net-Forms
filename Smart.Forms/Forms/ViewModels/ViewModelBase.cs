@@ -20,5 +20,21 @@
         {
             get { return messenger ?? (messenger = new Messenger()); }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        protected ViewModelBase()
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="messenger"></param>
+        protected ViewModelBase(Messenger messenger)
+        {
+            this.messenger = messenger;
+        }
     }
 }
