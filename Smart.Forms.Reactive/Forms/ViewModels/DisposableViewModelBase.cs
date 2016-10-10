@@ -10,7 +10,7 @@
     /// </summary>
     public abstract class DisposableViewModelBase : ViewModelBase, IDisposable
     {
-        private CompositeDisposable disposables = new CompositeDisposable();
+        private CompositeDisposable disposables;
 
         /// <summary>
         ///
