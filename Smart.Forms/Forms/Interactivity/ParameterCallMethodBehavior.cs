@@ -142,10 +142,10 @@
                 return;
             }
 
-            var methodInfo = TargetObject.GetType().GetRuntimeMethods().FirstOrDefault(_ =>
-                _.Name == MethodName &&
-                _.GetParameters().Length == 1 &&
-                ((MethodParameter == null) || MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(_.GetParameters()[0].ParameterType.GetTypeInfo())));
+            var methodInfo = TargetObject.GetType().GetRuntimeMethods().FirstOrDefault(m =>
+                m.Name == MethodName &&
+                m.GetParameters().Length == 1 &&
+                ((MethodParameter == null) || MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(m.GetParameters()[0].ParameterType.GetTypeInfo())));
             methodInfo?.Invoke(TargetObject, new[] { MethodParameter });
         }
     }
