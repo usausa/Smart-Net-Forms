@@ -55,7 +55,15 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public async void Execute(object parameter)
+        public void Execute(object parameter)
+        {
+            ExecuteAsync();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        private async void ExecuteAsync()
         {
             executing = true;
             RaiseCanExecuteChanged();
@@ -137,14 +145,14 @@
         /// <param name="parameter"></param>
         public void Execute(object parameter)
         {
-            Execute(Cast(parameter));
+            ExecuteAsync(Cast(parameter));
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public async void Execute(T parameter)
+        private async void ExecuteAsync(T parameter)
         {
             executing = true;
             RaiseCanExecuteChanged();
