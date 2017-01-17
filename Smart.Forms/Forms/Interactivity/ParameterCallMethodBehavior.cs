@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ParameterCallMethodBehavior : Behavior<Element>
+    public class ParameterCallMethodBehavior : BehaviorBase<Element>
     {
         /// <summary>
         ///
@@ -88,9 +88,6 @@
         {
             base.OnAttachedTo(bindable);
 
-            bindable.BindingContextChanged += HandleBindingContextChanged;
-            BindingContext = bindable.BindingContext;
-
             eventInfo = bindable.GetType().GetRuntimeEvent(EventName);
             if (eventInfo == null)
             {
@@ -112,20 +109,7 @@
         {
             eventInfo?.RemoveMethod.Invoke(bindable, new object[] { handler });
 
-            bindable.BindingContextChanged -= HandleBindingContextChanged;
-            BindingContext = null;
-
             base.OnDetachingFrom(bindable);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HandleBindingContextChanged(object sender, EventArgs e)
-        {
-            BindingContext = ((View)sender).BindingContext;
         }
 
         /// <summary>

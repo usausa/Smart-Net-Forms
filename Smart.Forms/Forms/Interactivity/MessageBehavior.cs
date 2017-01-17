@@ -1,6 +1,5 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System;
     using System.Collections.Generic;
     using System.Reflection;
 
@@ -12,7 +11,7 @@
     ///
     /// </summary>
     [ContentProperty("Actions")]
-    public class MessageBehavior : Behavior<Element>
+    public class MessageBehavior : BehaviorBase<Element>
     {
         /// <summary>
         ///
@@ -54,9 +53,6 @@
         {
             base.OnAttachedTo(bindable);
 
-            bindable.BindingContextChanged += HandleBindingContextChanged;
-            BindingContext = bindable.BindingContext;
-
             associatedObject = bindable;
         }
 
@@ -74,22 +70,7 @@
 
             associatedObject = null;
 
-            bindable.BindingContextChanged -= HandleBindingContextChanged;
-            BindingContext = null;
-
             base.OnDetachingFrom(bindable);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HandleBindingContextChanged(object sender, EventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("[INFO] HandleBindingContextChanged");
-
-            BindingContext = ((View)sender).BindingContext;
         }
 
         /// <summary>

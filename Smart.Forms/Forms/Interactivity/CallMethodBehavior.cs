@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class CallMethodBehavior : Behavior<Element>
+    public class CallMethodBehavior : BehaviorBase<Element>
     {
         private static readonly Type[] EmptyTypes = new Type[0];
 
@@ -73,9 +73,6 @@
         {
             base.OnAttachedTo(bindable);
 
-            bindable.BindingContextChanged += HandleBindingContextChanged;
-            BindingContext = bindable.BindingContext;
-
             eventInfo = bindable.GetType().GetRuntimeEvent(EventName);
             if (eventInfo == null)
             {
@@ -97,20 +94,7 @@
         {
             eventInfo?.RemoveMethod.Invoke(bindable, new object[] { handler });
 
-            bindable.BindingContextChanged -= HandleBindingContextChanged;
-            BindingContext = null;
-
             base.OnDetachingFrom(bindable);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HandleBindingContextChanged(object sender, EventArgs e)
-        {
-            BindingContext = ((View)sender).BindingContext;
         }
 
         /// <summary>
