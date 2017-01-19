@@ -35,7 +35,7 @@
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Predicate(value) ? TrueValue : FalseValue;
+            return (Predicate?.Invoke(value) ?? (bool)value) ? TrueValue : FalseValue;
         }
 
         /// <summary>

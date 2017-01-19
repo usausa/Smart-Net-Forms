@@ -2,36 +2,35 @@
 {
     using System;
     using System.Reflection;
+    using System.Windows.Input;
 
     using Xamarin.Forms;
 
     /// <summary>
     ///
     /// </summary>
-    public class CallMethodBehavior : BehaviorBase<Element>
+    public class EventToCommandBehavior : BehaviorBase<Element>
     {
-        private static readonly Type[] EmptyTypes = new Type[0];
-
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty EventNameProperty =
-            BindableProperty.Create(nameof(EventName), typeof(string), typeof(CallMethodBehavior), propertyChanged: HandleEventNamePropertyChanged);
+            BindableProperty.Create(nameof(EventName), typeof(string), typeof(EventToCommandBehavior), propertyChanged: HandleEventNamePropertyChanged);
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetObjectProperty =
-            BindableProperty.Create(nameof(TargetObject), typeof(object), typeof(CallMethodBehavior));
+        public static readonly BindableProperty CommandProperty =
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(EventToCommandBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty MethodNameProperty =
-            BindableProperty.Create(nameof(MethodName), typeof(string), typeof(CallMethodBehavior));
+        public static readonly BindableProperty CommandParameterProperty =
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(EventToCommandBehavior));
 
         private EventInfo eventInfo;
 
@@ -49,19 +48,19 @@
         /// <summary>
         ///
         /// </summary>
-        public object TargetObject
+        public ICommand Command
         {
-            get { return GetValue(TargetObjectProperty); }
-            set { SetValue(TargetObjectProperty, value); }
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
         }
 
         /// <summary>
         ///
         /// </summary>
-        public string MethodName
+        public object CommandParameter
         {
-            get { return (string)GetValue(MethodNameProperty); }
-            set { SetValue(MethodNameProperty, value); }
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
 
         /// <summary>
@@ -129,13 +128,15 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            if ((TargetObject == null) || string.IsNullOrEmpty(MethodName))
+            if (Command == null)
             {
                 return;
             }
 
-            var methodInfo = TargetObject.GetType().GetRuntimeMethod(MethodName, EmptyTypes);
-            methodInfo.Invoke(TargetObject, null);
+            if (Command.CanExecute(CommandParameter))
+            {
+                Command.Execute(CommandParameter);
+            }
         }
 
         /// <summary>
@@ -146,7 +147,7 @@
         /// <param name="newValue"></param>
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var behavior = (CallMethodBehavior)bindable;
+            var behavior = (EventToCommandBehavior)bindable;
             if (behavior.AssociatedObject == null)
             {
                 return;

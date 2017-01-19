@@ -18,7 +18,7 @@
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MessengerProperty =
-            BindableProperty.Create("MessengerProperty", typeof(Messenger), typeof(MessageBehavior), null, BindingMode.OneWay, null, MessengerPropertyChanged);
+            BindableProperty.Create(nameof(Messenger), typeof(Messenger), typeof(MessageBehavior), null, BindingMode.OneWay, null, MessengerPropertyChanged);
 
         /// <summary>
         ///
