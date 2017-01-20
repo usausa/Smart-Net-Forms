@@ -2,18 +2,12 @@
 {
     using System;
     using System.Reflection;
-    using System.Windows.Input;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class DelegateCommand : ICommand
+    public sealed class DelegateCommand : ObserveCommandBase<DelegateCommand>
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
-
         private readonly Action execute;
 
         private readonly Func<bool> canExecute;
@@ -42,7 +36,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        void ICommand.Execute(object parameter)
+        public override void Execute(object parameter)
         {
             execute();
         }
@@ -52,18 +46,9 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        bool ICommand.CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return canExecute();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore")]
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -71,13 +56,8 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class DelegateCommand<T> : ICommand
+    public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
-
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
         private readonly Action<T> execute;
@@ -108,7 +88,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        void ICommand.Execute(object parameter)
+        public override void Execute(object parameter)
         {
             execute(Cast(parameter));
         }
@@ -118,7 +98,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        bool ICommand.CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return canExecute(Cast(parameter));
         }
@@ -136,15 +116,6 @@
             }
 
             return (T)parameter;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore")]
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

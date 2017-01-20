@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Forms\Data\ConditionConverter.cs" />
+    <Compile Include="Forms\Input\DelegateDisposable.cs" />
+    <Compile Include="Forms\Input\ObserverCommandExtensions.cs" />
+    <Compile Include="Forms\Input\ObserverCommandBase.cs" />
     <Compile Include="Forms\Input\AsyncCommand.cs" />
     <Compile Include="Forms\Input\DelegateCommand.cs" />
     <Compile Include="Forms\Interactivity\BehaviorBase.cs" />

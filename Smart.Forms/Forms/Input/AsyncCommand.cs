@@ -3,18 +3,12 @@
     using System;
     using System.Reflection;
     using System.Threading.Tasks;
-    using System.Windows.Input;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class AsyncCommand : ICommand
+    public sealed class AsyncCommand : ObserveCommandBase<AsyncCommand>
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
-
         private readonly Func<Task> execute;
 
         private readonly Func<bool> canExecute;
@@ -46,7 +40,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        bool ICommand.CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return !executing && canExecute();
         }
@@ -55,7 +49,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public async void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             executing = true;
             RaiseCanExecuteChanged();
@@ -71,29 +65,15 @@
                 RaiseCanExecuteChanged();
             }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore")]
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
     }
 
     /// <summary>
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class AsyncCommand<T> : ICommand
+    public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public event EventHandler CanExecuteChanged;
 
         private readonly Func<T, Task> execute;
 
@@ -126,7 +106,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        bool ICommand.CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return !executing && canExecute(Cast(parameter));
         }
@@ -135,7 +115,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             Execute(Cast(parameter));
         }
@@ -174,15 +154,6 @@
             }
 
             return (T)parameter;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore")]
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
