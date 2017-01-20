@@ -41,6 +41,7 @@
         /// <typeparam name="TCommand"></typeparam>
         /// <param name="command"></param>
         /// <param name="disposables"></param>
+        /// <returns></returns>
         public static TCommand RemoveObserverBy<TCommand>(this TCommand command, ICollection<IDisposable> disposables)
             where TCommand : ObserveCommandBase<TCommand>
         {
