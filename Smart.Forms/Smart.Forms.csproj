@@ -46,8 +46,10 @@
     <Compile Include="Forms\Input\AsyncCommand.cs" />
     <Compile Include="Forms\Input\DelegateCommand.cs" />
     <Compile Include="Forms\Interactivity\BehaviorBase.cs" />
+    <Compile Include="Forms\Interactivity\BindingContextDisposeBehavior.cs" />
     <Compile Include="Forms\Interactivity\EventToCommandBehavior.cs" />
     <Compile Include="Forms\Interactivity\ItemSelectedToCommandBehavior.cs" />
+    <Compile Include="Forms\Interactivity\SetFocusMessageAction.cs" />
     <Compile Include="Forms\Markup\ImageResourceExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Data\NotConverter.cs" />
