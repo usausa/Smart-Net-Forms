@@ -45,6 +45,7 @@
     <Compile Include="Forms\Input\ObserverCommandBase.cs" />
     <Compile Include="Forms\Input\AsyncCommand.cs" />
     <Compile Include="Forms\Input\DelegateCommand.cs" />
+    <Compile Include="Forms\Input\TaskHelper.cs" />
     <Compile Include="Forms\Interactivity\BehaviorBase.cs" />
     <Compile Include="Forms\Interactivity\BindingContextDisposeBehavior.cs" />
     <Compile Include="Forms\Interactivity\EventToCommandBehavior.cs" />

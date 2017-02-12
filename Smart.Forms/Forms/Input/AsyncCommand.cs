@@ -38,6 +38,30 @@
         /// <summary>
         ///
         /// </summary>
+        /// <param name="execute"></param>
+        public AsyncCommand(Action execute)
+            : this(execute, () => true)
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="execute"></param>
+        /// <param name="canExecute"></param>
+        public AsyncCommand(Action execute, Func<bool> canExecute)
+        {
+            this.execute = () =>
+            {
+                execute();
+                return TaskHelper.CompletedTask;
+            };
+            this.canExecute = canExecute;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
         public override bool CanExecute(object parameter)
@@ -98,6 +122,30 @@
         public AsyncCommand(Func<T, Task> execute, Func<T, bool> canExecute)
         {
             this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="execute"></param>
+        public AsyncCommand(Action<T> execute)
+            : this(execute, x => true)
+        {
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="execute"></param>
+        /// <param name="canExecute"></param>
+        public AsyncCommand(Action<T> execute, Func<T, bool> canExecute)
+        {
+            this.execute = arg =>
+            {
+                execute(arg);
+                return TaskHelper.CompletedTask;
+            };
             this.canExecute = canExecute;
         }
 
