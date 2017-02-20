@@ -14,7 +14,7 @@
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        public static IObservable<EventArgs> AsObservable(this ICommand command)
+        public static IObservable<EventArgs> CanExecuteChangedAsObservable(this ICommand command)
         {
             return Observable.FromEvent<EventHandler, EventArgs>(
                 h => (sender, e) => h(e),
