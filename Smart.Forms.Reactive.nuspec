@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Forms.Reactive</id>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <title>Smart.Forms.Reactive .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -14,10 +14,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="System.Reactive" version="3.0.0" />
-      <dependency id="Xamarin.Forms" version="2.3.3.180" />
-      <dependency id="Usa.Smart.Core" version="0.7.0" />
+      <dependency id="Xamarin.Forms" version="2.3.3.193" />
+      <dependency id="Usa.Smart.Core" version="0.7.2" />
       <dependency id="Usa.Smart.Reactive" version="0.3.0" />
-      <dependency id="Usa.Smart.Forms" version="0.3.0" />
+      <dependency id="Usa.Smart.Forms" version="0.4.0" />
     </dependencies>
     <tags>smart xamarin mvvm rx</tags>
   </metadata>
@@ -25,6 +25,6 @@
     <!-- PCL -->
     <file src="Smart.Forms.Reactive\bin\Release\Smart.Forms.Reactive.dll" target="lib\portable-net45+win8+wpa81\Smart.Forms.Reactive.dll" />
     <file src="Smart.Forms.Reactive\bin\Release\Smart.Forms.Reactive.pdb" target="lib\portable-net45+win8+wpa81\Smart.Forms.Reactive.pdb" />
-    <file src="Smart.Forms.Reactive\bin\Release\Smart.Forms.Reactive.xml" target="lib\portable-net45+win8+wpa81\Smart.Forms.Reactive.xml" />
+    <!--<file src="Smart.Forms.Reactive\bin\Release\Smart.Forms.Reactive.xml" target="lib\portable-net45+win8+wpa81\Smart.Forms.Reactive.xml" />-->
   </files>
 </package>
