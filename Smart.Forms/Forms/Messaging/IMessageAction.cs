@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+﻿namespace Smart.Forms.Messaging
 {
     using System.Reflection;
 

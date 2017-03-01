@@ -31,6 +31,21 @@
         ///
         /// </summary>
         /// <param name="bindable"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
+        protected override void OnDetachingFrom(VisualElement bindable)
+        {
+            if (Request != null)
+            {
+                Request.ValidationErrorRequested -= OnValidationErrorRequested;
+            }
+
+            base.OnDetachingFrom(bindable);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
         private static void OnRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)

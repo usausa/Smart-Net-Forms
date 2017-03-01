@@ -1,11 +1,11 @@
-﻿namespace Smart.Forms.Interactivity
+﻿namespace Smart.Forms.Messaging
 {
     using Xamarin.Forms;
 
     /// <summary>
     ///
     /// </summary>
-    public class SetFocusMessageAction : MessageAction<VisualElement>
+    public class SetLabelTextMessageAction : MessageAction<Label>
     {
         /// <summary>
         ///
@@ -13,9 +13,9 @@
         /// <param name="associatedObject"></param>
         /// <param name="parameter"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void Invoke(VisualElement associatedObject, object parameter)
+        protected override void Invoke(Label associatedObject, object parameter)
         {
-            associatedObject.Focus();
+            associatedObject.Text = parameter.ToString();
         }
     }
 }

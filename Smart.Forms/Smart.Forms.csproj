@@ -39,7 +39,17 @@
     <DocumentationFile>bin\Release\Smart.Forms.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Forms\Components\ActionSheetButton.cs" />
+    <Compile Include="Forms\Components\ActionSheetButtonType.cs" />
+    <Compile Include="Forms\Components\DialogService.cs" />
+    <Compile Include="Forms\Components\IDialogService.cs" />
+    <Compile Include="Forms\Components\IPlatformService.cs" />
+    <Compile Include="Forms\Components\PlatformService.cs" />
+    <Compile Include="Forms\Data\BoolToColorConverter.cs" />
     <Compile Include="Forms\Data\ConditionConverter.cs" />
+    <Compile Include="Forms\Data\DateFormatConverter.cs" />
+    <Compile Include="Forms\Data\FormatConverter.cs" />
+    <Compile Include="Forms\Data\NullToColorConverter.cs" />
     <Compile Include="Forms\Input\DelegateDisposable.cs" />
     <Compile Include="Forms\Input\ObserverCommandExtensions.cs" />
     <Compile Include="Forms\Input\ObserverCommandBase.cs" />
@@ -50,7 +60,7 @@
     <Compile Include="Forms\Interactivity\BindingContextDisposeBehavior.cs" />
     <Compile Include="Forms\Interactivity\EventToCommandBehavior.cs" />
     <Compile Include="Forms\Interactivity\ItemSelectedToCommandBehavior.cs" />
-    <Compile Include="Forms\Interactivity\SetFocusMessageAction.cs" />
+    <Compile Include="Forms\Messaging\SetFocusMessageAction.cs" />
     <Compile Include="Forms\Markup\ImageResourceExtension.cs" />
     <Compile Include="Forms\Validation\ClearErrorOnFocusedBehavior.cs" />
     <Compile Include="Forms\Validation\DelegateRule.cs" />
@@ -68,23 +78,15 @@
     <Compile Include="Forms\Validation\SetFocusToErrorElementBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Data\NotConverter.cs" />
-    <Compile Include="Forms\Interactivity\BusyIndicatorMessageAction.cs" />
     <Compile Include="Forms\Interactivity\CallMethodBehavior.cs" />
-    <Compile Include="Forms\Interactivity\DisplayActionSheetMessageAction.cs" />
-    <Compile Include="Forms\Interactivity\DisplayAlertMessageAction.cs" />
-    <Compile Include="Forms\Interactivity\IMessageAction.cs" />
-    <Compile Include="Forms\Interactivity\MessageAction.cs" />
-    <Compile Include="Forms\Interactivity\MessageBehavior.cs" />
+    <Compile Include="Forms\Messaging\IMessageAction.cs" />
+    <Compile Include="Forms\Messaging\MessageAction.cs" />
+    <Compile Include="Forms\Messaging\MessageBehavior.cs" />
     <Compile Include="Forms\Interactivity\ParameterCallMethodBehavior.cs" />
-    <Compile Include="Forms\Interactivity\SetLabelTextMessageAction.cs" />
-    <Compile Include="Forms\Messaging\BusyIndicatorParameter.cs" />
-    <Compile Include="Forms\Messaging\CancelMessage.cs" />
-    <Compile Include="Forms\Messaging\DisplayActionSheetParameter.cs" />
-    <Compile Include="Forms\Messaging\DisplayAlertParameter.cs" />
+    <Compile Include="Forms\Messaging\SetLabelTextMessageAction.cs" />
     <Compile Include="Forms\Messaging\IMessenger.cs" />
     <Compile Include="Forms\Messaging\Messenger.cs" />
     <Compile Include="Forms\Messaging\MessengerEventArgs.cs" />
-    <Compile Include="Forms\Messaging\MessengerExtensions.cs" />
     <Compile Include="Forms\ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
