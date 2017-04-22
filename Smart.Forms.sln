@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Forms", "Smart.Forms\Smart.Forms.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Forms", "Smart.Forms\Smart.Forms.csproj", "{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CD899D5-ACE8-4BED-972A-E15B09A0481B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Forms.Reactive", "Smart.Forms.Reactive\Smart.Forms.Reactive.csproj", "{B95FC139-2C07-4BA3-8985-95E20325E4C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80D778B2-8311-4E6A-9866-A4F9846BDCBB}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
@@ -16,22 +18,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Smart.Forms.sln.DotSettings = Smart.Forms.sln.DotSettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Forms.Reactive", "Smart.Forms.Reactive\Smart.Forms.Reactive.csproj", "{F39302EE-4711-40B1-8207-A7E1CD09CDDA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F39302EE-4711-40B1-8207-A7E1CD09CDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F39302EE-4711-40B1-8207-A7E1CD09CDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F39302EE-4711-40B1-8207-A7E1CD09CDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F39302EE-4711-40B1-8207-A7E1CD09CDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

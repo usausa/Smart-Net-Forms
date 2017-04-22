@@ -1,138 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81;</PackageTargetFallback>
+    <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
     <RootNamespace>Smart</RootNamespace>
-    <AssemblyName>Smart.Forms</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <Version>0.3.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <DocumentationFile>bin\Release\Smart.Forms.XML</DocumentationFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Forms\Components\ActionSheetButton.cs" />
-    <Compile Include="Forms\Components\ActionSheetButtonType.cs" />
-    <Compile Include="Forms\Components\DialogService.cs" />
-    <Compile Include="Forms\Components\IDialogService.cs" />
-    <Compile Include="Forms\Components\IPlatformService.cs" />
-    <Compile Include="Forms\Components\PlatformService.cs" />
-    <Compile Include="Forms\Data\BoolToColorConverter.cs" />
-    <Compile Include="Forms\Data\ConditionConverter.cs" />
-    <Compile Include="Forms\Data\DateFormatConverter.cs" />
-    <Compile Include="Forms\Data\FormatConverter.cs" />
-    <Compile Include="Forms\Data\NullToColorConverter.cs" />
-    <Compile Include="Forms\Input\DelegateDisposable.cs" />
-    <Compile Include="Forms\Input\ObserverCommandExtensions.cs" />
-    <Compile Include="Forms\Input\ObserverCommandBase.cs" />
-    <Compile Include="Forms\Input\AsyncCommand.cs" />
-    <Compile Include="Forms\Input\DelegateCommand.cs" />
-    <Compile Include="Forms\Input\TaskHelper.cs" />
-    <Compile Include="Forms\Interactivity\BehaviorBase.cs" />
-    <Compile Include="Forms\Interactivity\BindingContextDisposeBehavior.cs" />
-    <Compile Include="Forms\Interactivity\EventToCommandBehavior.cs" />
-    <Compile Include="Forms\Interactivity\ItemSelectedToCommandBehavior.cs" />
-    <Compile Include="Forms\Messaging\SetFocusMessageAction.cs" />
-    <Compile Include="Forms\Markup\ImageResourceExtension.cs" />
-    <Compile Include="Forms\Validation\ClearErrorOnFocusedBehavior.cs" />
-    <Compile Include="Forms\Validation\DelegateRule.cs" />
-    <Compile Include="Forms\Validation\IValidatable.cs" />
-    <Compile Include="Forms\Validation\IValidationRule.cs" />
-    <Compile Include="Forms\Validation\IValidity.cs" />
-    <Compile Include="Forms\Validation\RegexRule.cs" />
-    <Compile Include="Forms\Validation\RequiredRule.cs" />
-    <Compile Include="Forms\Validation\StringLengthRule.cs" />
-    <Compile Include="Forms\Validation\ValidateOnTextChangedBehavior.cs" />
-    <Compile Include="Forms\Validation\ValidateOnUnfocusedBehavior.cs" />
-    <Compile Include="Forms\Validation\Validation.cs" />
-    <Compile Include="Forms\Validation\ValidationRequest.cs" />
-    <Compile Include="Forms\Validation\ValidationValue.cs" />
-    <Compile Include="Forms\Validation\SetFocusToErrorElementBehavior.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\Data\NotConverter.cs" />
-    <Compile Include="Forms\Interactivity\CallMethodBehavior.cs" />
-    <Compile Include="Forms\Messaging\IMessageAction.cs" />
-    <Compile Include="Forms\Messaging\MessageAction.cs" />
-    <Compile Include="Forms\Messaging\MessageBehavior.cs" />
-    <Compile Include="Forms\Interactivity\ParameterCallMethodBehavior.cs" />
-    <Compile Include="Forms\Messaging\SetLabelTextMessageAction.cs" />
-    <Compile Include="Forms\Messaging\IMessenger.cs" />
-    <Compile Include="Forms\Messaging\Messenger.cs" />
-    <Compile Include="Forms\Messaging\MessengerEventArgs.cs" />
-    <Compile Include="Forms\ViewModels\ViewModelBase.cs" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="1.1.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.0" />
+    <PackageReference Include="System.Runtime.Analyzers" Version="1.1.0" />
+    <PackageReference Include="System.Runtime.InteropServices.Analyzers" Version="1.1.0" />
+    <PackageReference Include="Usa.Smart.Core" Version="1.0.0-beta5" />
+    <PackageReference Include="Xamarin.Forms" Version="2.3.4.231" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="$(SolutionDir)\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="$(SolutionDir)\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="$(SolutionDir)\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Smart, Version=0.7.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Usa.Smart.Core.0.7.2\lib\portable-net45+win8+wpa81\Smart.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Animations\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
