@@ -29,10 +29,7 @@
         /// </summary>
         public bool HasError
         {
-            get
-            {
-                return hasError;
-            }
+            get => hasError;
             set
             {
                 Errors.Clear();

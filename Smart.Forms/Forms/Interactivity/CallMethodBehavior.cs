@@ -42,8 +42,8 @@
         /// </summary>
         public string EventName
         {
-            get { return (string)GetValue(EventNameProperty); }
-            set { SetValue(EventNameProperty, value); }
+            get => (string)GetValue(EventNameProperty);
+            set => SetValue(EventNameProperty, value);
         }
 
         /// <summary>
@@ -51,8 +51,8 @@
         /// </summary>
         public object TargetObject
         {
-            get { return GetValue(TargetObjectProperty); }
-            set { SetValue(TargetObjectProperty, value); }
+            get => GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
         }
 
         /// <summary>
@@ -60,8 +60,8 @@
         /// </summary>
         public string MethodName
         {
-            get { return (string)GetValue(MethodNameProperty); }
-            set { SetValue(MethodNameProperty, value); }
+            get => (string)GetValue(MethodNameProperty);
+            set => SetValue(MethodNameProperty, value);
         }
 
         /// <summary>

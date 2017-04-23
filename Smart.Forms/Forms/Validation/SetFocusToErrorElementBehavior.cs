@@ -23,8 +23,8 @@
         /// </summary>
         public ValidationRequest Request
         {
-            get { return (ValidationRequest)GetValue(RequestProperty); }
-            set { SetValue(RequestProperty, value); }
+            get => (ValidationRequest)GetValue(RequestProperty);
+            set => SetValue(RequestProperty, value);
         }
 
         /// <summary>

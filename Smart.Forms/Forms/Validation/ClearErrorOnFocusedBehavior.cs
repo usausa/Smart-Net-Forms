@@ -21,8 +21,8 @@
         /// </summary>
         public IValidity Target
         {
-            get { return (IValidity)GetValue(TargetProperty); }
-            set { SetValue(TargetProperty, value); }
+            get => (IValidity)GetValue(TargetProperty);
+            set => SetValue(TargetProperty, value);
         }
 
         /// <summary>
