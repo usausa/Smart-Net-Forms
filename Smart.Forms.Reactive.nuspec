@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Forms.Reactive</id>
-    <version>0.9.0-beta1</version>
+    <version>0.9.0</version>
     <title>Smart.Forms.Reactive .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -16,9 +16,9 @@
       <dependency id="NETStandard.Library" version="1.6.1" />
       <dependency id="System.Reactive" version="3.1.1" />
       <dependency id="Xamarin.Forms" version="2.3.4.231" />
-      <dependency id="Usa.Smart.Core" version="1.0.0-beta5" />
-      <dependency id="Usa.Smart.Forms" version="0.9.0-beta1" />
-      <dependency id="Usa.Smart.Reactive" version="1.0.0-beta" />
+      <dependency id="Usa.Smart.Core" version="0.9.0" />
+      <dependency id="Usa.Smart.Forms" version="0.9.0" />
+      <dependency id="Usa.Smart.Reactive" version="0.9.0" />
     </dependencies>
     <tags>smart xamarin mvvm rx</tags>
   </metadata>
