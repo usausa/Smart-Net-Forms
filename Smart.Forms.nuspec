@@ -20,7 +20,7 @@
     <tags>smart xamarin mvvm</tags>
   </metadata>
   <files>
-    <!-- PCL -->
+    <!-- .NET Standard -->
     <file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.dll" target="lib\netstandard1.1" />
     <!--<file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.pdb" target="lib\netstandard1.1" />-->
     <!--<file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.xml" target="lib\netstandard1.1" />-->

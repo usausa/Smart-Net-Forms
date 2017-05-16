@@ -23,7 +23,7 @@
     <tags>smart xamarin mvvm rx</tags>
   </metadata>
   <files>
-    <!-- PCL -->
+    <!-- .NET Standard -->
     <file src="Smart.Forms.Reactive\bin\Release\netstandard1.1\Smart.Forms.Reactive.dll" target="lib\netstandard1.1" />
     <!--<file src="Smart.Forms.Reactive\bin\Release\netstandard1.1\Smart.Forms.Reactive.pdb" target="lib\netstandard1.1" />-->
     <!--<file src="Smart.Forms.Reactive\bin\Release\netstandard1.1\Smart.Forms.Reactive.xml" target="lib\netstandard1.1 />-->
