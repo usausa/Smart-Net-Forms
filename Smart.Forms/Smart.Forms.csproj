@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81;</PackageTargetFallback>
     <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
     <RootNamespace>Smart</RootNamespace>
@@ -10,12 +10,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="1.1.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="1.1.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="System.Runtime.Analyzers" Version="1.1.0" />
-    <PackageReference Include="System.Runtime.InteropServices.Analyzers" Version="1.1.0" />
-    <PackageReference Include="Usa.Smart.Core" Version="0.9.0" />
-    <PackageReference Include="Xamarin.Forms" Version="2.3.4.247" />
+    <PackageReference Include="Usa.Smart.Core" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
   </ItemGroup>
 
 </Project>
