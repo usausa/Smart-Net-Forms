@@ -99,8 +99,7 @@
                 return element;
             }
 
-            var layout = element as IViewContainer<View>;
-            if (layout != null)
+            if (element is IViewContainer<View> layout)
             {
                 foreach (var child in layout.Children)
                 {
@@ -112,8 +111,7 @@
                 }
             }
 
-            var page = element as ContentPage;
-            if (page != null)
+            if (element is ContentPage page)
             {
                 var find = FindErrorElement(page.Content);
                 if (find != null)
@@ -122,8 +120,7 @@
                 }
             }
 
-            var view = element as ContentView;
-            if (view != null)
+            if (element is ContentView view)
             {
                 var find = FindErrorElement(view.Content);
                 if (find != null)

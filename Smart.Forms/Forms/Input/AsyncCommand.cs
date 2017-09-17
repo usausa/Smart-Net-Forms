@@ -198,7 +198,7 @@
         {
             if ((parameter == null) && IsValueType)
             {
-                return default(T);
+                return default;
             }
 
             return (T)parameter;

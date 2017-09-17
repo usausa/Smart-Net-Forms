@@ -30,14 +30,14 @@
                 return string.Empty;
             }
 
-            if (value is DateTimeOffset)
+            if (value is DateTimeOffset dateTimeOffset)
             {
-                return ((DateTimeOffset)value).ToString(Format, culture);
+                return dateTimeOffset.ToString(Format, culture);
             }
 
-            if (value is DateTime)
+            if (value is DateTime dateTime)
             {
-                return ((DateTime)value).ToString(Format, culture);
+                return dateTime.ToString(Format, culture);
             }
 
             return string.Empty;

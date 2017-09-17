@@ -74,8 +74,7 @@
                 validationGroup = new Dictionary<string, List<IValidatable>>();
             }
 
-            List<IValidatable> list;
-            if (!validationGroup.TryGetValue(group, out list))
+            if (!validationGroup.TryGetValue(group, out var list))
             {
                 list = new List<IValidatable>();
                 validationGroup[group] = list;
@@ -102,8 +101,7 @@
         {
             var valid = true;
 
-            List<IValidatable> list;
-            if ((validationGroup != null) && validationGroup.TryGetValue(group, out list))
+            if ((validationGroup != null) && validationGroup.TryGetValue(group, out var list))
             {
                 foreach (var validatable in list)
                 {

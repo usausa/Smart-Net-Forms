@@ -87,8 +87,7 @@
 
             PrepareObserveProperties();
 
-            HashSet<string> properties;
-            if (!observeProperties.TryGetValue(target, out properties))
+            if (!observeProperties.TryGetValue(target, out var properties))
             {
                 properties = new HashSet<string>();
                 observeProperties[target] = properties;
@@ -143,8 +142,7 @@
 
             if (observeProperties != null)
             {
-                HashSet<string> properties;
-                if (observeProperties.TryGetValue(target, out properties))
+                if (observeProperties.TryGetValue(target, out var properties))
                 {
                     properties.Remove(propertyName);
 
