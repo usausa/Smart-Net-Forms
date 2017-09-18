@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Messaging
+﻿namespace Smart.Forms.Interactivity
 {
     using System;
     using System.Reflection;
@@ -12,28 +12,6 @@
     public abstract class MessageAction<T> : BindableObject, IMessageAction
         where T : BindableObject
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public TypeInfo ParameterType { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected MessageAction()
-        {
-            ParameterType = null;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="type"></param>
-        protected MessageAction(Type type)
-        {
-            ParameterType = type.GetTypeInfo();
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -60,28 +38,6 @@
     public abstract class MessageAction<TObject, TParameter> : BindableObject, IMessageAction
         where TObject : BindableObject
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public TypeInfo ParameterType { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected MessageAction()
-        {
-            ParameterType = null;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="type"></param>
-        protected MessageAction(Type type)
-        {
-            ParameterType = type.GetTypeInfo();
-        }
-
         /// <summary>
         ///
         /// </summary>

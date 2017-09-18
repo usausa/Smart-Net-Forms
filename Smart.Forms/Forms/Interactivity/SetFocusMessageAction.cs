@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Messaging
+﻿namespace Smart.Forms.Interactivity
 {
     using Xamarin.Forms;
 

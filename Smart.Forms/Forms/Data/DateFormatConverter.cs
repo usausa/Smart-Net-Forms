@@ -53,7 +53,13 @@
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            var str = value as string;
+            if (String.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+
+            return DateTime.ParseExact(str, Format, culture);
         }
     }
 }

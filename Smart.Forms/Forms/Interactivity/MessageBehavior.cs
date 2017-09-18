@@ -1,9 +1,9 @@
-﻿namespace Smart.Forms.Messaging
+﻿namespace Smart.Forms.Interactivity
 {
+    using System;
     using System.Collections.Generic;
-    using System.Reflection;
 
-    using Smart.Forms.Interactivity;
+    using Smart.Forms.Messaging;
 
     using Xamarin.Forms;
 
@@ -32,7 +32,12 @@
         /// <summary>
         ///
         /// </summary>
-        public object Message { get; set; }
+        public string Message { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public Type Type { get; set; }
 
         /// <summary>
         ///
@@ -65,6 +70,11 @@
             ((MessageBehavior)bindable).OnMessengerPropertyChanged(oldValue as Messenger, newValue as Messenger);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         private void OnMessengerPropertyChanged(Messenger oldValue, Messenger newValue)
         {
             if (oldValue == newValue)
@@ -90,15 +100,12 @@
         /// <param name="e"></param>
         private void MessengerOnRecieved(object sender, MessengerEventArgs e)
         {
-            if ((Message == null) || Message.Equals(e.Message))
+            if (((Message == null) || Message.Equals(e.Message)) &&
+                ((Type == null) || ((e.Parameter != null) && Type.IsInstanceOfType(e.Parameter))))
             {
                 foreach (var action in Actions)
                 {
-                    if ((action.ParameterType == null) ||
-                        ((e.Parameter != null) && e.Parameter.GetType().GetTypeInfo().IsAssignableFrom(action.ParameterType)))
-                    {
-                        action.Invoke(AssociatedObject, e.Parameter);
-                    }
+                    action.Invoke(AssociatedObject, e.Parameter);
                 }
             }
         }
