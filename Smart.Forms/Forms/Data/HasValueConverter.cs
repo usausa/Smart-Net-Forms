@@ -2,23 +2,22 @@
 {
     using System;
     using System.Globalization;
-
     using Xamarin.Forms;
 
     /// <summary>
     ///
     /// </summary>
-    public class BoolToColorConverter : IValueConverter
+    public class HasValueConverter : IValueConverter
     {
         /// <summary>
         ///
         /// </summary>
-        public Color TrueColor { get; set; } = Color.Transparent;
+        public bool NullToTrue { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        public Color FalseColor { get; set; } = Color.Transparent;
+        public bool HandleEmptyString { get; set; }
 
         /// <summary>
         ///
@@ -30,7 +29,13 @@
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? TrueColor : FalseColor;
+            if ((value == null) ||
+                (HandleEmptyString && String.IsNullOrEmpty(value as string)))
+            {
+                return NullToTrue;
+            }
+
+            return !NullToTrue;
         }
 
         /// <summary>
@@ -43,7 +48,7 @@
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (Color)value == TrueColor;
+            throw new NotSupportedException();
         }
     }
 }

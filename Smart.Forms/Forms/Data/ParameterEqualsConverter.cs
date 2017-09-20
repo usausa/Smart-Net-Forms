@@ -8,18 +8,8 @@
     /// <summary>
     ///
     /// </summary>
-    public class BoolToColorConverter : IValueConverter
+    public class ParameterEqualsConverter : IValueConverter
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public Color TrueColor { get; set; } = Color.Transparent;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public Color FalseColor { get; set; } = Color.Transparent;
-
         /// <summary>
         ///
         /// </summary>
@@ -30,7 +20,7 @@
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? TrueColor : FalseColor;
+            return Equals(value, parameter);
         }
 
         /// <summary>
@@ -43,7 +33,7 @@
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (Color)value == TrueColor;
+            return Equals(value, true) ? parameter : null;
         }
     }
 }

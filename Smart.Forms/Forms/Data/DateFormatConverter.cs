@@ -10,10 +10,14 @@
     /// </summary>
     public class DateFormatConverter : IValueConverter
     {
+        private static readonly Type DateTimeOffsetType = typeof(DateTimeOffset);
+
+        private static readonly Type DateTimeType = typeof(DateTime);
+
         /// <summary>
         ///
         /// </summary>
-        public string Format { get; set; }
+        public string Format { get; set; } = "HH:mm:ss.fff";
 
         /// <summary>
         ///
@@ -59,7 +63,17 @@
                 return null;
             }
 
-            return DateTime.ParseExact(str, Format, culture);
+            if (targetType == DateTimeOffsetType)
+            {
+                return DateTimeOffset.ParseExact(str, Format, culture);
+            }
+
+            if (targetType == DateTimeType)
+            {
+                return DateTime.ParseExact(str, Format, culture);
+            }
+
+            return null;
         }
     }
 }
