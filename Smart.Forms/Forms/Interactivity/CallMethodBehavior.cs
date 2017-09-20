@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class CallMethodBehavior : BehaviorBase<Element>
+    public class CallMethodBehavior : BehaviorBase<BindableObject>
     {
         private static readonly Type[] EmptyTypes = new Type[0];
 
@@ -69,7 +69,7 @@
         /// </summary>
         /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnAttachedTo(Element bindable)
+        protected override void OnAttachedTo(BindableObject bindable)
         {
             base.OnAttachedTo(bindable);
 
@@ -81,7 +81,7 @@
         /// </summary>
         /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnDetachingFrom(Element bindable)
+        protected override void OnDetachingFrom(BindableObject bindable)
         {
             RemoveEventHandler();
 

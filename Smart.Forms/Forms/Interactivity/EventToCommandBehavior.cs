@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class EventToCommandBehavior : BehaviorBase<Element>
+    public class EventToCommandBehavior : BehaviorBase<BindableObject>
     {
         /// <summary>
         ///
@@ -68,7 +68,7 @@
         /// </summary>
         /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnAttachedTo(Element bindable)
+        protected override void OnAttachedTo(BindableObject bindable)
         {
             base.OnAttachedTo(bindable);
 
@@ -80,7 +80,7 @@
         /// </summary>
         /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnDetachingFrom(Element bindable)
+        protected override void OnDetachingFrom(BindableObject bindable)
         {
             RemoveEventHandler();
 

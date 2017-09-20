@@ -11,7 +11,7 @@
     ///
     /// </summary>
     [ContentProperty("Actions")]
-    public class MessageBehavior : BehaviorBase<VisualElement>
+    public class MessageBehavior : BehaviorBase<Element>
     {
         /// <summary>
         ///
@@ -49,7 +49,7 @@
         /// </summary>
         /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnDetachingFrom(VisualElement bindable)
+        protected override void OnDetachingFrom(Element bindable)
         {
             if (Messenger != null)
             {
