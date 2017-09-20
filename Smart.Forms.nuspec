@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Forms</id>
-    <version>0.9.0</version>
+    <version>0.9.1-beta1</version>
     <title>Smart.Forms .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -13,16 +13,16 @@
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="NETStandard.Library" version="1.6.1" />
-      <dependency id="Xamarin.Forms" version="2.3.4.247" />
-      <dependency id="Usa.Smart.Core" version="0.9.0" />
+      <dependency id="NETStandard.Library" version="2.0.0" />
+      <dependency id="Xamarin.Forms" version="2.4.0.269-pre2" />
+      <dependency id="Usa.Smart.Core" version="1.0.1" />
     </dependencies>
     <tags>smart xamarin mvvm</tags>
   </metadata>
   <files>
     <!-- .NET Standard -->
-    <file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.dll" target="lib\netstandard1.1" />
-    <!--<file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.pdb" target="lib\netstandard1.1" />-->
-    <!--<file src="Smart.Forms\bin\Release\netstandard1.1\Smart.Forms.xml" target="lib\netstandard1.1" />-->
+    <file src="Smart.Forms\bin\Release\netstandard2.0\Smart.Forms.dll" target="lib\netstandard2.0" />
+    <!--<file src="Smart.Forms\bin\Release\netstandard2.0\Smart.Forms.pdb" target="lib\netstandard2.0" />-->
+    <!--<file src="Smart.Forms\bin\Release\netstandard2.0\Smart.Forms.xml" target="lib\netstandard2.0" />-->
   </files>
 </package>
