@@ -5,13 +5,11 @@
     using System.Collections.Specialized;
     using System.ComponentModel;
 
-    using System.Windows.Input;
-
     /// <summary>
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ObserveCommandBase<T> : ICommand
+    public abstract class ObserveCommandBase<T>
         where T : ObserveCommandBase<T>
     {
         private Dictionary<INotifyPropertyChanged, HashSet<string>> observeProperties;
@@ -22,19 +20,6 @@
         ///
         /// </summary>
         public event EventHandler CanExecuteChanged;
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        public abstract bool CanExecute(object parameter);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="parameter"></param>
-        public abstract void Execute(object parameter);
 
         /// <summary>
         ///

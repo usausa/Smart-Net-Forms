@@ -3,13 +3,14 @@
     using System;
     using System.Reflection;
     using System.Threading.Tasks;
+    using System.Windows.Input;
 
     using Smart.Forms.Internal;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class AsyncCommand : ObserveCommandBase<AsyncCommand>
+    public sealed class AsyncCommand : ObserveCommandBase<AsyncCommand>, ICommand
     {
         private readonly Func<Task> execute;
 
@@ -66,7 +67,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool CanExecute(object parameter)
+        bool ICommand.CanExecute(object parameter)
         {
             return !executing && canExecute();
         }
@@ -75,7 +76,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public override async void Execute(object parameter)
+        async void ICommand.Execute(object parameter)
         {
             executing = true;
             RaiseCanExecuteChanged();
@@ -97,7 +98,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>
+    public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>, ICommand
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
@@ -156,7 +157,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool CanExecute(object parameter)
+        bool ICommand.CanExecute(object parameter)
         {
             return !executing && canExecute(Cast(parameter));
         }
@@ -165,7 +166,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public override void Execute(object parameter)
+        void ICommand.Execute(object parameter)
         {
             Execute(Cast(parameter));
         }

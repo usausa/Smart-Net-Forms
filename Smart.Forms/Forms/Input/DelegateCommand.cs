@@ -2,13 +2,14 @@
 {
     using System;
     using System.Reflection;
+    using System.Windows.Input;
 
     using Smart.Forms.Internal;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class DelegateCommand : ObserveCommandBase<DelegateCommand>
+    public sealed class DelegateCommand : ObserveCommandBase<DelegateCommand>, ICommand
     {
         private readonly Action execute;
 
@@ -38,7 +39,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public override void Execute(object parameter)
+        void ICommand.Execute(object parameter)
         {
             execute();
         }
@@ -48,7 +49,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool CanExecute(object parameter)
+        bool ICommand.CanExecute(object parameter)
         {
             return canExecute();
         }
@@ -58,7 +59,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>
+    public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>, ICommand
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
@@ -90,7 +91,7 @@
         ///
         /// </summary>
         /// <param name="parameter"></param>
-        public override void Execute(object parameter)
+        void ICommand.Execute(object parameter)
         {
             execute(Cast(parameter));
         }
@@ -100,7 +101,7 @@
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool CanExecute(object parameter)
+        bool ICommand.CanExecute(object parameter)
         {
             return canExecute(Cast(parameter));
         }
