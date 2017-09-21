@@ -3,6 +3,8 @@
     using System;
     using System.Reflection;
 
+    using Smart.Forms.Internal;
+
     /// <summary>
     ///
     /// </summary>
@@ -17,7 +19,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public DelegateCommand(Action execute)
-            : this(execute, () => true)
+            : this(execute, Actions.True)
         {
         }
 
@@ -69,7 +71,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public DelegateCommand(Action<T> execute)
-            : this(execute, x => true)
+            : this(execute, Actions<T>.True)
         {
         }
 

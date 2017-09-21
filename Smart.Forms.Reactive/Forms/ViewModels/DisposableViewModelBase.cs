@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
 
     using Smart.Forms.Input;
+    using Smart.Forms.Internal;
     using Smart.Forms.Messaging;
 
     /// <summary>
@@ -75,7 +76,7 @@
         /// <returns></returns>
         protected AsyncCommand MakeBusyCommand(Func<Task> execute)
         {
-            return MakeBusyCommand(execute, () => true);
+            return MakeBusyCommand(execute, Actions.True);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@
         /// <returns></returns>
         protected AsyncCommand<TParameter> MakeBusyCommand<TParameter>(Func<TParameter, Task> execute)
         {
-            return MakeBusyCommand(execute, x => true);
+            return MakeBusyCommand(execute, Actions<TParameter>.True);
         }
 
         /// <summary>
@@ -147,7 +148,7 @@
         /// <returns></returns>
         protected AsyncCommand MakeBusyCommand(Action execute)
         {
-            return MakeBusyCommand(execute, () => true);
+            return MakeBusyCommand(execute, Actions.True);
         }
 
         /// <summary>
@@ -183,7 +184,7 @@
         /// <returns></returns>
         protected AsyncCommand<TParameter> MakeBusyCommand<TParameter>(Action<TParameter> execute)
         {
-            return MakeBusyCommand(execute, x => true);
+            return MakeBusyCommand(execute, Actions<TParameter>.True);
         }
 
         /// <summary>

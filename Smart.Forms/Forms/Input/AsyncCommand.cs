@@ -22,7 +22,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public AsyncCommand(Func<Task> execute)
-            : this(execute, () => true)
+            : this(execute, Actions.True)
         {
         }
 
@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public AsyncCommand(Action execute)
-            : this(execute, () => true)
+            : this(execute, Actions.True)
         {
         }
 
@@ -112,7 +112,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public AsyncCommand(Func<T, Task> execute)
-            : this(execute, x => true)
+            : this(execute, Actions<T>.True)
         {
         }
 
@@ -132,7 +132,7 @@
         /// </summary>
         /// <param name="execute"></param>
         public AsyncCommand(Action<T> execute)
-            : this(execute, x => true)
+            : this(execute, Actions<T>.True)
         {
         }
 
