@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Input
+﻿namespace Smart.Forms.Internal
 {
     using System;
 
