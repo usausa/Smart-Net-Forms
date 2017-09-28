@@ -15,7 +15,7 @@
     <dependencies>
       <dependency id="NETStandard.Library" version="2.0.0" />
       <dependency id="System.Reactive" version="3.2.0" />
-      <dependency id="Xamarin.Forms" version="2.4.0.275-pre3" />
+      <dependency id="Xamarin.Forms" version="2.4.0.280" />
       <dependency id="Usa.Smart.Core" version="1.0.3" />
       <dependency id="Usa.Smart.Forms" version="0.9.1-beta1" />
       <dependency id="Usa.Smart.Reactive" version="1.0.0" />
