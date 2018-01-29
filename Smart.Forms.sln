@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smart.Forms", "Smart.Forms\Smart.Forms.csproj", "{DF3DA357-2EC5-4432-B3D9-76D87D57DD29}"
 EndProject
@@ -14,9 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 		Smart.Forms.nuspec = Smart.Forms.nuspec
 		Smart.Forms.Reactive.nuspec = Smart.Forms.Reactive.nuspec
+		Smart.Forms.Resolver.nuspec = Smart.Forms.Resolver.nuspec
 		Smart.Forms.ruleset = Smart.Forms.ruleset
 		Smart.Forms.sln.DotSettings = Smart.Forms.sln.DotSettings
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Forms.Resolver", "Smart.Forms.Resolver\Smart.Forms.Resolver.csproj", "{8175B0B4-5553-4121-8117-11295D7ADDBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +35,10 @@ Global
 		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95FC139-2C07-4BA3-8985-95E20325E4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8175B0B4-5553-4121-8117-11295D7ADDBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8175B0B4-5553-4121-8117-11295D7ADDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8175B0B4-5553-4121-8117-11295D7ADDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8175B0B4-5553-4121-8117-11295D7ADDBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

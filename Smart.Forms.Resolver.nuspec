@@ -13,11 +13,10 @@
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="System.Reactive" version="3.1.1" />
-	    <dependency id="Xamarin.Forms" version="2.5.0.122203" />
+      <dependency id="Xamarin.Forms" version="2.5.0.122203" />
       <dependency id="Usa.Smart.Core" version="1.5.0" />
       <dependency id="Usa.Smart.Forms" version="0.9.6" />
-      <dependency id="Usa.Smart.Resolver" version="1.7.0" />
+      <dependency id="Usa.Smart.Reactive" version="1.1.0" />
     </dependencies>
     <tags>smart xamarin mvvm rx</tags>
   </metadata>
