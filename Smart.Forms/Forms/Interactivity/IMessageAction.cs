@@ -1,7 +1,5 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System.Reflection;
-
     /// <summary>
     ///
     /// </summary>
