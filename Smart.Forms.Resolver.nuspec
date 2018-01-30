@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Usa.Smart.Forms.Resolver</id>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
     <title>Smart.Forms.Resolver .NET</title>
     <authors>machi_pon</authors>
     <owners>machi_pon</owners>
@@ -14,9 +14,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="Xamarin.Forms" version="2.5.0.122203" />
-      <dependency id="Usa.Smart.Core" version="1.5.0" />
-      <dependency id="Usa.Smart.Forms" version="0.9.7" />
-      <dependency id="Usa.Smart.Resolver" version="1.7.0" />
+      <dependency id="Usa.Smart.Core" version="1.5.1" />
+      <dependency id="Usa.Smart.Forms" version="0.9.8" />
+      <dependency id="Usa.Smart.Resolver" version="1.7.1" />
     </dependencies>
     <tags>smart xamarin mvvm</tags>
   </metadata>
