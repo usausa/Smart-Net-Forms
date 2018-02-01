@@ -27,21 +27,22 @@
             }
         }
 
-        public static IEnumerable<T> GetChildren<T>(Element element)
+        public static IEnumerable<T> GetChildren<T>(Element parent)
             where T : Element
         {
             // Content
-            var contentProperty = element.GetType().GetRuntimeProperty("Content");
+            var contentProperty = parent.GetType().GetRuntimeProperty("Content");
             if (contentProperty != null)
             {
-                if (contentProperty.GetValue(element) is Element content)
+                var value = contentProperty.GetValue(parent);
+                if (value is T typedChild)
                 {
-                    if (content is T typedChild)
-                    {
-                        yield return typedChild;
-                    }
+                    yield return typedChild;
+                }
 
-                    foreach (var child in GetChildren<T>(content))
+                if (value is Element element)
+                {
+                    foreach (var child in GetChildren<T>(element))
                     {
                         yield return child;
                     }
@@ -51,10 +52,10 @@
             }
 
             // Children
-            var childrenProperty = element.GetType().GetRuntimeProperty("Children");
+            var childrenProperty = parent.GetType().GetRuntimeProperty("Children");
             if (childrenProperty != null)
             {
-                if (childrenProperty.GetValue(element) is IEnumerable children)
+                if (childrenProperty.GetValue(parent) is IEnumerable children)
                 {
                     foreach (var child in children)
                     {
@@ -63,11 +64,11 @@
                             yield return typedChild;
                         }
 
-                        if (child is Element childElement1)
+                        if (child is Element element)
                         {
-                            foreach (var childChild in GetChildren<T>(childElement1))
+                            foreach (var elementChild in GetChildren<T>(element))
                             {
-                                yield return childChild;
+                                yield return elementChild;
                             }
                         }
                     }
