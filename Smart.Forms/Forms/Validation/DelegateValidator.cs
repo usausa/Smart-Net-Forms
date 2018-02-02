@@ -6,7 +6,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DelegateRule<T> : IValidationRule<T>
+    public class DelegateValidator<T> : IValidator<T>
     {
         private readonly Func<T, bool> predicate;
 
@@ -19,7 +19,7 @@
         ///
         /// </summary>
         /// <param name="predicate"></param>
-        public DelegateRule(Func<T, bool> predicate)
+        public DelegateValidator(Func<T, bool> predicate)
         {
             this.predicate = predicate;
         }

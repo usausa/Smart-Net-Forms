@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public interface IValidity
+    public interface IValidationResult
     {
         /// <summary>
         ///

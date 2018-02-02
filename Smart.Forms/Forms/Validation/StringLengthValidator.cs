@@ -2,15 +2,16 @@
 {
     using System;
     using System.Globalization;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RegexRule<T> : IValidationRule<T>
+    public class StringLengthValidator<T> : IValidator<T>
     {
-        private readonly Regex regex;
+        private readonly int minLength;
+
+        private readonly int maxLength;
 
         /// <summary>
         ///
@@ -20,10 +21,21 @@
         /// <summary>
         ///
         /// </summary>
-        /// <param name="regex"></param>
-        public RegexRule(Regex regex)
+        /// <param name="maxLength"></param>
+        public StringLengthValidator(int maxLength)
+            : this(0, maxLength)
         {
-            this.regex = regex;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="minLength"></param>
+        /// <param name="maxLength"></param>
+        public StringLengthValidator(int minLength, int maxLength)
+        {
+            this.minLength = minLength;
+            this.maxLength = maxLength;
         }
 
         /// <summary>
@@ -39,9 +51,8 @@
             }
 
             var str = Convert.ToString(value, CultureInfo.CurrentCulture);
-            var m = regex.Match(str);
 
-            return m.Success && (m.Index == 0) && (m.Length == str.Length);
+            return (str.Length >= minLength) && (str.Length <= maxLength);
         }
     }
 }

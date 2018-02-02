@@ -10,14 +10,14 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValidationValue<T> : NotificationValue<T>, IValidatable, IValidity
+    public class ValidationValue<T> : NotificationValue<T>, IValidatable, IValidationResult
     {
         private bool hasError;
 
         /// <summary>
         ///
         /// </summary>
-        public List<IValidationRule<T>> Validations { get; } = new List<IValidationRule<T>>();
+        public List<IValidator<T>> Validators { get; } = new List<IValidator<T>>();
 
         /// <summary>
         ///
@@ -61,7 +61,7 @@
         {
             Errors.Clear();
 
-            foreach (var message in Validations.Where(x => !x.Validate(Value)).Select(x => x.ErrorMessage))
+            foreach (var message in Validators.Where(x => !x.Validate(Value)).Select(x => x.ErrorMessage))
             {
                 Errors.Add(message);
             }

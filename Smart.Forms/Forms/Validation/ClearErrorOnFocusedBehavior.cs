@@ -14,14 +14,14 @@
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetProperty =
-            BindableProperty.Create(nameof(Target), typeof(IValidity), typeof(ClearErrorOnFocusedBehavior));
+            BindableProperty.Create(nameof(Target), typeof(IValidationResult), typeof(ClearErrorOnFocusedBehavior));
 
         /// <summary>
         ///
         /// </summary>
-        public IValidity Target
+        public IValidationResult Target
         {
-            get => (IValidity)GetValue(TargetProperty);
+            get => (IValidationResult)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);
         }
 

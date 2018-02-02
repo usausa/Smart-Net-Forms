@@ -6,14 +6,14 @@
     ///
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Justification = "Ignore")]
-    public static class Validation
+    public static class ValidationProperties
     {
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty HasErrorProperty =
-            BindableProperty.Create("HasError", typeof(bool), typeof(Validation), false);
+            BindableProperty.Create("HasError", typeof(bool), typeof(ValidationProperties), false);
 
         /// <summary>
         ///

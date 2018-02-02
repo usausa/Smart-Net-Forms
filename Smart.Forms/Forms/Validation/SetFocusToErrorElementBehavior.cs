@@ -94,7 +94,7 @@
         /// <returns></returns>
         private VisualElement FindErrorElement(VisualElement element)
         {
-            if (Validation.GetHasError(element))
+            if (ValidationProperties.GetHasError(element))
             {
                 return element;
             }

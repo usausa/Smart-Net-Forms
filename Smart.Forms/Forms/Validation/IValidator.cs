@@ -4,7 +4,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IValidationRule<in T>
+    public interface IValidator<in T>
     {
         /// <summary>
         ///
