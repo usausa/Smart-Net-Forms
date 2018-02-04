@@ -12,14 +12,14 @@
             typeof(double),
             typeof(TranslateToAnimation),
             0.0d,
-            propertyChanged: (bindable, oldValue, newValue) => ((TranslateToAnimation)bindable).TranslateX = (double)newValue);
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty TranslateYProperty = BindableProperty.Create(
             nameof(TranslateY),
             typeof(double),
             typeof(TranslateToAnimation),
             0.0d,
-            propertyChanged: (bindable, oldValue, newValue) => ((TranslateToAnimation)bindable).TranslateY = (double)newValue);
+            BindingMode.TwoWay);
 
         public double TranslateX
         {

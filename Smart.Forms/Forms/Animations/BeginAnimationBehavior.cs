@@ -8,8 +8,12 @@
 
     public class BeginAnimationBehavior : BehaviorBase<VisualElement>
     {
-        public static readonly BindableProperty AnimationProperty =
-            BindableProperty.Create(nameof(Animation), typeof(AnimationBase), typeof(BeginAnimationBehavior));
+        public static readonly BindableProperty AnimationProperty = BindableProperty.Create(
+            nameof(Animation),
+            typeof(AnimationBase),
+            typeof(BeginAnimationBehavior),
+            null,
+            BindingMode.TwoWay);
 
         public AnimationBase Animation
         {

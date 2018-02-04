@@ -13,28 +13,28 @@
             typeof(VisualElement),
             typeof(AnimationBase),
             null,
-            propertyChanged: (bindable, oldValue, newValue) => ((AnimationBase)bindable).Target = (VisualElement)newValue);
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty DelayProperty = BindableProperty.Create(
             nameof(Delay),
             typeof(int),
             typeof(AnimationBase),
             0,
-            propertyChanged: (bindable, oldValue, newValue) => ((AnimationBase)bindable).Delay = (int)newValue);
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty DurationProperty = BindableProperty.Create(
             nameof(Duration),
             typeof(string),
             typeof(AnimationBase),
             "1000",
-            propertyChanged: (bindable, oldValue, newValue) => ((AnimationBase)bindable).Duration = (string)newValue);
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty EasingProperty = BindableProperty.Create(
             nameof(Easing),
             typeof(EasingType),
             typeof(AnimationBase),
             EasingType.Linear,
-            propertyChanged: (bindable, oldValue, newValue) => ((AnimationBase)bindable).Easing = (EasingType)newValue);
+            BindingMode.TwoWay);
 
         public VisualElement Target
         {
