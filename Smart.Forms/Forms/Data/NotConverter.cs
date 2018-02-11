@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class NotConverter : IValueConverter
+    public sealed class NotConverter : IValueConverter
     {
         /// <summary>
         ///

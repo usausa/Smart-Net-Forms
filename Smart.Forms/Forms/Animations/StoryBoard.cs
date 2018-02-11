@@ -6,7 +6,7 @@
     using Xamarin.Forms;
 
     [ContentProperty("Animations")]
-    public class StoryBoard : AnimationBase
+    public sealed class StoryBoard : AnimationBase
     {
         public List<AnimationBase> Animations { get; }
 

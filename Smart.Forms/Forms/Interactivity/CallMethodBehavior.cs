@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class CallMethodBehavior : BehaviorBase<BindableObject>
+    public sealed class CallMethodBehavior : BehaviorBase<BindableObject>
     {
         private static readonly Type[] EmptyTypes = new Type[0];
 

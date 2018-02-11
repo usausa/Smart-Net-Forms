@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class DateFormatConverter : IValueConverter
+    public sealed class DateFormatConverter : IValueConverter
     {
         private static readonly Type DateTimeOffsetType = typeof(DateTimeOffset);
 

@@ -7,7 +7,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class StringLengthValidator<T> : IValidator<T>
+    public sealed class StringLengthValidator<T> : IValidator<T>
     {
         private readonly int minLength;
 

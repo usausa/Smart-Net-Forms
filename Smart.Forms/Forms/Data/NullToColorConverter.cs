@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class NullToColorConverter : IValueConverter
+    public sealed class NullToColorConverter : IValueConverter
     {
         /// <summary>
         ///

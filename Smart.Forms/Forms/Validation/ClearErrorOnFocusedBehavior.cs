@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
+    public sealed class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
     {
         /// <summary>
         ///

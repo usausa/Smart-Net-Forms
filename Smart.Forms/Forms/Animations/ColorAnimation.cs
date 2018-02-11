@@ -5,7 +5,7 @@
 
     using Xamarin.Forms;
 
-    public class ColorAnimation : AnimationBase
+    public sealed class ColorAnimation : AnimationBase
     {
         public static readonly BindableProperty ToColorProperty = BindableProperty.Create(
             nameof(ToColor),

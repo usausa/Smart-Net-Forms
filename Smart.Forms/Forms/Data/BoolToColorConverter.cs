@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class BoolToColorConverter : IValueConverter
+    public sealed class BoolToColorConverter : IValueConverter
     {
         /// <summary>
         ///

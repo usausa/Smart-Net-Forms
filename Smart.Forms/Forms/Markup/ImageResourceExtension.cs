@@ -9,7 +9,7 @@
     ///
     /// </summary>
     [ContentProperty("Source")]
-    public class ImageResourceExtension : IMarkupExtension
+    public sealed class ImageResourceExtension : IMarkupExtension
     {
         /// <summary>
         ///

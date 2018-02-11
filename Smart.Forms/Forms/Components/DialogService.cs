@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class DialogService : IDialogService
+    public sealed class DialogService : IDialogService
     {
         /// <summary>
         ///

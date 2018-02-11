@@ -3,7 +3,7 @@
     using System;
     using Xamarin.Forms.Xaml;
 
-    public class Int16Extension : IMarkupExtension
+    public sealed class Int16Extension : IMarkupExtension
     {
         public short Value { get; set; }
 

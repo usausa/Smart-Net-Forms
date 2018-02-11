@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class PlatformService : IPlatformService
+    public sealed class PlatformService : IPlatformService
     {
         /// <summary>
         ///

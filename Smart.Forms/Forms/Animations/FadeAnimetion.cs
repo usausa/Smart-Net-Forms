@@ -11,7 +11,7 @@
         Down
     }
 
-    public class FadeToAnimation : AnimationBase
+    public sealed class FadeToAnimation : AnimationBase
     {
         public static readonly BindableProperty OpacityProperty = BindableProperty.Create(
             nameof(Opacity),
@@ -32,7 +32,7 @@
         }
     }
 
-    public class FadeInAnimation : AnimationBase
+    public sealed class FadeInAnimation : AnimationBase
     {
         public static readonly BindableProperty DirectionProperty = BindableProperty.Create(
             nameof(Direction),
@@ -75,7 +75,7 @@
         }
     }
 
-    public class FadeOutAnimation : AnimationBase
+    public sealed class FadeOutAnimation : AnimationBase
     {
         public static readonly BindableProperty DirectionProperty = BindableProperty.Create(
             nameof(Direction),

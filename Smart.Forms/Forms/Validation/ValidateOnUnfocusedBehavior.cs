@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ValidateOnUnfocusedBehavior : BehaviorBase<VisualElement>
+    public sealed class ValidateOnUnfocusedBehavior : BehaviorBase<VisualElement>
     {
         /// <summary>
         ///

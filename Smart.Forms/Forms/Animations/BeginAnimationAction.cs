@@ -2,7 +2,7 @@
 {
     using Xamarin.Forms;
 
-    public class BeginAnimationAction : TriggerAction<VisualElement>
+    public sealed class BeginAnimationAction : TriggerAction<VisualElement>
     {
         public AnimationBase Animation { get; set; }
 

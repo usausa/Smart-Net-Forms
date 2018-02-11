@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ValidateOnTextChangedBehavior : BehaviorBase<Entry>
+    public sealed class ValidateOnTextChangedBehavior : BehaviorBase<Entry>
     {
         /// <summary>
         ///

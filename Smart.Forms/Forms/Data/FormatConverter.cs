@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class FormatConverter : IValueConverter
+    public sealed class FormatConverter : IValueConverter
     {
         /// <summary>
         ///

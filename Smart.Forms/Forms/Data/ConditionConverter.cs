@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ConditionConverter : IValueConverter
+    public sealed class ConditionConverter : IValueConverter
     {
         /// <summary>
         ///

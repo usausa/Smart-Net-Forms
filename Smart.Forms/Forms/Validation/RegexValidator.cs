@@ -8,7 +8,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RegexValidator<T> : IValidator<T>
+    public sealed class RegexValidator<T> : IValidator<T>
     {
         private readonly Regex regex;
 

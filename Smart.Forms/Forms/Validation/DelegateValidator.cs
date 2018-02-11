@@ -6,7 +6,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DelegateValidator<T> : IValidator<T>
+    public sealed class DelegateValidator<T> : IValidator<T>
     {
         private readonly Func<T, bool> predicate;
 

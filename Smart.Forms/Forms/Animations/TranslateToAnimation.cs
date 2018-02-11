@@ -5,7 +5,7 @@
 
     using Xamarin.Forms;
 
-    public class TranslateToAnimation : AnimationBase
+    public sealed class TranslateToAnimation : AnimationBase
     {
         public static readonly BindableProperty TranslateXProperty = BindableProperty.Create(
             nameof(TranslateX),

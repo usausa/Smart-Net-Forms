@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ParameterCallMethodBehavior : BehaviorBase<BindableObject>
+    public sealed class ParameterCallMethodBehavior : BehaviorBase<BindableObject>
     {
         /// <summary>
         ///

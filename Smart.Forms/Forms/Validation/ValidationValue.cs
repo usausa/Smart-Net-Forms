@@ -10,7 +10,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValidationValue<T> : NotificationValue<T>, IValidatable, IValidationResult
+    public sealed class ValidationValue<T> : NotificationValue<T>, IValidatable, IValidationResult
     {
         private bool hasError;
 

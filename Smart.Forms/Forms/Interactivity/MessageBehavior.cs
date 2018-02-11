@@ -11,7 +11,7 @@
     ///
     /// </summary>
     [ContentProperty("Actions")]
-    public class MessageBehavior : BehaviorBase<Element>
+    public sealed class MessageBehavior : BehaviorBase<Element>
     {
         /// <summary>
         ///

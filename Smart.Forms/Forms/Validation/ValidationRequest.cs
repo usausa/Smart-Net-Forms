@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ValidationRequest
+    public sealed class ValidationRequest
     {
         /// <summary>
         ///

@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ItemSelectedToCommandBehavior : BehaviorBase<ListView>
+    public sealed class ItemSelectedToCommandBehavior : BehaviorBase<ListView>
     {
         /// <summary>
         ///

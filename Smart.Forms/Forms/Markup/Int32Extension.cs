@@ -3,7 +3,7 @@
     using System;
     using Xamarin.Forms.Xaml;
 
-    public class Int32Extension : IMarkupExtension
+    public sealed class Int32Extension : IMarkupExtension
     {
         public int Value { get; set; }
 

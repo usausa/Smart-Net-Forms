@@ -5,7 +5,7 @@
 
     using Xamarin.Forms;
 
-    public class ScaleToAnimation : AnimationBase
+    public sealed class ScaleToAnimation : AnimationBase
     {
         public static readonly BindableProperty ScaleProperty = BindableProperty.Create(
             nameof(Scale),
@@ -26,7 +26,7 @@
         }
     }
 
-    public class RelScaleToAnimation : AnimationBase
+    public sealed class RelScaleToAnimation : AnimationBase
     {
         public static readonly BindableProperty ScaleProperty = BindableProperty.Create(
             nameof(Scale),

@@ -5,7 +5,7 @@
 
     using Xamarin.Forms;
 
-    public class RotateToAnimation : AnimationBase
+    public sealed class RotateToAnimation : AnimationBase
     {
         public static readonly BindableProperty RotationProperty = BindableProperty.Create(
             nameof(Rotation),
@@ -26,7 +26,7 @@
         }
     }
 
-    public class RelRotateToAnimation : AnimationBase
+    public sealed class RelRotateToAnimation : AnimationBase
     {
         public static readonly BindableProperty RotationProperty = BindableProperty.Create(
             nameof(Rotation),
@@ -47,7 +47,7 @@
         }
     }
 
-    public class RotateXToAnimation : AnimationBase
+    public sealed class RotateXToAnimation : AnimationBase
     {
         public static readonly BindableProperty RotationProperty = BindableProperty.Create(
             nameof(Rotation),
@@ -68,7 +68,7 @@
         }
     }
 
-    public class RotateYToAnimation : AnimationBase
+    public sealed class RotateYToAnimation : AnimationBase
     {
         public static readonly BindableProperty RotationProperty = BindableProperty.Create(
             nameof(Rotation),

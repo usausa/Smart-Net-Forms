@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ActionSheetButton
+    public sealed class ActionSheetButton
     {
         /// <summary>
         ///

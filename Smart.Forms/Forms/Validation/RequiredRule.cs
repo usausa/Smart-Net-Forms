@@ -6,7 +6,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RequiredRule<T> : IValidator<T>
+    public sealed class RequiredRule<T> : IValidator<T>
     {
         /// <summary>
         ///

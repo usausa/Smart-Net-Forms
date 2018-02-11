@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class BindingContextDisposeBehavior : BehaviorBase<NavigationPage>
+    public sealed class BindingContextDisposeBehavior : BehaviorBase<NavigationPage>
     {
         /// <summary>
         ///

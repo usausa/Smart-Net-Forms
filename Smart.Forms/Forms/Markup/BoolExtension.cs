@@ -3,7 +3,7 @@
     using System;
     using Xamarin.Forms.Xaml;
 
-    public class BoolExtension : IMarkupExtension
+    public sealed class BoolExtension : IMarkupExtension
     {
         public bool Value { get; set; }
 

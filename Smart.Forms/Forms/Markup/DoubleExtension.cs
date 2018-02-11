@@ -3,7 +3,7 @@
     using System;
     using Xamarin.Forms.Xaml;
 
-    public class DoubleExtension : IMarkupExtension
+    public sealed class DoubleExtension : IMarkupExtension
     {
         public double Value { get; set; }
 

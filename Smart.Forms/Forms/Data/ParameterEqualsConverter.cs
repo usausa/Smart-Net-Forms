@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class ParameterEqualsConverter : IValueConverter
+    public sealed class ParameterEqualsConverter : IValueConverter
     {
         /// <summary>
         ///

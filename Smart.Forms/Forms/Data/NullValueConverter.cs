@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class NullValueConverter : IValueConverter
+    public sealed class NullValueConverter : IValueConverter
     {
         /// <summary>
         ///

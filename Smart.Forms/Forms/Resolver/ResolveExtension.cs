@@ -4,7 +4,7 @@
 
     using Xamarin.Forms.Xaml;
 
-    public class ResolveExtension : IMarkupExtension
+    public sealed class ResolveExtension : IMarkupExtension
     {
         public Type Type { get; set; }
 

@@ -3,7 +3,7 @@
     using System;
     using Xamarin.Forms.Xaml;
 
-    public class FloatExtension : IMarkupExtension
+    public sealed class FloatExtension : IMarkupExtension
     {
         public float Value { get; set; }
 

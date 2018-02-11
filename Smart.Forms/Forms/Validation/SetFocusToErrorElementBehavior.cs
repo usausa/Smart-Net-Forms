@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class SetFocusToErrorElementBehavior : BehaviorBase<VisualElement>
+    public sealed class SetFocusToErrorElementBehavior : BehaviorBase<VisualElement>
     {
         /// <summary>
         ///

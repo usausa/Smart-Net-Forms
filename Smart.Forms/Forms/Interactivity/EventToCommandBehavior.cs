@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class EventToCommandBehavior : BehaviorBase<BindableObject>
+    public sealed class EventToCommandBehavior : BehaviorBase<BindableObject>
     {
         /// <summary>
         ///
