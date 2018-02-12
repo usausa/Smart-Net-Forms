@@ -15,22 +15,28 @@
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty =
-            BindableProperty.Create(nameof(Target), typeof(IValidatable), typeof(ValidateOnTextChangedBehavior));
+        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
+            nameof(Target),
+            typeof(IValidatable),
+            typeof(ValidateOnTextChangedBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ValidateOnTextChangedBehavior));
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+            nameof(Command),
+            typeof(ICommand),
+            typeof(ValidateOnTextChangedBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ValidateOnTextChangedBehavior));
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+            nameof(CommandParameter),
+            typeof(object),
+            typeof(ValidateOnTextChangedBehavior));
 
         /// <summary>
         ///

@@ -12,8 +12,11 @@
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty HasErrorProperty =
-            BindableProperty.Create("HasError", typeof(bool), typeof(ValidationProperty), false);
+        public static readonly BindableProperty HasErrorProperty = BindableProperty.Create(
+            "HasError",
+            typeof(bool),
+            typeof(ValidationProperty),
+            false);
 
         /// <summary>
         ///

@@ -15,22 +15,28 @@
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty =
-            BindableProperty.Create(nameof(Target), typeof(IValidatable), typeof(ValidateOnUnfocusedBehavior));
+        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
+            nameof(Target),
+            typeof(IValidatable),
+            typeof(ValidateOnUnfocusedBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ValidateOnUnfocusedBehavior));
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+            nameof(Command),
+            typeof(ICommand),
+            typeof(ValidateOnUnfocusedBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ValidateOnUnfocusedBehavior));
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+            nameof(CommandParameter),
+            typeof(object),
+            typeof(ValidateOnUnfocusedBehavior));
 
         /// <summary>
         ///

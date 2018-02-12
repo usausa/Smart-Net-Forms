@@ -15,8 +15,11 @@
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty RequestProperty =
-            BindableProperty.Create(nameof(Request), typeof(ValidationRequest), typeof(SetFocusToErrorElementBehavior), propertyChanged: OnRequestPropertyChanged);
+        public static readonly BindableProperty RequestProperty = BindableProperty.Create(
+            nameof(Request),
+            typeof(ValidationRequest),
+            typeof(SetFocusToErrorElementBehavior),
+            propertyChanged: OnRequestPropertyChanged);
 
         /// <summary>
         ///
