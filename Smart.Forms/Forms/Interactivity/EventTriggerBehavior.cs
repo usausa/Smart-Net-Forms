@@ -155,6 +155,5 @@
             behavior.RemoveEventHandler();
             behavior.AddEventHandler((string)newValue);
         }
-
     }
 }
