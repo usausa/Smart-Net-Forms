@@ -10,7 +10,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class ValueConverterGroup : List<IValueConverter>, IValueConverter
+    public sealed class AggregateConverter : List<IValueConverter>, IValueConverter
     {
         /// <summary>
         ///

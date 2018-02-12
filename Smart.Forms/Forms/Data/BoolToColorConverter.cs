@@ -43,7 +43,7 @@
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value != null && (Color)value == TrueColor;
+            return Equals(value, TrueColor);
         }
     }
 }
