@@ -1,8 +1,11 @@
 ﻿namespace Smart.Forms.Markup
 {
     using System;
+
+    using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
+    [ContentProperty("Value")]
     public sealed class Int32Extension : IMarkupExtension
     {
         public int Value { get; set; }
