@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class EventToCommandBehavior : BehaviorBase<BindableObject>
+    public sealed class EventTriggerBehavior : TriggerBehaviorBase<BindableObject>
     {
         /// <summary>
         ///
@@ -18,7 +18,7 @@
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
             nameof(EventName),
             typeof(string),
-            typeof(EventToCommandBehavior),
+            typeof(EventTriggerBehavior),
             propertyChanged: HandleEventNamePropertyChanged);
 
         /// <summary>
@@ -28,7 +28,7 @@
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             nameof(Command),
             typeof(ICommand),
-            typeof(EventToCommandBehavior));
+            typeof(EventTriggerBehavior));
 
         /// <summary>
         ///
@@ -37,7 +37,7 @@
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
             nameof(CommandParameter),
             typeof(object),
-            typeof(EventToCommandBehavior));
+            typeof(EventTriggerBehavior));
 
         private EventInfo eventInfo;
 
@@ -111,7 +111,7 @@
                 throw new ArgumentException("EventName");
             }
 
-            var methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(EventTriggerBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }
@@ -135,15 +135,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            if (Command == null)
-            {
-                return;
-            }
-
-            if (Command.CanExecute(CommandParameter))
-            {
-                Command.Execute(CommandParameter);
-            }
+            InvokeActions(CommandParameter);
         }
 
         /// <summary>
@@ -154,7 +146,7 @@
         /// <param name="newValue"></param>
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var behavior = (EventToCommandBehavior)bindable;
+            var behavior = (EventTriggerBehavior)bindable;
             if (behavior.AssociatedObject == null)
             {
                 return;
@@ -163,5 +155,6 @@
             behavior.RemoveEventHandler();
             behavior.AddEventHandler((string)newValue);
         }
+
     }
 }

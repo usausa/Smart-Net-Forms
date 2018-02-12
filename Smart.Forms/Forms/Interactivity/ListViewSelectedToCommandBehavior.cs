@@ -7,14 +7,16 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class ItemSelectedToCommandBehavior : BehaviorBase<ListView>
+    public sealed class ListViewSelectedToCommandBehavior : BehaviorBase<ListView>
     {
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ItemSelectedToCommandBehavior));
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+            nameof(Command),
+            typeof(ICommand),
+            typeof(ListViewSelectedToCommandBehavior));
 
         /// <summary>
         ///

@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public interface IMessageAction
+    public interface ITriggerAction
     {
         /// <summary>
         ///

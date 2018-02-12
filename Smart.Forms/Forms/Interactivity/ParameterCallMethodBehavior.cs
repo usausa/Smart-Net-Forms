@@ -15,29 +15,38 @@
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty EventNameProperty =
-            BindableProperty.Create(nameof(EventName), typeof(string), typeof(EventToCommandBehavior), propertyChanged: HandleEventNamePropertyChanged);
+        public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
+            nameof(EventName),
+            typeof(string),
+            typeof(EventToCommandBehavior),
+            propertyChanged: HandleEventNamePropertyChanged);
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetObjectProperty =
-            BindableProperty.Create(nameof(TargetObject), typeof(object), typeof(ParameterCallMethodBehavior));
+        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+            nameof(TargetObject),
+            typeof(object),
+            typeof(ParameterCallMethodBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty MethodNameProperty =
-            BindableProperty.Create(nameof(MethodName), typeof(string), typeof(ParameterCallMethodBehavior));
+        public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
+            nameof(MethodName),
+            typeof(string),
+            typeof(ParameterCallMethodBehavior));
 
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty MethodParameterProperty =
-            BindableProperty.Create(nameof(MethodParameter), typeof(object), typeof(ParameterCallMethodBehavior));
+        public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
+            nameof(MethodParameter),
+            typeof(object),
+            typeof(ParameterCallMethodBehavior));
 
         private EventInfo eventInfo;
 

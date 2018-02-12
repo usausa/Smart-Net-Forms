@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class SetFocusMessageAction : MessageAction<VisualElement>
+    public sealed class SetFocusAction : TriggerAction<VisualElement>
     {
         /// <summary>
         ///
