@@ -18,7 +18,7 @@
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
             nameof(EventName),
             typeof(string),
-            typeof(EventToCommandBehavior),
+            typeof(ParameterCallMethodBehavior),
             propertyChanged: HandleEventNamePropertyChanged);
 
         /// <summary>
@@ -129,7 +129,7 @@
                 throw new ArgumentException("EventName");
             }
 
-            var methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(ParameterCallMethodBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }

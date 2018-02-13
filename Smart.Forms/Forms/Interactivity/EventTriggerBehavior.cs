@@ -2,7 +2,6 @@
 {
     using System;
     using System.Reflection;
-    using System.Windows.Input;
 
     using Xamarin.Forms;
 
@@ -21,24 +20,6 @@
             typeof(EventTriggerBehavior),
             propertyChanged: HandleEventNamePropertyChanged);
 
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
-            nameof(Command),
-            typeof(ICommand),
-            typeof(EventTriggerBehavior));
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
-            nameof(CommandParameter),
-            typeof(object),
-            typeof(EventTriggerBehavior));
-
         private EventInfo eventInfo;
 
         private Delegate handler;
@@ -50,24 +31,6 @@
         {
             get => (string)GetValue(EventNameProperty);
             set => SetValue(EventNameProperty, value);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public ICommand Command
-        {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public object CommandParameter
-        {
-            get => GetValue(CommandParameterProperty);
-            set => SetValue(CommandParameterProperty, value);
         }
 
         /// <summary>
@@ -135,7 +98,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            InvokeActions(CommandParameter);
+            InvokeActions(null);
         }
 
         /// <summary>

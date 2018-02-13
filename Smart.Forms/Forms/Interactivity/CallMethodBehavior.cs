@@ -109,10 +109,10 @@
             eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
             if (eventInfo == null)
             {
-                throw new ArgumentException("EventName");
+                throw new ArgumentException(nameof(EventName));
             }
 
-            var methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(CallMethodBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }
