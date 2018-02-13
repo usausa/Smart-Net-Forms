@@ -27,5 +27,21 @@
                 action.Invoke(AssociatedObject, parameter);
             }
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            foreach (var action in Actions)
+            {
+                if (action is BindableObject bindable)
+                {
+                    bindable.BindingContext = BindingContext;
+                }
+            }
+        }
     }
 }
