@@ -12,16 +12,17 @@
         /// <summary>
         ///
         /// </summary>
-        public static readonly BindableProperty TypeProperty = BindableProperty.Create(
+        public static readonly BindableProperty TypeProperty = BindableProperty.CreateAttached(
             "Type",
             typeof(Type),
             typeof(BindingContextResolver),
+            null,
             propertyChanged: HandleTypePropertyChanged);
 
         /// <summary>
         ///
         /// </summary>
-        public static readonly BindableProperty DisposeOnChangedProperty = BindableProperty.Create(
+        public static readonly BindableProperty DisposeOnChangedProperty = BindableProperty.CreateAttached(
             "DisposeOnChanged",
             typeof(bool),
             typeof(BindingContextResolver),
