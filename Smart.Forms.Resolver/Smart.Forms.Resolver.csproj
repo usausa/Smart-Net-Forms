@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
     <RootNamespace>Smart</RootNamespace>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +13,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
     <PackageReference Include="Usa.Smart.Core" Version="1.5.1" />
     <PackageReference Include="Usa.Smart.Resolver" Version="1.7.1" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
 
   <ItemGroup>
