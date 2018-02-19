@@ -13,7 +13,7 @@
     /// <summary>
     ///
     /// </summary>
-    public abstract class ViewModelBase : NotificationObject
+    public abstract class ViewModelBase : NotificationObject, IDisposable
     {
         private ListDisposable disposables;
 
