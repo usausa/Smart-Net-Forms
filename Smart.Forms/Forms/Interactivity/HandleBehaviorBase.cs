@@ -7,14 +7,14 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    [ContentProperty("Actions")]
-    public abstract class TriggerBehaviorBase<T> : BehaviorBase<T>
+    [ContentProperty("Handlers")]
+    public abstract class HandleBehaviorBase<T> : BehaviorBase<T>
         where T : BindableObject
     {
         /// <summary>
         ///
         /// </summary>
-        public IList<ITriggerAction> Actions { get; } = new List<ITriggerAction>();
+        public IList<IActionHandler> Handlers { get; } = new List<IActionHandler>();
 
         /// <summary>
         ///
@@ -22,9 +22,9 @@
         /// <param name="parameter"></param>
         protected void InvokeActions(object parameter)
         {
-            foreach (var action in Actions)
+            foreach (var handler in Handlers)
             {
-                action.Invoke(AssociatedObject, parameter);
+                handler.Invoke(AssociatedObject, parameter);
             }
         }
 
@@ -35,9 +35,9 @@
         {
             base.OnBindingContextChanged();
 
-            foreach (var action in Actions)
+            foreach (var handler in Handlers)
             {
-                if (action is BindableObject bindable)
+                if (handler is BindableObject bindable)
                 {
                     bindable.BindingContext = BindingContext;
                 }

@@ -1,12 +1,13 @@
 ﻿namespace Smart.Forms.Animations
 {
-    using System.Threading.Tasks;
-
     using Smart.Forms.Interactivity;
 
     using Xamarin.Forms;
 
-    public sealed class BeginAnimationBehavior : BehaviorBase<VisualElement>
+    /// <summary>
+    ///
+    /// </summary>
+    public sealed class BeginAnimationHandler : ActionHandler<VisualElement>
     {
         public static readonly BindableProperty AnimationProperty = BindableProperty.Create(
             nameof(Animation),
@@ -19,19 +20,15 @@
             set => SetValue(AnimationProperty, value);
         }
 
-        protected override async void OnAttachedTo(VisualElement bindable)
+        protected override async void Invoke(VisualElement associatedObject, object parameter)
         {
-            base.OnAttachedTo(bindable);
-
             if (Animation != null)
             {
                 if (Animation.Target == null)
                 {
-                    Animation.Target = AssociatedObject;
+                    Animation.Target = associatedObject;
                 }
 
-                var delay = Task.Delay(250);
-                await Task.WhenAll(delay);
                 await Animation.Begin();
             }
         }

@@ -6,7 +6,7 @@
     ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class TriggerAction<T> : BindableObject, ITriggerAction
+    public abstract class ActionHandler<T> : BindableObject, IActionHandler
         where T : BindableObject
     {
         /// <summary>
@@ -32,7 +32,7 @@
     /// </summary>
     /// <typeparam name="TObject"></typeparam>
     /// <typeparam name="TParameter"></typeparam>
-    public abstract class TriggerAction<TObject, TParameter> : BindableObject, ITriggerAction
+    public abstract class ActionHandler<TObject, TParameter> : BindableObject, IActionHandler
         where TObject : BindableObject
     {
         /// <summary>

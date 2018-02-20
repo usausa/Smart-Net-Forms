@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public interface ITriggerAction
+    public interface IActionHandler
     {
         /// <summary>
         ///

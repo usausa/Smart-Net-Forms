@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel;
 
-    public sealed class CancelEventRequest : IEventRequest<CancelEventArgs>
+    public sealed class CancelInteractionRequest : IInteractionRequest<CancelEventArgs>
     {
         public event EventHandler<CancelEventArgs> Requested;
 

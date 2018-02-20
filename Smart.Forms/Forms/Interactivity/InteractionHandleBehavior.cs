@@ -1,20 +1,20 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System.ComponentModel;
+    using System;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class CancelEventRequestBehavior : EventRequestBehaviorBase<CancelEventArgs>
+    public sealed class InteractionHandleBehavior : InteractionHandleBehaviorBase<EventArgs>
     {
         /// <summary>
         ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected override void OnEventRequest(object sender, CancelEventArgs e)
+        protected override void OnEventRequest(object sender, EventArgs e)
         {
-            InvokeActions(e);
+            InvokeActions(null);
         }
     }
 }

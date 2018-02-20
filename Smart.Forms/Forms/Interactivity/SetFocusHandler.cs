@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class SetFocusAction : TriggerAction<BindableObject>
+    public sealed class SetFocusHandler : ActionHandler<BindableObject>
     {
         /// <summary>
         ///
@@ -14,7 +14,7 @@
         public static readonly BindableProperty TargetProperty = BindableProperty.Create(
             nameof(Target),
             typeof(VisualElement),
-            typeof(SetFocusAction));
+            typeof(SetFocusHandler));
 
         public VisualElement Target
         {

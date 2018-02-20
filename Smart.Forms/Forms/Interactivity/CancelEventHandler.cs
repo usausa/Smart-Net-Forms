@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class CancelEventHandleAction : TriggerAction<BindableObject>
+    public sealed class CancelEventHandler : ActionHandler<BindableObject>
     {
         /// <summary>
         ///
@@ -16,7 +16,7 @@
         public static readonly BindableProperty CancelProperty = BindableProperty.Create(
             nameof(Cancel),
             typeof(bool),
-            typeof(CancelEventHandleAction),
+            typeof(CancelEventHandler),
             false);
 
         /// <summary>
