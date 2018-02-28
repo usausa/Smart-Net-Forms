@@ -90,19 +90,6 @@
             this.messenger = messenger;
         }
 
-        // ------------------------------------------------------------
-        // Validation helper
-        // ------------------------------------------------------------
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="validatables"></param>
-        protected void RegisterValidation(params IValidatable[] validatables)
-        {
-            RegisterValidation(string.Empty, validatables);
-        }
-
         /// <summary>
         ///
         /// </summary>
@@ -135,6 +122,15 @@
         // ------------------------------------------------------------
         // Validation
         // ------------------------------------------------------------
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="validatables"></param>
+        protected void RegisterValidation(params IValidatable[] validatables)
+        {
+            RegisterValidation(string.Empty, validatables);
+        }
 
         /// <summary>
         ///
