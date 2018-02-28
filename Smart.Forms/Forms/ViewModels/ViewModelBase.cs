@@ -39,7 +39,7 @@
         /// <summary>
         ///
         /// </summary>
-        public IBusyState BusyState => busyState ?? (busyState = ResolveBusyState());
+        public IBusyState BusyState => busyState ?? (busyState = new BusyState());
 
         // ------------------------------------------------------------
         // Messenger
@@ -48,7 +48,7 @@
         /// <summary>
         ///
         /// </summary>
-        public IMessenger Messenger => messenger ?? (messenger = ResolveMessenger());
+        public IMessenger Messenger => messenger ?? (messenger = new Messenger());
 
         // ------------------------------------------------------------
         // Constructor
@@ -88,28 +88,6 @@
         {
             this.busyState = busyState;
             this.messenger = messenger;
-        }
-
-        // ------------------------------------------------------------
-        // Resolver
-        // ------------------------------------------------------------
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        protected virtual IBusyState ResolveBusyState()
-        {
-            return new BusyState();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        protected virtual IMessenger ResolveMessenger()
-        {
-            return new Messenger();
         }
 
         // ------------------------------------------------------------
@@ -321,7 +299,7 @@
                         busyState.IsBusy = false;
                     }
                 }, () => !busyState.IsBusy && canExecute())
-                .Observe(this, nameof(IBusyState.IsBusy))
+                .Observe(busyState, nameof(IBusyState.IsBusy))
                 .RemoveObserverBy(Disposables);
         }
 
@@ -358,7 +336,7 @@
                         busyState.IsBusy = false;
                     }
                 }, parameter => !busyState.IsBusy && canExecute(parameter))
-                .Observe(this, nameof(IBusyState.IsBusy))
+                .Observe(busyState, nameof(IBusyState.IsBusy))
                 .RemoveObserverBy(Disposables);
         }
     }
