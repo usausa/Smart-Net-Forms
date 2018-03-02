@@ -232,7 +232,8 @@
         /// <returns></returns>
         protected DelegateCommand MakeDelegateCommand(Action execute, Func<bool> canExecute)
         {
-            return new DelegateCommand(execute, canExecute)
+            return new DelegateCommand(execute, () => !busyState.IsBusy && canExecute())
+                .Observe(busyState, nameof(IBusyState.IsBusy))
                 .RemoveObserverBy(Disposables);
         }
 
@@ -256,7 +257,8 @@
         /// <returns></returns>
         protected DelegateCommand<TParameter> MakeDelegateCommand<TParameter>(Action<TParameter> execute, Func<TParameter, bool> canExecute)
         {
-            return new DelegateCommand<TParameter>(execute, canExecute)
+            return new DelegateCommand<TParameter>(execute, x => !busyState.IsBusy && canExecute(x))
+                .Observe(busyState, nameof(IBusyState.IsBusy))
                 .RemoveObserverBy(Disposables);
         }
 
