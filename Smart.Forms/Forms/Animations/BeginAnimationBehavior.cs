@@ -6,6 +6,7 @@
 
     using Xamarin.Forms;
 
+    [ContentProperty("Animation")]
     public sealed class BeginAnimationBehavior : BehaviorBase<VisualElement>
     {
         public static readonly BindableProperty AnimationProperty = BindableProperty.Create(

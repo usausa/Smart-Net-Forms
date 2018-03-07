@@ -4,9 +4,7 @@
 
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
+    [ContentProperty("Animation")]
     public sealed class BeginAnimationHandler : ActionHandler<VisualElement>
     {
         public static readonly BindableProperty AnimationProperty = BindableProperty.Create(

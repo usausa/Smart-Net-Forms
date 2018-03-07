@@ -1,7 +1,5 @@
 ﻿namespace Smart.Forms.Animations
 {
-    using System;
-    using System.Diagnostics;
     using System.Threading.Tasks;
 
     using Xamarin.Forms;
@@ -60,31 +58,7 @@
             set => SetValue(EasingProperty, value);
         }
 
-        private bool running;
-
         public async Task Begin()
-        {
-            try
-            {
-                if (!running)
-                {
-                    running = true;
-
-                    await InternalBegin()
-                        .ContinueWith(t => t.Exception, TaskContinuationOptions.OnlyOnFaulted)
-                        .ConfigureAwait(false);
-                }
-            }
-            catch (TaskCanceledException)
-            {
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception in animation {ex}");
-            }
-        }
-
-        private async Task InternalBegin()
         {
             if (Delay > 0)
             {
