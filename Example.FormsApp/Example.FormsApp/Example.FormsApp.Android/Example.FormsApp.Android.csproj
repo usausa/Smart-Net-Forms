@@ -44,7 +44,8 @@
     <LangVersion>latest</LangVersion>
     <CodeAnalysisRuleSet>..\..\..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
     <AotAssemblies>true</AotAssemblies>
-    <EnableLLVM>true</EnableLLVM>  </PropertyGroup>
+    <EnableLLVM>true</EnableLLVM>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -58,6 +59,12 @@
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Usa.Smart.Core">
+      <Version>1.5.7</Version>
+    </PackageReference>
+    <PackageReference Include="Usa.Smart.Resolver">
+      <Version>1.7.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.550146" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2" />
