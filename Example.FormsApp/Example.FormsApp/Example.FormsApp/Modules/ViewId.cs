@@ -4,6 +4,7 @@
     {
         Menu,
 
-        InteractivityMenu
+        InteractivityMenu,
+        ResolveHandler
     }
 }
