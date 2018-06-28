@@ -1,13 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Example.FormsApp.MainPage">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:navigation="clr-namespace:Smart.Navigation;assembly=Smart.Navigation.Forms"
+             xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
+             xmlns:local="clr-namespace:Example.FormsApp"
+             xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
+             mc:Ignorable="d"
+             x:Class="Example.FormsApp.MainPage"
+             ios:Page.UseSafeArea="true"
+             d:DataContext="{d:DesignInstance Type={x:Type local:MainPageViewModel}}"
+             resolver:BindingContextResolver.Type="{x:Type local:MainPageViewModel}"
+             IsBusy="{Binding ApplicationState.IsBusy}">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!"
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid Style="{StaticResource MainGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- header -->
+        <Grid Grid.Row="0" Style="{StaticResource MainTitleGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Style="{StaticResource MainTitleLabel}"
+                   Text="{Binding Title.Value}" />
+            <Button Grid.Column="0" Style="{StaticResource MainTitleButton}"
+                    IsVisible="{Binding CanBack.Value}"
+                    Command="{Binding BackCommand}"
+                    Text="&#xf124;"/>
+            <Button Grid.Column="2" Style="{StaticResource MainTitleButton}"
+                    Command="{Binding OptionCommand}"
+                    Text="&#xf2ad;"/>
+        </Grid>
+
+        <!-- view container -->
+        <ContentView Grid.Row="1" x:Name="Container" views:ShellProperty.ShellControl="{Binding}">
+            <ContentView.Behaviors>
+                <navigation:NavigationContainerBehavior Navigator="{Binding Navigator}" />
+                <views:ShellUpdateBehavior />
+            </ContentView.Behaviors>
+        </ContentView>
+
+        <!-- footer -->
+        <Grid Grid.Row="2" Style="{StaticResource MainFunctionGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0" Style="{StaticResource MainFunctionButton}"
+                Command="{Binding Function1Command}"
+                Text="{Binding Function1Text.Value}" />
+            <Button
+                Grid.Column="1" Style="{StaticResource MainFunctionButton}"
+                Command="{Binding Function2Command}"
+                Text="{Binding Function2Text.Value}" />
+            <Button
+                Grid.Column="2" Style="{StaticResource MainFunctionButton}"
+                Command="{Binding Function3Command}"
+                Text="{Binding Function3Text.Value}" />
+            <Button
+                Grid.Column="3" Style="{StaticResource MainFunctionButton}"
+                Command="{Binding Function4Command}"
+                Text="{Binding Function4Text.Value}" />
+        </Grid>
+
+    </Grid>
 
 </ContentPage>

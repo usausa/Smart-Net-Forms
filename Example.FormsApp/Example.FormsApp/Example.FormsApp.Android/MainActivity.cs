@@ -17,5 +17,10 @@
             Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
+
+        public override void OnBackPressed()
+        {
+            MoveTaskToBack(true);
+        }
     }
 }

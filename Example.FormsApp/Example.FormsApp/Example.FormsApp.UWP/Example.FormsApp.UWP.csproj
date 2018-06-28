@@ -168,19 +168,23 @@
     <PackageReference Include="Usa.Smart.Resolver">
       <Version>1.7.4</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials">
-      <Version>0.6.0-preview</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.550146" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Smart.Forms\Smart.Forms.csproj">
+      <Project>{277c0379-3d30-47a8-9311-33c8b41d0e9d}</Project>
+      <Name>Smart.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Example.FormsApp\Example.FormsApp.csproj">
       <Project>{74CA3C64-7F69-4335-BA96-A7AE2F05DB53}</Project>
       <Name>Example.FormsApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Fonts\ionicons.ttf">
+      <Link>Assets\Fonts\ionicons.ttf</Link>
+    </Content>
     <None Include="Example.FormsApp.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
