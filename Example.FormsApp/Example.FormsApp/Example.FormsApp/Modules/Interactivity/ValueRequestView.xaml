@@ -8,18 +8,18 @@
              xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
              mc:Ignorable="d"
-             x:Class="Example.FormsApp.Modules.Interactivity.ResolveHandlerView"
-             d:DataContext="{d:DesignInstance Type={x:Type interactivity:ResolveHandlerViewModel}}"
-             resolver:BindingContextResolver.Type="{x:Type interactivity:ResolveHandlerViewModel}"
+             x:Class="Example.FormsApp.Modules.Interactivity.ValueRequestView"
+             d:DataContext="{d:DesignInstance Type={x:Type interactivity:ValueRequestViewModel}}"
+             resolver:BindingContextResolver.Type="{x:Type interactivity:ValueRequestViewModel}"
              views:ShellProperty.Title="ResolveHandler">
 
     <StackLayout>
 
         <Label Text="test">
             <Label.Behaviors>
-                <si:ResolveInteractionHandleBehavior EventRequest="{Binding ResolveLabelTextRequest}">
-                    <interactivity:ResolveLabelTextHandler/>
-                </si:ResolveInteractionHandleBehavior>
+                <si:ValueRequestBehavior Request="{Binding LabelTextValueRequest}">
+                    <interactivity:LabelTextValueHandler />
+                </si:ValueRequestBehavior>
             </Label.Behaviors>
         </Label>
 

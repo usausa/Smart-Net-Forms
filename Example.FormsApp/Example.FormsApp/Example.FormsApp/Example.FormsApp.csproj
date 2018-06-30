@@ -36,10 +36,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Modules\Interactivity\ValueRequestView.xaml.cs">
+      <DependentUpon>ValueRequestView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Modules\Interactivity\InteractivityMenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Modules\Interactivity\ResolveHandlerView.xaml">
+    <EmbeddedResource Update="Modules\Interactivity\ValueRequestView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

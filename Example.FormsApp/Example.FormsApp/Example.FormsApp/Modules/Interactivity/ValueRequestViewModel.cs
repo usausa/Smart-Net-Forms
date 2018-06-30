@@ -7,15 +7,15 @@
     using Smart.Forms.Messaging;
     using Smart.Navigation;
 
-    public class ResolveHandlerViewModel : AppViewModelBase
+    public class ValueRequestViewModel : AppViewModelBase
     {
         private readonly IDialogService dialogService;
 
-        public ResolveInteractionRequest<string> ResolveLabelTextRequest { get; } = new ResolveInteractionRequest<string>();
+        public ValueRequest<string> LabelTextValueRequest { get; } = new ValueRequest<string>();
 
         public AsyncCommand ResolveCommand { get; }
 
-        public ResolveHandlerViewModel(
+        public ValueRequestViewModel(
             ApplicationState applicationState,
             IDialogService dialogService)
             : base(applicationState)
@@ -32,7 +32,7 @@
 
         private Task ResolveText()
         {
-            var text = ResolveLabelTextRequest.Resolve();
+            var text = LabelTextValueRequest.Resolve();
 
             return dialogService.DisplayAlert(string.Empty, text, "OK");
         }

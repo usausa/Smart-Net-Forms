@@ -5,6 +5,6 @@
         Menu,
 
         InteractivityMenu,
-        ResolveHandler
+        ValueRequest
     }
 }

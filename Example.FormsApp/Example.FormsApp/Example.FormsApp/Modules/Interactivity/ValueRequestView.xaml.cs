@@ -2,10 +2,10 @@
 {
     using Smart.Navigation.Attributes;
 
-    [View(ViewId.ResolveHandler)]
-    public partial class ResolveHandlerView
+    [View(ViewId.ValueRequest)]
+    public partial class ValueRequestView
     {
-        public ResolveHandlerView()
+        public ValueRequestView()
         {
             InitializeComponent();
         }
