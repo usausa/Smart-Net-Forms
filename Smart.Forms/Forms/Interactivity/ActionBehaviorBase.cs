@@ -6,10 +6,10 @@
     /// <summary>
     ///
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TBindable"></typeparam>
     [ContentProperty("Handlers")]
-    public abstract class HandleBehaviorBase<T> : BehaviorBase<T>
-        where T : BindableObject
+    public abstract class ActionBehaviorBase<TBindable> : BehaviorBase<TBindable>
+        where TBindable : BindableObject
     {
         /// <summary>
         ///
@@ -24,7 +24,7 @@
         {
             foreach (var handler in Handlers)
             {
-                handler.Invoke(AssociatedObject, parameter);
+                handler.DoInvoke(AssociatedObject, parameter);
             }
         }
 

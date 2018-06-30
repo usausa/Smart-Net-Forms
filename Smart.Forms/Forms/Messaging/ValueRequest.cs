@@ -2,7 +2,7 @@
 {
     using System;
 
-    public sealed class ResolveInteractionRequest<T> : IInteractionRequest<ValueHolderEventArgs>
+    public sealed class ValueRequest<T> : IEventRequest<ValueHolderEventArgs>
     {
         public event EventHandler<ValueHolderEventArgs> Requested;
 

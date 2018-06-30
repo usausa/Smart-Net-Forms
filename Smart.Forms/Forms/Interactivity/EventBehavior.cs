@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class EventHandleBehavior : HandleBehaviorBase<BindableObject>
+    public sealed class EventBehavior : ActionBehaviorBase<BindableObject>
     {
         /// <summary>
         ///
@@ -17,7 +17,7 @@
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
             nameof(EventName),
             typeof(string),
-            typeof(EventHandleBehavior),
+            typeof(EventBehavior),
             propertyChanged: HandleEventNamePropertyChanged);
 
         private EventInfo eventInfo;
@@ -74,7 +74,7 @@
                 throw new ArgumentException("EventName");
             }
 
-            var methodInfo = typeof(EventHandleBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(EventBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }
@@ -109,7 +109,7 @@
         /// <param name="newValue"></param>
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var behavior = (EventHandleBehavior)bindable;
+            var behavior = (EventBehavior)bindable;
             if (behavior.AssociatedObject == null)
             {
                 return;

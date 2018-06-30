@@ -10,27 +10,27 @@
     ///
     /// </summary>
     /// <typeparam name="TEventArgs"></typeparam>
-    public abstract class InteractionHandleBehaviorBase<TEventArgs> : HandleBehaviorBase<BindableObject>
+    public abstract class RequestBehaviorBase<TEventArgs> : ActionBehaviorBase<BindableObject>
         where TEventArgs : EventArgs
     {
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty EventRequestProperty = BindableProperty.Create(
-            nameof(EventRequest),
-            typeof(IInteractionRequest<TEventArgs>),
-            typeof(InteractionHandleBehaviorBase<TEventArgs>),
+        public static readonly BindableProperty RequestProperty = BindableProperty.Create(
+            nameof(Request),
+            typeof(IEventRequest<TEventArgs>),
+            typeof(RequestBehaviorBase<TEventArgs>),
             null,
             propertyChanged: OnEventRequestPropertyChanged);
 
         /// <summary>
         ///
         /// </summary>
-        public IInteractionRequest<TEventArgs> EventRequest
+        public IEventRequest<TEventArgs> Request
         {
-            get => (IInteractionRequest<TEventArgs>)GetValue(EventRequestProperty);
-            set => SetValue(EventRequestProperty, value);
+            get => (IEventRequest<TEventArgs>)GetValue(RequestProperty);
+            set => SetValue(RequestProperty, value);
         }
 
         /// <summary>
@@ -40,9 +40,9 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            if (EventRequest != null)
+            if (Request != null)
             {
-                EventRequest.Requested -= EventRequestOnRequested;
+                Request.Requested -= EventRequestOnRequested;
             }
 
             base.OnDetachingFrom(bindable);
@@ -56,7 +56,7 @@
         /// <param name="newValue"></param>
         private static void OnEventRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((InteractionHandleBehaviorBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IInteractionRequest<TEventArgs>, newValue as IInteractionRequest<TEventArgs>);
+            ((RequestBehaviorBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IEventRequest<TEventArgs>, newValue as IEventRequest<TEventArgs>);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private void OnMessengerPropertyChanged(IInteractionRequest<TEventArgs> oldValue, IInteractionRequest<TEventArgs> newValue)
+        private void OnMessengerPropertyChanged(IEventRequest<TEventArgs> oldValue, IEventRequest<TEventArgs> newValue)
         {
             if (oldValue == newValue)
             {

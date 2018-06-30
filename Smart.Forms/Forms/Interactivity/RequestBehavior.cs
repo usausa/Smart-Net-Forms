@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class InteractionHandleBehavior : InteractionHandleBehaviorBase<EventArgs>
+    public sealed class RequestBehavior : RequestBehaviorBase<EventArgs>
     {
         /// <summary>
         ///

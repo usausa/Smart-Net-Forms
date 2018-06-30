@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IInteractionRequest<TEventAgrs>
+    public interface IEventRequest<TEventAgrs>
         where TEventAgrs : EventArgs
     {
         event EventHandler<TEventAgrs> Requested;

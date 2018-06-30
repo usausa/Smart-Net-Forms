@@ -7,7 +7,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class CancelEventHandler : ActionHandler<BindableObject>
+    public sealed class CancelEventHandler : ActionHandler<BindableObject, CancelEventArgs>
     {
         /// <summary>
         ///
@@ -33,10 +33,9 @@
         /// </summary>
         /// <param name="associatedObject"></param>
         /// <param name="parameter"></param>
-        protected override void Invoke(BindableObject associatedObject, object parameter)
+        protected override void Invoke(BindableObject associatedObject, CancelEventArgs parameter)
         {
-            var args = (CancelEventArgs)parameter;
-            args.Cancel = Cancel;
+            parameter.Cancel = Cancel;
         }
     }
 }

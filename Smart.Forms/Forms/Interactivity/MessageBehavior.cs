@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class MessageHandleBehavior : HandleBehaviorBase<BindableObject>
+    public sealed class MessageBehavior : ActionBehaviorBase<BindableObject>
     {
         /// <summary>
         ///
@@ -18,7 +18,7 @@
         public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
             nameof(Messenger),
             typeof(IMessenger),
-            typeof(MessageHandleBehavior),
+            typeof(MessageBehavior),
             null,
             propertyChanged: OnMessengerPropertyChanged);
 
@@ -64,7 +64,7 @@
         /// <param name="newValue"></param>
         private static void OnMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((MessageHandleBehavior)bindable).OnMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
+            ((MessageBehavior)bindable).OnMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
         }
 
         /// <summary>
