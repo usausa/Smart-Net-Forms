@@ -15,6 +15,10 @@
              resolver:BindingContextResolver.Type="{x:Type local:MainPageViewModel}"
              IsBusy="{Binding ApplicationState.IsBusy}">
 
+    <ContentPage.Behaviors>
+        <views:ShellUpdateBehavior Navigator="{Binding Navigator, Mode=OneTime}"/>
+    </ContentPage.Behaviors>
+
     <Grid Style="{StaticResource MainGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -41,12 +45,11 @@
         </Grid>
 
         <!-- view container -->
-        <ContentView Grid.Row="1" x:Name="Container" views:ShellProperty.ShellControl="{Binding}">
-            <ContentView.Behaviors>
+        <AbsoluteLayout Grid.Row="1">
+            <AbsoluteLayout.Behaviors>
                 <navigation:NavigationContainerBehavior Navigator="{Binding Navigator}" />
-                <views:ShellUpdateBehavior />
-            </ContentView.Behaviors>
-        </ContentView>
+            </AbsoluteLayout.Behaviors>
+        </AbsoluteLayout>
 
         <!-- footer -->
         <Grid Grid.Row="2" Style="{StaticResource MainFunctionGrid}">

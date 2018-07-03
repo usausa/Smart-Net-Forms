@@ -4,22 +4,6 @@
 
     public class ShellProperty
     {
-        public static readonly BindableProperty ShellControlProperty = BindableProperty.CreateAttached(
-            "ShellControl",
-            typeof(IShellControl),
-            typeof(ShellProperty),
-            null);
-
-        public static IShellControl GetShellControl(BindableObject view)
-        {
-            return (IShellControl)view.GetValue(ShellControlProperty);
-        }
-
-        public static void SetShellControl(BindableObject view, IShellControl value)
-        {
-            view.SetValue(ShellControlProperty, value);
-        }
-
         public static readonly BindableProperty TitleProperty = BindableProperty.CreateAttached(
             "Title",
             typeof(string),
@@ -215,25 +199,41 @@
                 return;
             }
 
-            UpdateShellControl(parent, bindable);
+            if (parent.BindingContext is IShellControl shell)
+            {
+                UpdateShellControl(shell, bindable);
+            }
         }
 
-        public static void UpdateShellControl(BindableObject parent, BindableObject child)
+        public static void UpdateShellControl(IShellControl shell, BindableObject bindable)
         {
-            var shellControl = GetShellControl(parent);
-            if (shellControl != null)
+            if (bindable == null)
             {
-                shellControl.Title.Value = GetTitle(child);
-                shellControl.CanBack.Value = GetCanBack(child);
-                shellControl.CanOption.Value = GetCanOption(child);
-                shellControl.Function1Text.Value = GetFunction1Text(child);
-                shellControl.Function2Text.Value = GetFunction2Text(child);
-                shellControl.Function3Text.Value = GetFunction3Text(child);
-                shellControl.Function4Text.Value = GetFunction4Text(child);
-                shellControl.Function1Enabled.Value = GetFunction1Enabled(child);
-                shellControl.Function2Enabled.Value = GetFunction2Enabled(child);
-                shellControl.Function3Enabled.Value = GetFunction3Enabled(child);
-                shellControl.Function4Enabled.Value = GetFunction4Enabled(child);
+                shell.Title.Value = string.Empty;
+                shell.CanBack.Value = false;
+                shell.CanOption.Value = false;
+                shell.Function1Text.Value = string.Empty;
+                shell.Function2Text.Value = string.Empty;
+                shell.Function3Text.Value = string.Empty;
+                shell.Function4Text.Value = string.Empty;
+                shell.Function1Enabled.Value = false;
+                shell.Function2Enabled.Value = false;
+                shell.Function3Enabled.Value = false;
+                shell.Function4Enabled.Value = false;
+            }
+            else
+            {
+                shell.Title.Value = GetTitle(bindable);
+                shell.CanBack.Value = GetCanBack(bindable);
+                shell.CanOption.Value = GetCanOption(bindable);
+                shell.Function1Text.Value = GetFunction1Text(bindable);
+                shell.Function2Text.Value = GetFunction2Text(bindable);
+                shell.Function3Text.Value = GetFunction3Text(bindable);
+                shell.Function4Text.Value = GetFunction4Text(bindable);
+                shell.Function1Enabled.Value = GetFunction1Enabled(bindable);
+                shell.Function2Enabled.Value = GetFunction2Enabled(bindable);
+                shell.Function3Enabled.Value = GetFunction3Enabled(bindable);
+                shell.Function4Enabled.Value = GetFunction4Enabled(bindable);
             }
         }
     }
