@@ -2,9 +2,9 @@
 {
     using Smart.Forms.Messaging;
 
-    public sealed class EventRequestTrigger : RequestTriggerBase<EventRequestArgs>
+    public sealed class EventRequestTrigger : RequestTriggerBase<EventEventArgs>
     {
-        protected override void OnEventRequest(object sender, EventRequestArgs e)
+        protected override void OnEventRequest(object sender, EventEventArgs e)
         {
             InvokeActions(e.Value);
         }

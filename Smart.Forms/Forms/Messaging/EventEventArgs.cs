@@ -2,11 +2,11 @@
 {
     using System;
 
-    public sealed class EventRequestArgs : EventArgs
+    public sealed class EventEventArgs : EventArgs
     {
         public object Value { get; }
 
-        public EventRequestArgs(object value)
+        public EventEventArgs(object value)
         {
             Value = value;
         }

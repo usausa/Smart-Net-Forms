@@ -2,11 +2,11 @@
 {
     using System;
 
-    public sealed class EventRequest : IEventRequest<EventRequestArgs>
+    public sealed class EventRequest : IEventRequest<EventEventArgs>
     {
-        private static readonly EventRequestArgs EmptyArgs = new EventRequestArgs(null);
+        private static readonly EventEventArgs EmptyArgs = new EventEventArgs(null);
 
-        public event EventHandler<EventRequestArgs> Requested;
+        public event EventHandler<EventEventArgs> Requested;
 
         public void Request()
         {
@@ -15,7 +15,7 @@
 
         public void Request(object value)
         {
-            Requested?.Invoke(this, new EventRequestArgs(value));
+            Requested?.Invoke(this, new EventEventArgs(value));
         }
     }
 }
