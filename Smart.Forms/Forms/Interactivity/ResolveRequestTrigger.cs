@@ -1,18 +1,18 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System.ComponentModel;
+    using Smart.Forms.Messaging;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class CancelRequestBehavior : RequestBehaviorBase<CancelEventArgs>
+    public sealed class ResolveRequestTrigger : RequestTriggerBase<ResolveEventArgs>
     {
         /// <summary>
         ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected override void OnEventRequest(object sender, CancelEventArgs e)
+        protected override void OnEventRequest(object sender, ResolveEventArgs e)
         {
             InvokeActions(e);
         }

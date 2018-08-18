@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class RequestBehavior : RequestBehaviorBase<EventArgs>
+    public sealed class RequestTrigger : RequestTriggerBase<EventArgs>
     {
         /// <summary>
         ///

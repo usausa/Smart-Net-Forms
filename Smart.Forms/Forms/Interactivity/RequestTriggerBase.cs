@@ -9,37 +9,29 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class MessageBehavior : ActionBehaviorBase<BindableObject>
+    /// <typeparam name="TEventArgs"></typeparam>
+    public abstract class RequestTriggerBase<TEventArgs> : ActionTriggerBase<BindableObject>
+        where TEventArgs : EventArgs
     {
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
-            nameof(Messenger),
-            typeof(IMessenger),
-            typeof(MessageBehavior),
+        public static readonly BindableProperty RequestProperty = BindableProperty.Create(
+            nameof(Request),
+            typeof(IEventRequest<TEventArgs>),
+            typeof(RequestTriggerBase<TEventArgs>),
             null,
-            propertyChanged: OnMessengerPropertyChanged);
+            propertyChanged: OnEventRequestPropertyChanged);
 
         /// <summary>
         ///
         /// </summary>
-        public IMessenger Messenger
+        public IEventRequest<TEventArgs> Request
         {
-            get => (IMessenger)GetValue(MessengerProperty);
-            set => SetValue(MessengerProperty, value);
+            get => (IEventRequest<TEventArgs>)GetValue(RequestProperty);
+            set => SetValue(RequestProperty, value);
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string Label { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public Type MessageType { get; set; }
 
         /// <summary>
         ///
@@ -48,9 +40,9 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            if (Messenger != null)
+            if (Request != null)
             {
-                Messenger.Recieved -= MessengerOnRecieved;
+                Request.Requested -= EventRequestOnRequested;
             }
 
             base.OnDetachingFrom(bindable);
@@ -62,9 +54,9 @@
         /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private static void OnMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnEventRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((MessageBehavior)bindable).OnMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
+            ((RequestTriggerBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IEventRequest<TEventArgs>, newValue as IEventRequest<TEventArgs>);
         }
 
         /// <summary>
@@ -72,7 +64,7 @@
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private void OnMessengerPropertyChanged(IMessenger oldValue, IMessenger newValue)
+        private void OnMessengerPropertyChanged(IEventRequest<TEventArgs> oldValue, IEventRequest<TEventArgs> newValue)
         {
             if (oldValue == newValue)
             {
@@ -81,12 +73,12 @@
 
             if (oldValue != null)
             {
-                oldValue.Recieved -= MessengerOnRecieved;
+                oldValue.Requested -= EventRequestOnRequested;
             }
 
             if (newValue != null)
             {
-                newValue.Recieved += MessengerOnRecieved;
+                newValue.Requested += EventRequestOnRequested;
             }
         }
 
@@ -95,13 +87,16 @@
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MessengerOnRecieved(object sender, MessengerEventArgs e)
+        private void EventRequestOnRequested(object sender, TEventArgs e)
         {
-            if (((Label == null) || Label.Equals(e.Label)) &&
-                ((MessageType == null) || ((e.MessageType != null) && MessageType.IsAssignableFrom(e.MessageType))))
-            {
-                InvokeActions(e.Message);
-            }
+            OnEventRequest(sender, e);
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected abstract void OnEventRequest(object sender, TEventArgs e);
     }
 }

@@ -5,7 +5,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class SetFocusBehavior : BehaviorBase<VisualElement>
+    public class DefaultFocusBehavior : BehaviorBase<VisualElement>
     {
         /// <summary>
         ///

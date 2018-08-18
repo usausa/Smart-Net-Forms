@@ -8,7 +8,7 @@
     /// </summary>
     /// <typeparam name="TBindable"></typeparam>
     [ContentProperty("Actions")]
-    public abstract class ActionBehaviorBase<TBindable> : BehaviorBase<TBindable>
+    public abstract class ActionTriggerBase<TBindable> : BehaviorBase<TBindable>
         where TBindable : BindableObject
     {
         /// <summary>
