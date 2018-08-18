@@ -1,28 +1,31 @@
 ﻿namespace Smart.Forms.Interactivity
 {
+    using System.ComponentModel;
+
     using Xamarin.Forms;
 
     /// <summary>
     ///
     /// </summary>
-    public sealed class SetFocusHandler : ActionHandler<BindableObject>
+    public sealed class CancelEvent : ActionBase<BindableObject, CancelEventArgs>
     {
         /// <summary>
         ///
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
-            nameof(Target),
-            typeof(VisualElement),
-            typeof(SetFocusHandler));
+        public static readonly BindableProperty CancelProperty = BindableProperty.Create(
+            nameof(Cancel),
+            typeof(bool),
+            typeof(CancelEvent),
+            false);
 
         /// <summary>
         ///
         /// </summary>
-        public VisualElement Target
+        public bool Cancel
         {
-            get => (VisualElement)GetValue(TargetProperty);
-            set => SetValue(TargetProperty, value);
+            get => (bool)GetValue(CancelProperty);
+            set => SetValue(CancelProperty, value);
         }
 
         /// <summary>
@@ -30,10 +33,9 @@
         /// </summary>
         /// <param name="associatedObject"></param>
         /// <param name="parameter"></param>
-        protected override void Invoke(BindableObject associatedObject, object parameter)
+        protected override void Invoke(BindableObject associatedObject, CancelEventArgs parameter)
         {
-            var element = Target ?? (associatedObject as VisualElement);
-            element?.Focus();
+            parameter.Cancel = Cancel;
         }
     }
 }

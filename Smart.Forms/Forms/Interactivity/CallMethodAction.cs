@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class CallMethodBehavior : BehaviorBase<BindableObject>
+    public sealed class CallMethodAction : BehaviorBase<BindableObject>
     {
         private static readonly Type[] EmptyTypes = new Type[0];
 
@@ -19,7 +19,7 @@
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
             nameof(EventName),
             typeof(string),
-            typeof(CallMethodBehavior),
+            typeof(CallMethodAction),
             propertyChanged: HandleEventNamePropertyChanged);
 
         /// <summary>
@@ -29,7 +29,7 @@
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
             nameof(TargetObject),
             typeof(object),
-            typeof(CallMethodBehavior));
+            typeof(CallMethodAction));
 
         /// <summary>
         ///
@@ -38,7 +38,7 @@
         public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
             nameof(MethodName),
             typeof(string),
-            typeof(CallMethodBehavior));
+            typeof(CallMethodAction));
 
         private EventInfo eventInfo;
 
@@ -112,7 +112,7 @@
                 throw new ArgumentException(nameof(EventName));
             }
 
-            var methodInfo = typeof(CallMethodBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(CallMethodAction).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }
@@ -153,7 +153,7 @@
         /// <param name="newValue"></param>
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var behavior = (CallMethodBehavior)bindable;
+            var behavior = (CallMethodAction)bindable;
             if (behavior.AssociatedObject == null)
             {
                 return;

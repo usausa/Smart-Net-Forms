@@ -5,21 +5,8 @@
     /// <summary>
     ///
     /// </summary>
-    public interface IActionHandler
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="associatedObject"></param>
-        /// <param name="parameter"></param>
-        void DoInvoke(BindableObject associatedObject, object parameter);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
     /// <typeparam name="TBindable"></typeparam>
-    public abstract class ActionHandler<TBindable> : BindableObject, IActionHandler
+    public abstract class ActionBase<TBindable> : BindableObject, IAction
         where TBindable : BindableObject
     {
         /// <summary>
@@ -27,7 +14,7 @@
         /// </summary>
         /// <param name="associatedObject"></param>
         /// <param name="parameter"></param>
-        void IActionHandler.DoInvoke(BindableObject associatedObject, object parameter)
+        void IAction.DoInvoke(BindableObject associatedObject, object parameter)
         {
             Invoke((TBindable)associatedObject, parameter);
         }
@@ -45,7 +32,7 @@
     /// </summary>
     /// <typeparam name="TBindable"></typeparam>
     /// <typeparam name="TParameter"></typeparam>
-    public abstract class ActionHandler<TBindable, TParameter> : BindableObject, IActionHandler
+    public abstract class ActionBase<TBindable, TParameter> : BindableObject, IAction
         where TBindable : BindableObject
     {
         /// <summary>
@@ -53,7 +40,7 @@
         /// </summary>
         /// <param name="associatedObject"></param>
         /// <param name="parameter"></param>
-        void IActionHandler.DoInvoke(BindableObject associatedObject, object parameter)
+        void IAction.DoInvoke(BindableObject associatedObject, object parameter)
         {
             Invoke((TBindable)associatedObject, (TParameter)parameter);
         }
