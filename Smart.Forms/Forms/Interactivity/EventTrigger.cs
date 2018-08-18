@@ -8,7 +8,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class EventTrigger : ActionTriggerBase<BindableObject>
+    public sealed class EventTrigger : TriggerBase<BindableObject>
     {
         /// <summary>
         ///

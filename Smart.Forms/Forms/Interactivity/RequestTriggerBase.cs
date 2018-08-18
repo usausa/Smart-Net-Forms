@@ -10,7 +10,7 @@
     ///
     /// </summary>
     /// <typeparam name="TEventArgs"></typeparam>
-    public abstract class RequestTriggerBase<TEventArgs> : ActionTriggerBase<BindableObject>
+    public abstract class RequestTriggerBase<TEventArgs> : TriggerBase<BindableObject>
         where TEventArgs : EventArgs
     {
         /// <summary>

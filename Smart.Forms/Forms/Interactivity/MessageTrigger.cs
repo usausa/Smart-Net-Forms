@@ -9,7 +9,7 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class MessageTrigger : ActionTriggerBase<BindableObject>
+    public sealed class MessageTrigger : TriggerBase<BindableObject>
     {
         /// <summary>
         ///

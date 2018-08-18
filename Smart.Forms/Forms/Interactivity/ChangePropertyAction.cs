@@ -1,6 +1,5 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System;
     using System.Reflection;
 
     using Xamarin.Forms;
@@ -52,24 +51,7 @@
             }
 
             var pi = target.GetType().GetRuntimeProperty(PropertyName);
-
-            object value;
-            if (Value == null)
-            {
-                value = Value;
-            }
-            else if (pi.PropertyType.IsAssignableFrom(Value.GetType().GetTypeInfo()))
-            {
-                value = Value;
-            }
-            else
-            {
-                var str = Value.ToString();
-                var propertyType = pi.PropertyType;
-                value = propertyType.IsEnum ? Enum.Parse(propertyType, str) : Convert.ChangeType(Value, propertyType);
-            }
-
-            pi.SetValue(target, value);
+            pi.SetValue(target, Value);
         }
     }
 }
