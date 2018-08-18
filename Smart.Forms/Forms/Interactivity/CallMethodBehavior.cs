@@ -1,6 +1,7 @@
 ﻿namespace Smart.Forms.Interactivity
 {
     using System;
+    using System.Linq;
     using System.Reflection;
 
     using Xamarin.Forms;
@@ -26,9 +27,18 @@
             typeof(string),
             typeof(CallMethodBehavior));
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
+            nameof(MethodParameter),
+            typeof(object),
+            typeof(CallMethodBehavior),
+            propertyChanged: HandleMethodParameterPropertyChanged);
+
         private EventInfo eventInfo;
 
         private Delegate handler;
+
+        private MethodDescriptor cachedMethod;
 
         public string EventName
         {
@@ -46,6 +56,12 @@
         {
             get => (string)GetValue(MethodNameProperty);
             set => SetValue(MethodNameProperty, value);
+        }
+
+        public object MethodParameter
+        {
+            get => GetValue(MethodParameterProperty);
+            set => SetValue(MethodParameterProperty, value);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
@@ -98,8 +114,25 @@
                 return;
             }
 
-            var methodInfo = TargetObject.GetType().GetRuntimeMethod(MethodName, Array.Empty<Type>());
-            methodInfo.Invoke(TargetObject, null);
+            if ((cachedMethod == null) ||
+                (cachedMethod.Method.DeclaringType != TargetObject.GetType() ||
+                 (cachedMethod.Method.Name != MethodName)))
+            {
+                var methodInfo = TargetObject.GetType().GetRuntimeMethods().FirstOrDefault(m =>
+                    m.Name == MethodName &&
+                    ((m.GetParameters().Length == 0) ||
+                     ((m.GetParameters().Length == 1) &&
+                      ((MethodParameter == null) ||
+                       MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(m.GetParameters()[0].ParameterType.GetTypeInfo())))));
+                if (methodInfo == null)
+                {
+                    return;
+                }
+
+                cachedMethod = new MethodDescriptor(methodInfo, methodInfo.GetParameters().Length > 0);
+            }
+
+            cachedMethod.Method.Invoke(TargetObject, cachedMethod.HasParameter ? new[] { MethodParameter } : null);
         }
 
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -112,6 +145,11 @@
 
             behavior.RemoveEventHandler();
             behavior.AddEventHandler((string)newValue);
+        }
+
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            ((CallMethodBehavior)bindable).cachedMethod = null;
         }
     }
 }
