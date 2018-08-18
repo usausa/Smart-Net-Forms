@@ -2,24 +2,20 @@
 {
     using System;
 
-    public sealed class EventRequest : IEventRequest<EventArgs>
+    public sealed class EventRequest : IEventRequest<EventRequestArgs>
     {
-        public event EventHandler<EventArgs> Requested;
+        private static readonly EventRequestArgs EmptyArgs = new EventRequestArgs(null);
 
-        public void Request(EventArgs args)
+        public event EventHandler<EventRequestArgs> Requested;
+
+        public void Request()
         {
-            Requested?.Invoke(this, args);
+            Requested?.Invoke(this, EmptyArgs);
         }
-    }
 
-    public sealed class EventRequest<TEventAgrs> : IEventRequest<TEventAgrs>
-        where TEventAgrs : EventArgs
-    {
-        public event EventHandler<TEventAgrs> Requested;
-
-        public void Request(TEventAgrs args)
+        public void Request(object value)
         {
-            Requested?.Invoke(this, args);
+            Requested?.Invoke(this, new EventRequestArgs(value));
         }
     }
 }

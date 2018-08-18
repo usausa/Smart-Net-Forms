@@ -6,16 +6,9 @@
 
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="TEventArgs"></typeparam>
     public abstract class RequestTriggerBase<TEventArgs> : TriggerBase<BindableObject>
         where TEventArgs : EventArgs
     {
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty RequestProperty = BindableProperty.Create(
             nameof(Request),
@@ -24,19 +17,12 @@
             null,
             propertyChanged: HandleRequestPropertyChanged);
 
-        /// <summary>
-        ///
-        /// </summary>
         public IEventRequest<TEventArgs> Request
         {
             get => (IEventRequest<TEventArgs>)GetValue(RequestProperty);
             set => SetValue(RequestProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
@@ -48,22 +34,11 @@
             base.OnDetachingFrom(bindable);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
         private static void HandleRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((RequestTriggerBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IEventRequest<TEventArgs>, newValue as IEventRequest<TEventArgs>);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
         private void OnMessengerPropertyChanged(IEventRequest<TEventArgs> oldValue, IEventRequest<TEventArgs> newValue)
         {
             if (oldValue == newValue)
@@ -82,21 +57,11 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void EventRequestOnRequested(object sender, TEventArgs e)
         {
             OnEventRequest(sender, e);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected abstract void OnEventRequest(object sender, TEventArgs e);
     }
 }

@@ -6,14 +6,8 @@
 
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
     public sealed class MessageTrigger : TriggerBase<BindableObject>
     {
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
             nameof(Messenger),
@@ -22,29 +16,16 @@
             null,
             propertyChanged: HandleMessengerPropertyChanged);
 
-        /// <summary>
-        ///
-        /// </summary>
         public IMessenger Messenger
         {
             get => (IMessenger)GetValue(MessengerProperty);
             set => SetValue(MessengerProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public string Label { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public Type MessageType { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
@@ -56,22 +37,11 @@
             base.OnDetachingFrom(bindable);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
         private static void HandleMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((MessageTrigger)bindable).HandleMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
         private void HandleMessengerPropertyChanged(IMessenger oldValue, IMessenger newValue)
         {
             if (oldValue == newValue)
@@ -90,11 +60,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MessengerOnRecieved(object sender, MessengerEventArgs e)
         {
             if (((Label == null) || Label.Equals(e.Label)) &&

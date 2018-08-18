@@ -3,23 +3,12 @@
     using System.Collections.Generic;
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="TBindable"></typeparam>
     [ContentProperty("Actions")]
     public abstract class TriggerBase<TBindable> : BehaviorBase<TBindable>
         where TBindable : BindableObject
     {
-        /// <summary>
-        ///
-        /// </summary>
         public IList<IAction> Actions { get; } = new List<IAction>();
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="parameter"></param>
         protected void InvokeActions(object parameter)
         {
             foreach (var action in Actions)
@@ -28,9 +17,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
