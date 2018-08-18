@@ -2,30 +2,29 @@
 {
     using System;
     using System.Reflection;
-    using System.Windows.Input;
 
     using Xamarin.Forms;
 
-    public sealed class EventToCommandBehavior : BehaviorBase<BindableObject>
+    public sealed class CallMethodBehavior : BehaviorBase<BindableObject>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
             nameof(EventName),
             typeof(string),
-            typeof(EventToCommandBehavior),
+            typeof(CallMethodBehavior),
             propertyChanged: HandleEventNamePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
-            nameof(Command),
-            typeof(ICommand),
-            typeof(EventToCommandBehavior));
+        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+            nameof(TargetObject),
+            typeof(object),
+            typeof(CallMethodBehavior));
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
-            nameof(CommandParameter),
-            typeof(object),
-            typeof(EventToCommandBehavior));
+        public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
+            nameof(MethodName),
+            typeof(string),
+            typeof(CallMethodBehavior));
 
         private EventInfo eventInfo;
 
@@ -37,16 +36,16 @@
             set => SetValue(EventNameProperty, value);
         }
 
-        public ICommand Command
+        public object TargetObject
         {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
+            get => GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
         }
 
-        public object CommandParameter
+        public string MethodName
         {
-            get => GetValue(CommandParameterProperty);
-            set => SetValue(CommandParameterProperty, value);
+            get => (string)GetValue(MethodNameProperty);
+            set => SetValue(MethodNameProperty, value);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
@@ -75,10 +74,10 @@
             eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
             if (eventInfo == null)
             {
-                throw new ArgumentException("EventName");
+                throw new ArgumentException(nameof(EventName));
             }
 
-            var methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            var methodInfo = typeof(CallMethodBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
             handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
             eventInfo.AddEventHandler(AssociatedObject, handler);
         }
@@ -94,20 +93,18 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            if (Command == null)
+            if ((TargetObject == null) || string.IsNullOrEmpty(MethodName))
             {
                 return;
             }
 
-            if (Command.CanExecute(CommandParameter))
-            {
-                Command.Execute(CommandParameter);
-            }
+            var methodInfo = TargetObject.GetType().GetRuntimeMethod(MethodName, Array.Empty<Type>());
+            methodInfo.Invoke(TargetObject, null);
         }
 
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var behavior = (EventToCommandBehavior)bindable;
+            var behavior = (CallMethodBehavior)bindable;
             if (behavior.AssociatedObject == null)
             {
                 return;

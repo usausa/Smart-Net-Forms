@@ -1,166 +1,83 @@
 ﻿namespace Smart.Forms.Interactivity
 {
-    using System;
+    using System.Linq;
     using System.Reflection;
 
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public sealed class CallMethodAction : BehaviorBase<BindableObject>
+    public sealed class CallMethodAction : BindableObject, IAction
     {
-        private static readonly Type[] EmptyTypes = new Type[0];
-
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
-            nameof(EventName),
-            typeof(string),
-            typeof(CallMethodAction),
-            propertyChanged: HandleEventNamePropertyChanged);
-
-        /// <summary>
-        ///
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
-            nameof(TargetObject),
+        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
+            nameof(Target),
             typeof(object),
             typeof(CallMethodAction));
 
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
             nameof(MethodName),
             typeof(string),
             typeof(CallMethodAction));
 
-        private EventInfo eventInfo;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
+            nameof(MethodParameter),
+            typeof(object),
+            typeof(CallMethodAction),
+            propertyChanged: HandleMethodParameterPropertyChanged);
 
-        private Delegate handler;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public string EventName
+        public object Target
         {
-            get => (string)GetValue(EventNameProperty);
-            set => SetValue(EventNameProperty, value);
+            get => GetValue(TargetProperty);
+            set => SetValue(TargetProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public object TargetObject
-        {
-            get => GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         public string MethodName
         {
             get => (string)GetValue(MethodNameProperty);
             set => SetValue(MethodNameProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnAttachedTo(BindableObject bindable)
+        public object MethodParameter
         {
-            base.OnAttachedTo(bindable);
-
-            AddEventHandler(EventName);
+            get => GetValue(MethodParameterProperty);
+            set => SetValue(MethodParameterProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        protected override void OnDetachingFrom(BindableObject bindable)
-        {
-            RemoveEventHandler();
+        private MethodDescriptor cachedMethod;
 
-            base.OnDetachingFrom(bindable);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="eventName"></param>
-        private void AddEventHandler(string eventName)
+        public void DoInvoke(BindableObject associatedObject, object parameter)
         {
-            if (String.IsNullOrEmpty(eventName))
+            var target = Target ?? associatedObject;
+            if ((target == null) || (MethodName == null))
             {
                 return;
             }
 
-            eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
-            if (eventInfo == null)
+            if ((cachedMethod == null) ||
+                (cachedMethod.Method.DeclaringType != target.GetType() ||
+                (cachedMethod.Method.Name != MethodName)))
             {
-                throw new ArgumentException(nameof(EventName));
+                var methodInfo = target.GetType().GetRuntimeMethods().FirstOrDefault(m =>
+                    m.Name == MethodName &&
+                    ((m.GetParameters().Length == 0) ||
+                     ((m.GetParameters().Length == 1) &&
+                      ((MethodParameter == null) ||
+                       MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(m.GetParameters()[0].ParameterType.GetTypeInfo())))));
+                if (methodInfo == null)
+                {
+                    return;
+                }
+
+                cachedMethod = new MethodDescriptor(methodInfo, methodInfo.GetParameters().Length > 0);
             }
 
-            var methodInfo = typeof(CallMethodAction).GetTypeInfo().GetDeclaredMethod("OnEvent");
-            handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
-            eventInfo.AddEventHandler(AssociatedObject, handler);
+            cachedMethod.Method.Invoke(target, cachedMethod.HasParameter ? new[] { MethodParameter } : null);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        private void RemoveEventHandler()
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
-            eventInfo?.RemoveEventHandler(AssociatedObject, handler);
-            eventInfo = null;
-            handler = null;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Ignore")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
-        private void OnEvent(object sender, EventArgs e)
-        {
-            if ((TargetObject == null) || string.IsNullOrEmpty(MethodName))
-            {
-                return;
-            }
-
-            var methodInfo = TargetObject.GetType().GetRuntimeMethod(MethodName, EmptyTypes);
-            methodInfo.Invoke(TargetObject, null);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var behavior = (CallMethodAction)bindable;
-            if (behavior.AssociatedObject == null)
-            {
-                return;
-            }
-
-            behavior.RemoveEventHandler();
-            behavior.AddEventHandler((string)newValue);
+            ((CallMethodAction)bindable).cachedMethod = null;
         }
     }
 }

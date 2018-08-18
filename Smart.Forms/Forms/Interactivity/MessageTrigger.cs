@@ -20,7 +20,7 @@
             typeof(IMessenger),
             typeof(MessageTrigger),
             null,
-            propertyChanged: OnMessengerPropertyChanged);
+            propertyChanged: HandleMessengerPropertyChanged);
 
         /// <summary>
         ///
@@ -62,9 +62,9 @@
         /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private static void OnMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((MessageTrigger)bindable).OnMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
+            ((MessageTrigger)bindable).HandleMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private void OnMessengerPropertyChanged(IMessenger oldValue, IMessenger newValue)
+        private void HandleMessengerPropertyChanged(IMessenger oldValue, IMessenger newValue)
         {
             if (oldValue == newValue)
             {

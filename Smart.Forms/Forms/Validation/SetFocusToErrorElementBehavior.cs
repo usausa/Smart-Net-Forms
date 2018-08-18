@@ -19,7 +19,7 @@
             nameof(Request),
             typeof(ValidationRequest),
             typeof(SetFocusToErrorElementBehavior),
-            propertyChanged: OnRequestPropertyChanged);
+            propertyChanged: HandleRequestPropertyChanged);
 
         /// <summary>
         ///
@@ -51,9 +51,9 @@
         /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private static void OnRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((SetFocusToErrorElementBehavior)bindable).OnRequestPropertyChanged(oldValue as ValidationRequest, newValue as ValidationRequest);
+            ((SetFocusToErrorElementBehavior)bindable).HandleRequestPropertyChanged(oldValue as ValidationRequest, newValue as ValidationRequest);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private void OnRequestPropertyChanged(ValidationRequest oldValue, ValidationRequest newValue)
+        private void HandleRequestPropertyChanged(ValidationRequest oldValue, ValidationRequest newValue)
         {
             if (oldValue == newValue)
             {

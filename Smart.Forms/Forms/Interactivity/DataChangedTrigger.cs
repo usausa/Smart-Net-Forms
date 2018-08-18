@@ -9,14 +9,14 @@
             nameof(Binding),
             typeof(object),
             typeof(DataChangedTrigger),
-            propertyChanged: OnPropertyChanged);
+            propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(
             nameof(Value),
             typeof(object),
             typeof(DataChangedTrigger),
-            propertyChanged: OnPropertyChanged);
+            propertyChanged: HandlePropertyChanged);
 
         public object Binding
         {
@@ -30,17 +30,17 @@
             set => SetValue(ValueProperty, value);
         }
 
-        private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandlePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (oldValue == newValue)
             {
                 return;
             }
 
-            ((DataChangedTrigger)bindable).OnPropertyChanged();
+            ((DataChangedTrigger)bindable).HandlePropertyChanged();
         }
 
-        private void OnPropertyChanged()
+        private void HandlePropertyChanged()
         {
             if ((Binding == Value) || ((Binding != null) && Binding.Equals(Value)))
             {

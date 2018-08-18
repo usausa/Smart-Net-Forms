@@ -22,7 +22,7 @@
             typeof(IEventRequest<TEventArgs>),
             typeof(RequestTriggerBase<TEventArgs>),
             null,
-            propertyChanged: OnEventRequestPropertyChanged);
+            propertyChanged: HandleRequestPropertyChanged);
 
         /// <summary>
         ///
@@ -54,7 +54,7 @@
         /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private static void OnEventRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((RequestTriggerBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IEventRequest<TEventArgs>, newValue as IEventRequest<TEventArgs>);
         }
