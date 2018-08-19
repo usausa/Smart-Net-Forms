@@ -69,7 +69,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            InvokeActions(null);
+            InvokeActions(e);
         }
 
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)

@@ -109,17 +109,19 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            if ((TargetObject == null) || string.IsNullOrEmpty(MethodName))
+            var target = TargetObject;
+            var methodName = MethodName;
+            if ((target == null) || string.IsNullOrEmpty(methodName))
             {
                 return;
             }
 
             if ((cachedMethod == null) ||
-                (cachedMethod.Method.DeclaringType != TargetObject.GetType() ||
-                 (cachedMethod.Method.Name != MethodName)))
+                (cachedMethod.Method.DeclaringType != target.GetType() ||
+                 (cachedMethod.Method.Name != methodName)))
             {
-                var methodInfo = TargetObject.GetType().GetRuntimeMethods().FirstOrDefault(m =>
-                    m.Name == MethodName &&
+                var methodInfo = target.GetType().GetRuntimeMethods().FirstOrDefault(m =>
+                    m.Name == methodName &&
                     ((m.GetParameters().Length == 0) ||
                      ((m.GetParameters().Length == 1) &&
                       ((MethodParameter == null) ||
@@ -132,7 +134,7 @@
                 cachedMethod = new MethodDescriptor(methodInfo, methodInfo.GetParameters().Length > 0);
             }
 
-            cachedMethod.Method.Invoke(TargetObject, cachedMethod.HasParameter ? new[] { MethodParameter } : null);
+            cachedMethod.Method.Invoke(target, cachedMethod.HasParameter ? new[] { MethodParameter } : null);
         }
 
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)

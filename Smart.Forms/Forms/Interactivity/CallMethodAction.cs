@@ -73,17 +73,18 @@
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             var target = TargetObject ?? associatedObject;
-            if ((target == null) || (MethodName == null))
+            var methodName = MethodName;
+            if ((target == null) || (methodName == null))
             {
                 return;
             }
 
             if ((cachedMethod == null) ||
                 (cachedMethod.Method.DeclaringType != target.GetType() ||
-                (cachedMethod.Method.Name != MethodName)))
+                (cachedMethod.Method.Name != methodName)))
             {
                 var methodInfo = target.GetType().GetRuntimeMethods().FirstOrDefault(m =>
-                    m.Name == MethodName &&
+                    m.Name == methodName &&
                     ((m.GetParameters().Length == 0) ||
                      ((m.GetParameters().Length == 1) &&
                       ((MethodParameter == null) ||
@@ -98,10 +99,11 @@
 
             if (cachedMethod.HasParameter)
             {
-                var methodParameter = (MethodParameter != null) || IsSet(MethodParameterProperty)
-                    ? MethodParameter
+                var methodParameter = MethodParameter;
+                var argument = (methodParameter != null) || IsSet(MethodParameterProperty)
+                    ? methodParameter
                     : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
-                cachedMethod.Method.Invoke(target, new[] { methodParameter });
+                cachedMethod.Method.Invoke(target, new[] { argument });
             }
             else
             {

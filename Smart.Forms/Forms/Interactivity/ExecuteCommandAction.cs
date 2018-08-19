@@ -56,17 +56,19 @@
 
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
-            if (Command == null)
+            var command = Command;
+            if (command == null)
             {
                 return;
             }
 
-            var commandParameter = (CommandParameter != null) || IsSet(CommandParameterProperty)
-                ? CommandParameter
+            var commandParameter = CommandParameter;
+            var argument = (commandParameter != null) || IsSet(CommandParameterProperty)
+                ? commandParameter
                 : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
-            if (Command.CanExecute(commandParameter))
+            if (command.CanExecute(argument))
             {
-                Command.Execute(CommandParameter);
+                command.Execute(argument);
             }
         }
     }

@@ -118,17 +118,19 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            if (Command == null)
+            var command = Command;
+            if (command == null)
             {
                 return;
             }
 
-            var commandParameter = (CommandParameter != null) || IsSet(CommandParameterProperty)
-                ? CommandParameter
+            var commandParameter = CommandParameter;
+            var parameter = (commandParameter != null) || IsSet(CommandParameterProperty)
+                ? commandParameter
                 : Converter?.Convert(e, typeof(object), ConverterParameter, null) ?? e;
-            if (Command.CanExecute(commandParameter))
+            if (command.CanExecute(parameter))
             {
-                Command.Execute(CommandParameter);
+                command.Execute(parameter);
             }
         }
 

@@ -69,17 +69,19 @@
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             var target = TargetObject ?? associatedObject;
-            if ((target == null) || (PropertyName == null))
+            var propertyName = PropertyName;
+            if ((target == null) || (propertyName == null))
             {
                 return;
             }
 
-            var pi = target.GetType().GetRuntimeProperty(PropertyName);
-            var value = (Value != null) || IsSet(ValueProperty)
-                ? Value
+            var pi = target.GetType().GetRuntimeProperty(propertyName);
+            var value = Value;
+            var propertyValue = (value != null) || IsSet(ValueProperty)
+                ? value
                 : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
 
-            pi.SetValue(target, value);
+            pi.SetValue(target, propertyValue);
         }
     }
 }

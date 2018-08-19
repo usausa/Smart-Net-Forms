@@ -62,8 +62,10 @@
 
         private void MessengerOnRecieved(object sender, MessengerEventArgs e)
         {
-            if (((Label == null) || Label.Equals(e.Label)) &&
-                ((MessageType == null) || ((e.MessageType != null) && MessageType.IsAssignableFrom(e.MessageType))))
+            var label = Label;
+            var messageType = MessageType;
+            if (((label == null) || label.Equals(e.Label)) &&
+                ((messageType == null) || ((e.MessageType != null) && messageType.IsAssignableFrom(e.MessageType))))
             {
                 InvokeActions(e.Message);
             }
