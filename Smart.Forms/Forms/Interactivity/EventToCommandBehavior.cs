@@ -27,6 +27,18 @@
             typeof(object),
             typeof(EventToCommandBehavior));
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterProperty = BindableProperty.Create(
+            nameof(Converter),
+            typeof(IValueConverter),
+            typeof(EventToCommandBehavior));
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterParameterProperty = BindableProperty.Create(
+            nameof(ConverterParameter),
+            typeof(object),
+            typeof(EventToCommandBehavior));
+
         private EventInfo eventInfo;
 
         private Delegate handler;
@@ -47,6 +59,18 @@
         {
             get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);
+        }
+
+        public IValueConverter Converter
+        {
+            get => (IValueConverter)GetValue(ConverterProperty);
+            set => SetValue(ConverterProperty, value);
+        }
+
+        public object ConverterParameter
+        {
+            get => GetValue(ConverterParameterProperty);
+            set => SetValue(ConverterParameterProperty, value);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
@@ -99,7 +123,10 @@
                 return;
             }
 
-            if (Command.CanExecute(CommandParameter))
+            var commandParameter = (CommandParameter != null) || IsSet(CommandParameterProperty)
+                ? CommandParameter
+                : Converter?.Convert(e, typeof(object), ConverterParameter, null) ?? e;
+            if (Command.CanExecute(commandParameter))
             {
                 Command.Execute(CommandParameter);
             }

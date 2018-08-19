@@ -18,6 +18,18 @@
             typeof(object),
             typeof(ExecuteCommandAction));
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterProperty = BindableProperty.Create(
+            nameof(Converter),
+            typeof(IValueConverter),
+            typeof(ExecuteCommandAction));
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterParameterProperty = BindableProperty.Create(
+            nameof(ConverterParameter),
+            typeof(object),
+            typeof(ExecuteCommandAction));
+
         public ICommand Command
         {
             get => (ICommand)GetValue(CommandProperty);
@@ -30,6 +42,18 @@
             set => SetValue(CommandParameterProperty, value);
         }
 
+        public IValueConverter Converter
+        {
+            get => (IValueConverter)GetValue(ConverterProperty);
+            set => SetValue(ConverterProperty, value);
+        }
+
+        public object ConverterParameter
+        {
+            get => GetValue(ConverterParameterProperty);
+            set => SetValue(ConverterParameterProperty, value);
+        }
+
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             if (Command == null)
@@ -37,7 +61,9 @@
                 return;
             }
 
-            var commandParameter = CommandParameter ?? parameter;
+            var commandParameter = (CommandParameter != null) || IsSet(CommandParameterProperty)
+                ? CommandParameter
+                : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
             if (Command.CanExecute(commandParameter))
             {
                 Command.Execute(CommandParameter);

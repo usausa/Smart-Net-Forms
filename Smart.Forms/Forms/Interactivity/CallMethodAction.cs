@@ -26,6 +26,18 @@
             typeof(CallMethodAction),
             propertyChanged: HandleMethodParameterPropertyChanged);
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterProperty = BindableProperty.Create(
+            nameof(Converter),
+            typeof(IValueConverter),
+            typeof(CallMethodAction));
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterParameterProperty = BindableProperty.Create(
+            nameof(ConverterParameter),
+            typeof(object),
+            typeof(CallMethodAction));
+
         public object Target
         {
             get => GetValue(TargetProperty);
@@ -42,6 +54,18 @@
         {
             get => GetValue(MethodParameterProperty);
             set => SetValue(MethodParameterProperty, value);
+        }
+
+        public IValueConverter Converter
+        {
+            get => (IValueConverter)GetValue(ConverterProperty);
+            set => SetValue(ConverterProperty, value);
+        }
+
+        public object ConverterParameter
+        {
+            get => GetValue(ConverterParameterProperty);
+            set => SetValue(ConverterParameterProperty, value);
         }
 
         private MethodDescriptor cachedMethod;
@@ -72,7 +96,17 @@
                 cachedMethod = new MethodDescriptor(methodInfo, methodInfo.GetParameters().Length > 0);
             }
 
-            cachedMethod.Method.Invoke(target, cachedMethod.HasParameter ? new[] { MethodParameter } : null);
+            if (cachedMethod.HasParameter)
+            {
+                var methodParameter = (MethodParameter != null) || IsSet(MethodParameterProperty)
+                    ? MethodParameter
+                    : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
+                cachedMethod.Method.Invoke(target, new[] { methodParameter });
+            }
+            else
+            {
+                cachedMethod.Method.Invoke(target, null);
+            }
         }
 
         private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)

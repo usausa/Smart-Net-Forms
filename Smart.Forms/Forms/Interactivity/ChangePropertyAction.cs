@@ -24,6 +24,18 @@
             typeof(object),
             typeof(ChangePropertyAction));
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterProperty = BindableProperty.Create(
+            nameof(Converter),
+            typeof(IValueConverter),
+            typeof(ChangePropertyAction));
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ConverterParameterProperty = BindableProperty.Create(
+            nameof(ConverterParameter),
+            typeof(object),
+            typeof(ChangePropertyAction));
+
         public object Target
         {
             get => GetValue(TargetProperty);
@@ -42,6 +54,18 @@
             set => SetValue(ValueProperty, value);
         }
 
+        public IValueConverter Converter
+        {
+            get => (IValueConverter)GetValue(ConverterProperty);
+            set => SetValue(ConverterProperty, value);
+        }
+
+        public object ConverterParameter
+        {
+            get => GetValue(ConverterParameterProperty);
+            set => SetValue(ConverterParameterProperty, value);
+        }
+
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             var target = Target ?? associatedObject;
@@ -51,7 +75,11 @@
             }
 
             var pi = target.GetType().GetRuntimeProperty(PropertyName);
-            pi.SetValue(target, Value);
+            var value = (Value != null) || IsSet(ValueProperty)
+                ? Value
+                : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
+
+            pi.SetValue(target, value);
         }
     }
 }
