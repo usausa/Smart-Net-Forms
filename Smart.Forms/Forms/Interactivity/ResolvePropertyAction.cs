@@ -2,9 +2,11 @@
 {
     using System.Reflection;
 
+    using Smart.Forms.Messaging;
+
     using Xamarin.Forms;
 
-    public sealed class ResolvePropertyAction : ActionBase<BindableObject, Smart.Forms.Messaging.ResolveEventArgs>
+    public sealed class ResolvePropertyAction : ActionBase<BindableObject, ResultEventArgs>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
@@ -30,7 +32,7 @@
             set => SetValue(PropertyNameProperty, value);
         }
 
-        protected override void Invoke(BindableObject associatedObject, Smart.Forms.Messaging.ResolveEventArgs parameter)
+        protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
             var target = TargetObject ?? associatedObject;
             var propertyName = PropertyName;
@@ -40,7 +42,7 @@
             }
 
             var pi = target.GetType().GetRuntimeProperty(propertyName);
-            parameter.Value = pi.GetValue(target);
+            parameter.Result = pi.GetValue(target);
         }
     }
 }

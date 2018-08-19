@@ -3,9 +3,11 @@
     using System.Linq;
     using System.Reflection;
 
+    using Smart.Forms.Messaging;
+
     using Xamarin.Forms;
 
-    public sealed class ResolveMethodAction : ActionBase<BindableObject, Smart.Forms.Messaging.ResolveEventArgs>
+    public sealed class ResolveMethodAction : ActionBase<BindableObject, ResultEventArgs>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
@@ -33,7 +35,7 @@
 
         private MethodInfo cachedMethod;
 
-        protected override void Invoke(BindableObject associatedObject, Smart.Forms.Messaging.ResolveEventArgs parameter)
+        protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
             var target = TargetObject ?? associatedObject;
             var methodName = MethodName;
@@ -57,7 +59,7 @@
                 cachedMethod = methodInfo;
             }
 
-            parameter.Value = cachedMethod.Invoke(target, null);
+            parameter.Result = cachedMethod.Invoke(target, null);
         }
     }
 }
