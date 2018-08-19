@@ -5,20 +5,20 @@
     public sealed class SetFocusAction : ActionBase<BindableObject>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
-            nameof(Target),
+        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+            nameof(TargetObject),
             typeof(VisualElement),
             typeof(SetFocusAction));
 
-        public VisualElement Target
+        public VisualElement TargetObject
         {
-            get => (VisualElement)GetValue(TargetProperty);
-            set => SetValue(TargetProperty, value);
+            get => (VisualElement)GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
         }
 
         protected override void Invoke(BindableObject associatedObject, object parameter)
         {
-            var element = Target ?? (associatedObject as VisualElement);
+            var element = TargetObject ?? (associatedObject as VisualElement);
             element?.Focus();
         }
     }

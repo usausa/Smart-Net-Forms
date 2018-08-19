@@ -8,8 +8,8 @@
     public sealed class CallMethodAction : BindableObject, IAction
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
-            nameof(Target),
+        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+            nameof(TargetObject),
             typeof(object),
             typeof(CallMethodAction));
 
@@ -38,10 +38,10 @@
             typeof(object),
             typeof(CallMethodAction));
 
-        public object Target
+        public object TargetObject
         {
-            get => GetValue(TargetProperty);
-            set => SetValue(TargetProperty, value);
+            get => GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
         }
 
         public string MethodName
@@ -72,7 +72,7 @@
 
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
-            var target = Target ?? associatedObject;
+            var target = TargetObject ?? associatedObject;
             if ((target == null) || (MethodName == null))
             {
                 return;

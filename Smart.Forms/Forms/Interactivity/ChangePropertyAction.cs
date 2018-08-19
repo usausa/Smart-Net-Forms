@@ -7,8 +7,8 @@
     public sealed class ChangePropertyAction : BindableObject, IAction
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
-            nameof(Target),
+        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+            nameof(TargetObject),
             typeof(object),
             typeof(ChangePropertyAction));
 
@@ -36,10 +36,10 @@
             typeof(object),
             typeof(ChangePropertyAction));
 
-        public object Target
+        public object TargetObject
         {
-            get => GetValue(TargetProperty);
-            set => SetValue(TargetProperty, value);
+            get => GetValue(TargetObjectProperty);
+            set => SetValue(TargetObjectProperty, value);
         }
 
         public string PropertyName
@@ -68,7 +68,7 @@
 
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
-            var target = Target ?? associatedObject;
+            var target = TargetObject ?? associatedObject;
             if ((target == null) || (PropertyName == null))
             {
                 return;
