@@ -12,8 +12,13 @@
         {
             Requested?.Invoke(this, EmptyArgs);
         }
+    }
 
-        public void Request(object value)
+    public sealed class EventRequest<T> : IEventRequest<EventEventArgs>
+    {
+        public event EventHandler<EventEventArgs> Requested;
+
+        public void Request(T value)
         {
             Requested?.Invoke(this, new EventEventArgs(value));
         }
