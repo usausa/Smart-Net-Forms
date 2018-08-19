@@ -66,6 +66,8 @@
             set => SetValue(ConverterParameterProperty, value);
         }
 
+        private PropertyInfo property;
+
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             var target = TargetObject ?? associatedObject;
@@ -75,13 +77,18 @@
                 return;
             }
 
-            var pi = target.GetType().GetRuntimeProperty(propertyName);
+            if ((property == null) ||
+                (property.DeclaringType != target.GetType()) ||
+                (property.Name != propertyName))
+            {
+                property = target.GetType().GetRuntimeProperty(propertyName);
+            }
+
             var value = Value;
             var propertyValue = (value != null) || IsSet(ValueProperty)
                 ? value
                 : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
-
-            pi.SetValue(target, propertyValue);
+            property.SetValue(target, propertyValue);
         }
     }
 }
