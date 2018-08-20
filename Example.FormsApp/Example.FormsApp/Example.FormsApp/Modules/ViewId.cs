@@ -4,7 +4,22 @@
     {
         Menu,
 
+        AnimationMenu,
+
+        Daialog,
+
+        Converter,
+
+        Command,
+
         InteractivityMenu,
-        ResolveRequest
+        CallMethod,
+        ResolveRequest,
+
+        Markup,
+
+        Messaging,
+
+        Validation
     }
 }

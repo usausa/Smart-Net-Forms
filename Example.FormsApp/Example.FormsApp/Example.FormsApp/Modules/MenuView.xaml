@@ -28,29 +28,29 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
+                Text="Animation"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId AnimationMenu}"/>
+        <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
+                Text="Daialog"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Daialog}"/>
+        <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
+                Text="Converter"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Converter}"/>
+        <Button Grid.Row="3" Style="{StaticResource NavigationButton}"
+                Text="Command"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Command}"/>
+        <Button Grid.Row="4" Style="{StaticResource NavigationButton}"
                 Text="Interactivity"
                 Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId InteractivityMenu}"/>
-        <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
-        <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
-        <Button Grid.Row="3" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
-        <Button Grid.Row="4" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
         <Button Grid.Row="5" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
+                Text="Markup"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Markup}"/>
         <Button Grid.Row="6" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
+                Text="Messaging"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Messaging}"/>
         <Button Grid.Row="7" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
+                Text="Validation"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Validation}"/>
 
     </Grid>
 

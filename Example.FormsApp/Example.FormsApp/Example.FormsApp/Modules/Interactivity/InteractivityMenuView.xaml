@@ -4,8 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
-             xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
+             xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              mc:Ignorable="d"
              x:Class="Example.FormsApp.Modules.Interactivity.InteractivityMenuView"
              d:DataContext="{d:DesignInstance Type={x:Type interactivity:InteractivityMenuViewModel}}"
@@ -27,11 +27,11 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
-                Text="ValueRequest"
-                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId ResolveRequest}"/>
+                Text="CallMethod"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId CallMethod}"/>
         <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
-                IsEnabled="False"
-                Text=""/>
+                Text="ResolveRequest"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId ResolveRequest}"/>
         <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
                 IsEnabled="False"
                 Text=""/>

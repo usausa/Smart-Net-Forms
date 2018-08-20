@@ -5,13 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
              xmlns:si="clr-namespace:Smart.Forms.Interactivity;assembly=Smart.Forms"
-             xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
+             xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              mc:Ignorable="d"
-             x:Class="Example.FormsApp.Modules.Interactivity.ValueRequestView"
+             x:Class="Example.FormsApp.Modules.Interactivity.ResolveRequestView"
              d:DataContext="{d:DesignInstance Type={x:Type interactivity:ResolveRequestViewModel}}"
              resolver:BindingContextResolver.Type="{x:Type interactivity:ResolveRequestViewModel}"
-             views:ShellProperty.Title="ResolveHandler">
+             views:ShellProperty.Title="ResolverRequest">
 
     <StackLayout>
 
