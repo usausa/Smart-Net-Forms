@@ -7,15 +7,15 @@
     using Smart.Forms.Messaging;
     using Smart.Navigation;
 
-    public class ValueRequestViewModel : AppViewModelBase
+    public class ResolveRequestViewModel : AppViewModelBase
     {
         private readonly IDialogService dialogService;
 
-        public ValueRequest<string> LabelTextValueRequest { get; } = new ValueRequest<string>();
+        public ResolveRequest<string> LabelTextValueRequest { get; } = new ResolveRequest<string>();
 
         public AsyncCommand ResolveCommand { get; }
 
-        public ValueRequestViewModel(
+        public ResolveRequestViewModel(
             ApplicationState applicationState,
             IDialogService dialogService)
             : base(applicationState)

@@ -35,4 +35,19 @@
     <ProjectReference Include="..\..\..\Smart.Forms\Smart.Forms.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Modules\Interactivity\ResolveRequestView.xaml.cs">
+      <DependentUpon>ResolveRequestView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Modules\Interactivity\InteractivityMenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Modules\Interactivity\ResolveRequestView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

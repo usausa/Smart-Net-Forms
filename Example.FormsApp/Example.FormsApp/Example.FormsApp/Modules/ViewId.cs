@@ -5,6 +5,6 @@
         Menu,
 
         InteractivityMenu,
-        ValueRequest
+        ResolveRequest
     }
 }

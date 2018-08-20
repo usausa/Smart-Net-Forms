@@ -28,7 +28,7 @@
 
         <Button Grid.Row="0" Style="{StaticResource NavigationButton}"
                 Text="ValueRequest"
-                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId ValueRequest}"/>
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId ResolveRequest}"/>
         <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
                 IsEnabled="False"
                 Text=""/>

@@ -9,17 +9,17 @@
              xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
              mc:Ignorable="d"
              x:Class="Example.FormsApp.Modules.Interactivity.ValueRequestView"
-             d:DataContext="{d:DesignInstance Type={x:Type interactivity:ValueRequestViewModel}}"
-             resolver:BindingContextResolver.Type="{x:Type interactivity:ValueRequestViewModel}"
+             d:DataContext="{d:DesignInstance Type={x:Type interactivity:ResolveRequestViewModel}}"
+             resolver:BindingContextResolver.Type="{x:Type interactivity:ResolveRequestViewModel}"
              views:ShellProperty.Title="ResolveHandler">
 
     <StackLayout>
 
         <Label Text="test">
             <Label.Behaviors>
-                <si:ValueRequestBehavior Request="{Binding LabelTextValueRequest}">
-                    <interactivity:LabelTextValueHandler />
-                </si:ValueRequestBehavior>
+                <si:ResolveRequestTrigger Request="{Binding LabelTextValueRequest}">
+                    <si:ResolvePropertyAction PropertyName="Text" />
+                </si:ResolveRequestTrigger>
             </Label.Behaviors>
         </Label>
 

@@ -2,7 +2,7 @@
 {
     using Smart.Navigation.Attributes;
 
-    [View(ViewId.ValueRequest)]
+    [View(ViewId.ResolveRequest)]
     public partial class ValueRequestView
     {
         public ValueRequestView()
