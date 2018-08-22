@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resolver="clr-namespace:Smart.Forms.Resolver;assembly=Smart.Forms"
+             xmlns:si="clr-namespace:Smart.Forms.Interactivity;assembly=Smart.Forms"
              xmlns:views="clr-namespace:Example.FormsApp.Views;assembly=Example.FormsApp"
              xmlns:interactivity="clr-namespace:Example.FormsApp.Modules.Interactivity;assembly=Example.FormsApp"
              mc:Ignorable="d"
@@ -11,5 +12,33 @@
              d:DataContext="{d:DesignInstance Type={x:Type interactivity:CallMethodViewModel}}"
              resolver:BindingContextResolver.Type="{x:Type interactivity:CallMethodViewModel}"
              views:ShellProperty.Title="CallMethod">
+
+    <Grid Style="{StaticResource MenuGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Style="{StaticResource ActionButton}"
+                Text="NoParameter">
+            <Button.Behaviors>
+                <si:CallMethodBehavior EventName="Clicked" MethodName="NoParameter"/>
+            </Button.Behaviors>
+        </Button>
+
+        <Button Grid.Row="1" Style="{StaticResource ActionButton}"
+                Text="WithParameter">
+            <Button.Behaviors>
+                <si:CallMethodBehavior EventName="Clicked" MethodName="WithParameter" MethodParameter="test"/>
+            </Button.Behaviors>
+        </Button>
+
+    </Grid>
 
 </ContentView>

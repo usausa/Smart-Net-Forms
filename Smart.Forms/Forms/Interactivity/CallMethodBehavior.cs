@@ -109,7 +109,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
-            var target = TargetObject;
+            var target = TargetObject ?? BindingContext;
             var methodName = MethodName;
             if ((target == null) || string.IsNullOrEmpty(methodName))
             {

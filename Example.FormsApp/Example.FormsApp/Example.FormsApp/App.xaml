@@ -210,7 +210,14 @@
                 <Setter Property="Margin" Value="3" />
             </Style>
 
-            <!-- Page Layout -->
+            <Style x:Key="ActionButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource MetroGreen}"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="{StaticResource BigSize}" />
+                <Setter Property="Margin" Value="3" />
+            </Style>
+
+			<!-- Page Layout -->
 
             <Style x:Key="MenuGrid" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="0"/>

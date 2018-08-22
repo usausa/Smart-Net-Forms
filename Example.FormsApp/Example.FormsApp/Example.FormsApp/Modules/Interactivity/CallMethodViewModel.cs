@@ -32,6 +32,11 @@
             dialogService.DisplayAlert(string.Empty, "NoParameter", "OK");
         }
 
+        private void WithParameter(string parameter)
+        {
+            dialogService.DisplayAlert(string.Empty, $"WithParameter ({parameter})", "OK");
+        }
+
         // TODO Async
 
         // TODO Parameter
