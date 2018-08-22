@@ -39,6 +39,20 @@
             </Button.Behaviors>
         </Button>
 
+        <Button Grid.Row="2" Style="{StaticResource ActionButton}"
+                Text="NoParameterAsync">
+            <Button.Behaviors>
+                <si:CallMethodBehavior EventName="Clicked" MethodName="NoParameterAsync"/>
+            </Button.Behaviors>
+        </Button>
+
+        <Button Grid.Row="3" Style="{StaticResource ActionButton}"
+                Text="WithParameterAsync">
+            <Button.Behaviors>
+                <si:CallMethodBehavior EventName="Clicked" MethodName="WithParameterAsync" MethodParameter="test"/>
+            </Button.Behaviors>
+        </Button>
+
     </Grid>
 
 </ContentView>

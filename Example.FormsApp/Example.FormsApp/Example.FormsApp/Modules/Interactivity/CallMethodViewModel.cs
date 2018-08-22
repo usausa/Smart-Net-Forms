@@ -27,20 +27,24 @@
             return Navigator.ForwardAsync(ViewId.InteractivityMenu);
         }
 
-        private void NoParameter()
+        public void NoParameter()
         {
             dialogService.DisplayAlert(string.Empty, "NoParameter", "OK");
         }
 
-        private void WithParameter(string parameter)
+        public void WithParameter(string parameter)
         {
             dialogService.DisplayAlert(string.Empty, $"WithParameter ({parameter})", "OK");
         }
 
-        // TODO Async
+        public async Task NoParameterAsync()
+        {
+            await dialogService.DisplayAlert(string.Empty, "NoParameter", "OK");
+        }
 
-        // TODO Parameter
-
-        // TOODO Parameter Async
+        public async Task WithParameterAsync(string parameter)
+        {
+            await dialogService.DisplayAlert(string.Empty, $"WithParameter ({parameter})", "OK");
+        }
     }
 }
