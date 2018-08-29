@@ -10,6 +10,6 @@
              x:Class="Example.FormsApp.Modules.Animations.AnimationMenuView"
              d:DataContext="{d:DesignInstance Type={x:Type animations:AnimationMenuViewModel}}"
              resolver:BindingContextResolver.Type="{x:Type animations:AnimationMenuViewModel}"
-             views:ShellProperty.Title="Animetion">
+             views:ShellProperty.Title="Animation">
 
 </ContentView>

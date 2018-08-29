@@ -13,7 +13,7 @@
         /// <summary>
         ///
         /// </summary>
-        Camcel,
+        Cancel,
 
         /// <summary>
         ///

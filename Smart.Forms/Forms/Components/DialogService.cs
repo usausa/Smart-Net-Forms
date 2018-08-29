@@ -56,7 +56,7 @@
         /// <returns></returns>
         public async Task DisplayActionSheet(string title, params ActionSheetButton[] buttons)
         {
-            var cancelButton = buttons.FirstOrDefault(b => b.ButtonType == ActionSheetButtonType.Camcel);
+            var cancelButton = buttons.FirstOrDefault(b => b.ButtonType == ActionSheetButtonType.Cancel);
             var destroyButton = buttons.FirstOrDefault(b => b.ButtonType == ActionSheetButtonType.Destroy);
             var otherButtonTexts = buttons.Where(b => b.ButtonType == ActionSheetButtonType.Other).Select(b => b.Text).ToArray();
 

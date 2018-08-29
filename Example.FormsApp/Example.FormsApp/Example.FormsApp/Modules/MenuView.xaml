@@ -31,8 +31,8 @@
                 Text="Animation"
                 Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId AnimationMenu}"/>
         <Button Grid.Row="1" Style="{StaticResource NavigationButton}"
-                Text="Daialog"
-                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Daialog}"/>
+                Text="Dialog"
+                Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Dialog}"/>
         <Button Grid.Row="2" Style="{StaticResource NavigationButton}"
                 Text="Converter"
                 Command="{Binding ForwardCommand}" CommandParameter="{views:ViewId Converter}"/>

@@ -54,7 +54,7 @@
         /// <returns></returns>
         public static ActionSheetButton CreateCancel(string text, ICommand command)
         {
-            return new ActionSheetButton(ActionSheetButtonType.Camcel, text, command);
+            return new ActionSheetButton(ActionSheetButtonType.Cancel, text, command);
         }
 
         /// <summary>

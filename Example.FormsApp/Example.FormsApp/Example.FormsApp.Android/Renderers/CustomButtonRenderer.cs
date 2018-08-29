@@ -1,4 +1,4 @@
-﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(Xamarin.Forms.Button), typeof(Example.FormsApp.Droid.Renderers.CustomButtonRederer))]
+﻿[assembly: Xamarin.Forms.ExportRenderer(typeof(Xamarin.Forms.Button), typeof(Example.FormsApp.Droid.Renderers.CustomButtonRenderer))]
 
 namespace Example.FormsApp.Droid.Renderers
 {
@@ -8,9 +8,9 @@ namespace Example.FormsApp.Droid.Renderers
     using Xamarin.Forms;
     using Xamarin.Forms.Platform.Android;
 
-    public class CustomButtonRederer : ButtonRenderer
+    public class CustomButtonRenderer : ButtonRenderer
     {
-        public CustomButtonRederer(Context context)
+        public CustomButtonRenderer(Context context)
             : base(context)
         {
         }

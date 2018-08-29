@@ -6,7 +6,7 @@
 
         AnimationMenu,
 
-        Daialog,
+        Dialog,
 
         Converter,
 

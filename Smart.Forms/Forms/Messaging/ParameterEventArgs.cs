@@ -2,11 +2,11 @@
 {
     using System;
 
-    public sealed class ParamterEventArgs : EventArgs
+    public sealed class ParameterEventArgs : EventArgs
     {
         public object Parameter { get; }
 
-        public ParamterEventArgs(object parameter)
+        public ParameterEventArgs(object parameter)
         {
             Parameter = parameter;
         }

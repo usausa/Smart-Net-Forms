@@ -149,7 +149,7 @@
             behavior.AddEventHandler((string)newValue);
         }
 
-        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((CallMethodBehavior)bindable).cachedMethod = null;
         }

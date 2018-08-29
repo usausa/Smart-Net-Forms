@@ -31,7 +31,7 @@
         {
             if (Messenger != null)
             {
-                Messenger.Recieved -= MessengerOnRecieved;
+                Messenger.Received -= MessengerOnReceived;
             }
 
             base.OnDetachingFrom(bindable);
@@ -51,16 +51,16 @@
 
             if (oldValue != null)
             {
-                oldValue.Recieved -= MessengerOnRecieved;
+                oldValue.Received -= MessengerOnReceived;
             }
 
             if (newValue != null)
             {
-                newValue.Recieved += MessengerOnRecieved;
+                newValue.Received += MessengerOnReceived;
             }
         }
 
-        private void MessengerOnRecieved(object sender, MessengerEventArgs e)
+        private void MessengerOnReceived(object sender, MessengerEventArgs e)
         {
             var label = Label;
             var messageType = MessageType;

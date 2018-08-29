@@ -111,7 +111,7 @@
             }
         }
 
-        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((CallMethodAction)bindable).cachedMethod = null;
         }

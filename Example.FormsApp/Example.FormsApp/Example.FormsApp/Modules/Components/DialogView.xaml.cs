@@ -2,7 +2,7 @@
 {
     using Smart.Navigation.Attributes;
 
-    [View(ViewId.Daialog)]
+    [View(ViewId.Dialog)]
     public partial class DialogView
     {
         public DialogView()
