@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
-    <PackageReference Include="System.Reactive" Version="4.1.0" />
+    <PackageReference Include="System.Reactive" Version="4.0.0" />
     <PackageReference Include="Usa.Smart.Core" Version="1.5.7" />
     <PackageReference Include="Usa.Smart.Navigation" Version="1.1.1" />
     <PackageReference Include="Usa.Smart.Navigation.Forms" Version="1.1.1" />
