@@ -18,6 +18,13 @@
             typeof(DataChangedTrigger),
             propertyChanged: HandlePropertyChanged);
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
+        public static readonly BindableProperty ComparisonProperty = BindableProperty.Create(
+            nameof(Comparison),
+            typeof(IDataComparison),
+            typeof(DataChangedTrigger),
+            Comparisons.Equal);
+
         public object Binding
         {
             get => GetValue(BindingProperty);
@@ -28,6 +35,12 @@
         {
             get => GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
+        }
+
+        public IDataComparison Comparison
+        {
+            get => (IDataComparison)GetValue(ComparisonProperty);
+            set => SetValue(ComparisonProperty, value);
         }
 
         private static void HandlePropertyChanged(BindableObject bindable, object oldValue, object newValue)
