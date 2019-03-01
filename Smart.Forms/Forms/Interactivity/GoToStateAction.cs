@@ -20,8 +20,8 @@
 
         public string StateName
         {
-            get => (string)GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
+            get => (string)GetValue(StateNameProperty);
+            set => SetValue(StateNameProperty, value);
         }
 
         public VisualElement TargetObject
