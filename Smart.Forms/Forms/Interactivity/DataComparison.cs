@@ -1,90 +1,99 @@
 ﻿namespace Smart.Forms.Interactivity
 {
     using System;
+    using System.Globalization;
 
     public interface IDataComparison
     {
         bool Eval(object left, object right);
     }
 
-    internal sealed class EqualDataComparison : IDataComparison
+    internal abstract class DataComparison : IDataComparison
     {
         public bool Eval(object left, object right)
         {
-            return left.Equals(right);
-        }
-    }
-
-    internal sealed class NotEqualDataComparison : IDataComparison
-    {
-        public bool Eval(object left, object right)
-        {
-            return !left.Equals(right);
-        }
-    }
-
-    internal sealed class LessThanDataComparison : IDataComparison
-    {
-        public bool Eval(object left, object right)
-        {
-            var leftComparable = left as IComparable;
-            var rightComparable = right as IComparable;
-            if ((leftComparable == null) || (rightComparable == null))
+            if ((left is IComparable comparable) && (right != null))
             {
-                return false;
+                object convertedValue;
+                try
+                {
+                    convertedValue = Convert.ChangeType(right, left.GetType(), CultureInfo.CurrentCulture);
+                }
+                catch
+                {
+                    convertedValue = null;
+                }
+
+                if (convertedValue == null)
+                {
+                    return WhenRightIsNull();
+                }
+
+                return EvalComparison(comparable.CompareTo(convertedValue));
             }
 
-            var comparison = leftComparable.CompareTo(rightComparable);
-            return comparison < 0;
+            return WhenNotComparable(left, right);
         }
+
+        protected abstract bool WhenRightIsNull();
+
+        protected abstract bool EvalComparison(int comparison);
+
+        protected abstract bool WhenNotComparable(object left, object right);
     }
 
-    internal sealed class LessThanOrEqualDataComparison : IDataComparison
+    internal sealed class EqualDataComparison : DataComparison
     {
-        public bool Eval(object left, object right)
-        {
-            var leftComparable = left as IComparable;
-            var rightComparable = right as IComparable;
-            if ((leftComparable == null) || (rightComparable == null))
-            {
-                return false;
-            }
+        protected override bool WhenRightIsNull() => false;
 
-            var comparison = leftComparable.CompareTo(rightComparable);
-            return comparison <= 0;
-        }
+        protected override bool EvalComparison(int comparison) => comparison == 0;
+
+        protected override bool WhenNotComparable(object left, object right) => Equals(left, right);
     }
 
-    internal sealed class GreaterThanDataComparison : IDataComparison
+    internal sealed class NotEqualDataComparison : DataComparison
     {
-        public bool Eval(object left, object right)
-        {
-            var leftComparable = left as IComparable;
-            var rightComparable = right as IComparable;
-            if ((leftComparable == null) || (rightComparable == null))
-            {
-                return false;
-            }
+        protected override bool WhenRightIsNull() => true;
 
-            var comparison = leftComparable.CompareTo(rightComparable);
-            return comparison > 0;
-        }
+        protected override bool EvalComparison(int comparison) => comparison != 0;
+
+        protected override bool WhenNotComparable(object left, object right) => !Equals(left, right);
     }
 
-    internal sealed class GreaterThanOrEqualDataComparison : IDataComparison
+    internal sealed class LessThanDataComparison : DataComparison
     {
-        public bool Eval(object left, object right)
-        {
-            var leftComparable = left as IComparable;
-            var rightComparable = right as IComparable;
-            if ((leftComparable == null) || (rightComparable == null))
-            {
-                return false;
-            }
+        protected override bool WhenRightIsNull() => false;
 
-            var comparison = leftComparable.CompareTo(rightComparable);
-            return comparison >= 0;
-        }
+        protected override bool EvalComparison(int comparison) => comparison < 0;
+
+        protected override bool WhenNotComparable(object left, object right) => false;
+    }
+
+    internal sealed class LessThanOrEqualDataComparison : DataComparison
+    {
+        protected override bool WhenRightIsNull() => false;
+
+        protected override bool EvalComparison(int comparison) => comparison <= 0;
+
+        protected override bool WhenNotComparable(object left, object right) => false;
+    }
+
+    internal sealed class GreaterThanDataComparison : DataComparison
+    {
+        protected override bool WhenRightIsNull() => false;
+
+        protected override bool EvalComparison(int comparison) => comparison > 0;
+
+        protected override bool WhenNotComparable(object left, object right) => false;
+    }
+
+    internal sealed class GreaterThanOrEqualDataComparison : DataComparison
+    {
+        protected override bool WhenRightIsNull() => false;
+
+        protected override bool EvalComparison(int comparison) => comparison >= 0;
+
+        protected override bool WhenNotComparable(object left, object right) => false;
     }
 
     public static class Comparisons

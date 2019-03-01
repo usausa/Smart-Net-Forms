@@ -55,7 +55,7 @@
 
         private void HandlePropertyChanged()
         {
-            if ((Binding == Value) || ((Binding != null) && Binding.Equals(Value)))
+            if (Comparison.Eval(Binding, Value))
             {
                 InvokeActions(Value);
             }
