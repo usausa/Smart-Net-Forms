@@ -59,7 +59,7 @@
         {
             if (Expression.Eval(Binding, Value))
             {
-                InvokeActions(Value);
+                InvokeActions(null);
             }
         }
     }
