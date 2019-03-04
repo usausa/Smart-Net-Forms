@@ -1,41 +1,43 @@
 ﻿namespace Smart.Forms.Interactivity
 {
+    using Smart.Forms.Expressions;
+
     using Xamarin.Forms;
 
-    public sealed class DataStateBehavior : BehaviorBase<VisualElement>
+    public sealed class CompareStateBehavior : BehaviorBase<VisualElement>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
-            typeof(DataStateBehavior),
+            typeof(CompareStateBehavior),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(
             nameof(Value),
             typeof(object),
-            typeof(DataStateBehavior),
+            typeof(CompareStateBehavior),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty ComparisonProperty = BindableProperty.Create(
-            nameof(Comparison),
-            typeof(IDataComparison),
-            typeof(DataStateBehavior),
-            Comparisons.Equal);
+        public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
+            nameof(Expression),
+            typeof(ICompareExpression),
+            typeof(CompareStateBehavior),
+            CompareExpressions.Equal);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TrueStateProperty = BindableProperty.Create(
             nameof(TrueState),
             typeof(string),
-            typeof(DataStateBehavior));
+            typeof(CompareStateBehavior));
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty FalseStateProperty = BindableProperty.Create(
             nameof(FalseState),
             typeof(string),
-            typeof(DataStateBehavior));
+            typeof(CompareStateBehavior));
 
         public object Binding
         {
@@ -49,10 +51,10 @@
             set => SetValue(ValueProperty, value);
         }
 
-        public IDataComparison Comparison
+        public ICompareExpression Expression
         {
-            get => (IDataComparison)GetValue(ComparisonProperty);
-            set => SetValue(ComparisonProperty, value);
+            get => (ICompareExpression)GetValue(ExpressionProperty);
+            set => SetValue(ExpressionProperty, value);
         }
 
         public string TrueState
@@ -74,7 +76,7 @@
                 return;
             }
 
-            ((DataStateBehavior)bindable).HandlePropertyChanged();
+            ((CompareStateBehavior)bindable).HandlePropertyChanged();
         }
 
         private void HandlePropertyChanged()
@@ -84,7 +86,7 @@
                 return;
             }
 
-            var stateName = Comparison.Eval(Binding, Value) ? TrueState : FalseState;
+            var stateName = Expression.Eval(Binding, Value) ? TrueState : FalseState;
             VisualStateManager.GoToState(AssociatedObject, stateName);
         }
     }

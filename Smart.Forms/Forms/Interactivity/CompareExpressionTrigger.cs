@@ -1,29 +1,31 @@
 ﻿namespace Smart.Forms.Interactivity
 {
+    using Smart.Forms.Expressions;
+
     using Xamarin.Forms;
 
-    public sealed class DataChangedTrigger : TriggerBase<BindableObject>
+    public sealed class CompareExpressionTrigger : TriggerBase<BindableObject>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
-            typeof(DataChangedTrigger),
+            typeof(CompareExpressionTrigger),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(
             nameof(Value),
             typeof(object),
-            typeof(DataChangedTrigger),
+            typeof(CompareExpressionTrigger),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty ComparisonProperty = BindableProperty.Create(
-            nameof(Comparison),
-            typeof(IDataComparison),
-            typeof(DataChangedTrigger),
-            Comparisons.Equal);
+        public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
+            nameof(Expression),
+            typeof(ICompareExpression),
+            typeof(CompareExpressionTrigger),
+            CompareExpressions.Equal);
 
         public object Binding
         {
@@ -37,10 +39,10 @@
             set => SetValue(ValueProperty, value);
         }
 
-        public IDataComparison Comparison
+        public ICompareExpression Expression
         {
-            get => (IDataComparison)GetValue(ComparisonProperty);
-            set => SetValue(ComparisonProperty, value);
+            get => (ICompareExpression)GetValue(ExpressionProperty);
+            set => SetValue(ExpressionProperty, value);
         }
 
         private static void HandlePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -50,12 +52,12 @@
                 return;
             }
 
-            ((DataChangedTrigger)bindable).HandlePropertyChanged();
+            ((CompareExpressionTrigger)bindable).HandlePropertyChanged();
         }
 
         private void HandlePropertyChanged()
         {
-            if (Comparison.Eval(Binding, Value))
+            if (Expression.Eval(Binding, Value))
             {
                 InvokeActions(Value);
             }
