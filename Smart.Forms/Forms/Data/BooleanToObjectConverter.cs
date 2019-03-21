@@ -8,22 +8,18 @@
     /// <summary>
     ///
     /// </summary>
-    public sealed class NullToTextConverter : IValueConverter
+    /// <typeparam name="T"></typeparam>
+    public sealed class BooleanToObjectConverter<T> : IValueConverter
     {
         /// <summary>
         ///
         /// </summary>
-        public string NullText { get; set; }
+        public T TrueValue { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        public string NonNullText { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool HandleEmptyString { get; set; }
+        public T FalseValue { get; set; }
 
         /// <summary>
         ///
@@ -35,13 +31,7 @@
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((value == null) ||
-                (HandleEmptyString && String.IsNullOrEmpty(value as string)))
-            {
-                return NullText;
-            }
-
-            return NonNullText;
+            return value != null && (bool)value ? TrueValue : FalseValue;
         }
 
         /// <summary>
@@ -54,7 +44,7 @@
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            return Equals(value, TrueValue);
         }
     }
 }
