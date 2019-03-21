@@ -7,7 +7,7 @@
 
     using Xamarin.Forms;
 
-    public sealed class CompareExpressionConverter<T> : IValueConverter
+    public sealed class CompareConverter<T> : IValueConverter
     {
         public T TrueValue { get; set; }
 

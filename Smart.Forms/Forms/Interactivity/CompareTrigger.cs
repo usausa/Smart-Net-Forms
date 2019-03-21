@@ -4,27 +4,27 @@
 
     using Xamarin.Forms;
 
-    public sealed class CompareExpressionTrigger : TriggerBase<BindableObject>
+    public sealed class CompareTrigger : TriggerBase<BindableObject>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
-            typeof(CompareExpressionTrigger),
+            typeof(CompareTrigger),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(
             nameof(Value),
             typeof(object),
-            typeof(CompareExpressionTrigger),
+            typeof(CompareTrigger),
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
             nameof(Expression),
             typeof(ICompareExpression),
-            typeof(CompareExpressionTrigger),
+            typeof(CompareTrigger),
             CompareExpressions.Equal);
 
         public object Binding
@@ -52,7 +52,7 @@
                 return;
             }
 
-            ((CompareExpressionTrigger)bindable).HandlePropertyChanged();
+            ((CompareTrigger)bindable).HandlePropertyChanged();
         }
 
         private void HandlePropertyChanged()
