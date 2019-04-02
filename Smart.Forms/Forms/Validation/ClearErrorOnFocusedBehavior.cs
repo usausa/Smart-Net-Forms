@@ -1,36 +1,23 @@
-﻿namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation
 {
     using Smart.Forms.Interactivity;
 
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
     public sealed class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
     {
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetProperty = BindableProperty.Create(
             nameof(Target),
             typeof(IValidationResult),
             typeof(ClearErrorOnFocusedBehavior));
 
-        /// <summary>
-        ///
-        /// </summary>
         public IValidationResult Target
         {
             get => (IValidationResult)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(Entry bindable)
         {
@@ -39,10 +26,6 @@
             bindable.Focused += OnFocused;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="bindable"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(Entry bindable)
         {
@@ -51,11 +34,6 @@
             base.OnDetachingFrom(bindable);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnFocused(object sender, FocusEventArgs e)
         {
             if (e.IsFocused && (Target != null))

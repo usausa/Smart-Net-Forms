@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System;
 
@@ -64,8 +64,8 @@
         {
             var label = Label;
             var messageType = MessageType;
-            if (((label == null) || label.Equals(e.Label)) &&
-                ((messageType == null) || ((e.MessageType != null) && messageType.IsAssignableFrom(e.MessageType))))
+            if (((label is null) || label.Equals(e.Label)) &&
+                ((messageType is null) || ((e.MessageType != null) && messageType.IsAssignableFrom(e.MessageType))))
             {
                 InvokeActions(e.Message);
             }

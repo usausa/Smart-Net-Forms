@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System.Linq;
     using System.Reflection;
@@ -74,12 +74,12 @@
         {
             var target = TargetObject ?? associatedObject;
             var methodName = MethodName;
-            if ((target == null) || (methodName == null))
+            if ((target is null) || (methodName is null))
             {
                 return;
             }
 
-            if ((cachedMethod == null) ||
+            if ((cachedMethod is null) ||
                 (cachedMethod.DeclaringType != target.GetType() ||
                 (cachedMethod.Name != methodName)))
             {
@@ -87,9 +87,9 @@
                     m.Name == methodName &&
                     ((m.GetParameters().Length == 0) ||
                      ((m.GetParameters().Length == 1) &&
-                      ((MethodParameter == null) ||
+                      ((MethodParameter is null) ||
                        MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(m.GetParameters()[0].ParameterType.GetTypeInfo())))));
-                if (methodInfo == null)
+                if (methodInfo is null)
                 {
                     return;
                 }

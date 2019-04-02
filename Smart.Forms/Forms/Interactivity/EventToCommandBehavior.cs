@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System;
     using System.Reflection;
@@ -97,7 +97,7 @@
             }
 
             eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
-            if (eventInfo == null)
+            if (eventInfo is null)
             {
                 throw new ArgumentException("EventName");
             }
@@ -119,7 +119,7 @@
         private void OnEvent(object sender, EventArgs e)
         {
             var command = Command;
-            if (command == null)
+            if (command is null)
             {
                 return;
             }
@@ -137,7 +137,7 @@
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var behavior = (EventToCommandBehavior)bindable;
-            if (behavior.AssociatedObject == null)
+            if (behavior.AssociatedObject is null)
             {
                 return;
             }

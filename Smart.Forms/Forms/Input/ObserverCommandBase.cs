@@ -1,14 +1,10 @@
-﻿namespace Smart.Forms.Input
+namespace Smart.Forms.Input
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.ComponentModel;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public abstract class ObserveCommandBase<T>
         where T : ObserveCommandBase<T>
     {
@@ -16,56 +12,38 @@
 
         private HashSet<INotifyCollectionChanged> observeCollections;
 
-        /// <summary>
-        ///
-        /// </summary>
         public event EventHandler CanExecuteChanged;
 
-        /// <summary>
-        ///
-        /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore")]
         public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         private void PrepareObserveProperties()
         {
-            if (observeProperties == null)
+            if (observeProperties is null)
             {
                 observeProperties = new Dictionary<INotifyPropertyChanged, HashSet<string>>();
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         private void PrepareObserveCollections()
         {
-            if (observeCollections == null)
+            if (observeCollections is null)
             {
                 observeCollections = new HashSet<INotifyCollectionChanged>();
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
         public T Observe(INotifyPropertyChanged target, string propertyName)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (propertyName == null)
+            if (propertyName is null)
             {
                 throw new ArgumentNullException(nameof(propertyName));
             }
@@ -84,14 +62,9 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
         public T Observe(INotifyCollectionChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -107,20 +80,14 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
         public T RemoveObserver(INotifyPropertyChanged target, string propertyName)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (propertyName == null)
+            if (propertyName is null)
             {
                 throw new ArgumentNullException(nameof(propertyName));
             }
@@ -142,14 +109,9 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
         public T RemoveObserver(INotifyPropertyChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -165,14 +127,9 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
         public T RemoveObserver(INotifyCollectionChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -189,10 +146,6 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
         public T RemoveObserver()
         {
             if (observeProperties != null)
@@ -218,11 +171,6 @@
             return (T)this;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var properties = observeProperties[(INotifyPropertyChanged)sender];
@@ -232,11 +180,6 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void HandleCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             RaiseCanExecuteChanged();

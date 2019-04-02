@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations
 {
     using System.Threading.Tasks;
 
@@ -26,7 +26,7 @@
 
             if (Animation != null)
             {
-                if (Animation.Target == null)
+                if (Animation.Target is null)
                 {
                     Animation.Target = AssociatedObject;
                 }

@@ -1,19 +1,11 @@
-﻿namespace Smart.Forms.Input
+namespace Smart.Forms.Input
 {
     using System;
     using System.Reactive.Linq;
     using System.Windows.Input;
 
-    /// <summary>
-    ///
-    /// </summary>
     public static class CommandExtensions
     {
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public static IObservable<EventArgs> CanExecuteChangedAsObservable(this ICommand command)
         {
             return Observable.FromEvent<EventHandler, EventArgs>(
