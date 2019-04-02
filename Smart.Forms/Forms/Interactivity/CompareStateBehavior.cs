@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using Smart.Forms.Expressions;
 
@@ -81,7 +81,7 @@
 
         private void HandlePropertyChanged()
         {
-            if (AssociatedObject == null)
+            if (AssociatedObject is null)
             {
                 return;
             }

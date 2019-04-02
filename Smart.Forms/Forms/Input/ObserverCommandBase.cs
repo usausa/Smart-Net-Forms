@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Input
+namespace Smart.Forms.Input
 {
     using System;
     using System.Collections.Generic;
@@ -35,7 +35,7 @@
         /// </summary>
         private void PrepareObserveProperties()
         {
-            if (observeProperties == null)
+            if (observeProperties is null)
             {
                 observeProperties = new Dictionary<INotifyPropertyChanged, HashSet<string>>();
             }
@@ -46,7 +46,7 @@
         /// </summary>
         private void PrepareObserveCollections()
         {
-            if (observeCollections == null)
+            if (observeCollections is null)
             {
                 observeCollections = new HashSet<INotifyCollectionChanged>();
             }
@@ -60,12 +60,12 @@
         /// <returns></returns>
         public T Observe(INotifyPropertyChanged target, string propertyName)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (propertyName == null)
+            if (propertyName is null)
             {
                 throw new ArgumentNullException(nameof(propertyName));
             }
@@ -91,7 +91,7 @@
         /// <returns></returns>
         public T Observe(INotifyCollectionChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -115,12 +115,12 @@
         /// <returns></returns>
         public T RemoveObserver(INotifyPropertyChanged target, string propertyName)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (propertyName == null)
+            if (propertyName is null)
             {
                 throw new ArgumentNullException(nameof(propertyName));
             }
@@ -149,7 +149,7 @@
         /// <returns></returns>
         public T RemoveObserver(INotifyPropertyChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }
@@ -172,7 +172,7 @@
         /// <returns></returns>
         public T RemoveObserver(INotifyCollectionChanged target)
         {
-            if (target == null)
+            if (target is null)
             {
                 throw new ArgumentNullException(nameof(target));
             }

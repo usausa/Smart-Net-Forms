@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System.Reflection;
 
@@ -72,12 +72,12 @@
         {
             var target = TargetObject ?? associatedObject;
             var propertyName = PropertyName;
-            if ((target == null) || (propertyName == null))
+            if ((target is null) || (propertyName is null))
             {
                 return;
             }
 
-            if ((property == null) ||
+            if ((property is null) ||
                 (property.DeclaringType != target.GetType()) ||
                 (property.Name != propertyName))
             {

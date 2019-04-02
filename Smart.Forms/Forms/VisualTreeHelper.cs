@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms
+namespace Smart.Forms
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -18,7 +18,7 @@
                     return variable;
                 }
 
-                if (element.Parent == null)
+                if (element.Parent is null)
                 {
                     return default;
                 }

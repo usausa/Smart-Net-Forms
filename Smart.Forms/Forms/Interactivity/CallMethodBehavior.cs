@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System;
     using System.Linq;
@@ -88,7 +88,7 @@
             }
 
             eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
-            if (eventInfo == null)
+            if (eventInfo is null)
             {
                 throw new ArgumentException(nameof(EventName));
             }
@@ -111,12 +111,12 @@
         {
             var target = TargetObject ?? BindingContext;
             var methodName = MethodName;
-            if ((target == null) || string.IsNullOrEmpty(methodName))
+            if ((target is null) || string.IsNullOrEmpty(methodName))
             {
                 return;
             }
 
-            if ((cachedMethod == null) ||
+            if ((cachedMethod is null) ||
                 (cachedMethod.DeclaringType != target.GetType() ||
                  (cachedMethod.Name != methodName)))
             {
@@ -124,9 +124,9 @@
                     m.Name == methodName &&
                     ((m.GetParameters().Length == 0) ||
                      ((m.GetParameters().Length == 1) &&
-                      ((MethodParameter == null) ||
+                      ((MethodParameter is null) ||
                        MethodParameter.GetType().GetTypeInfo().IsAssignableFrom(m.GetParameters()[0].ParameterType.GetTypeInfo())))));
-                if (methodInfo == null)
+                if (methodInfo is null)
                 {
                     return;
                 }
@@ -140,7 +140,7 @@
         private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var behavior = (CallMethodBehavior)bindable;
-            if (behavior.AssociatedObject == null)
+            if (behavior.AssociatedObject is null)
             {
                 return;
             }

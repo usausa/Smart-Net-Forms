@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System.Windows.Input;
 
@@ -36,7 +36,7 @@
 
         private void HandleItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null)
+            if (e.SelectedItem is null)
             {
                 return;
             }

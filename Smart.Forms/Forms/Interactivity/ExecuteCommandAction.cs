@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System.Windows.Input;
 
@@ -57,7 +57,7 @@
         public void DoInvoke(BindableObject associatedObject, object parameter)
         {
             var command = Command;
-            if (command == null)
+            if (command is null)
             {
                 return;
             }

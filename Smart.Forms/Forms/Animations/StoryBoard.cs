@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -24,7 +24,7 @@
         {
             foreach (var animation in Animations)
             {
-                if (animation.Target == null)
+                if (animation.Target is null)
                 {
                     animation.Target = Target;
                 }

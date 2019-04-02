@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.ViewModels
+namespace Smart.Forms.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -139,7 +139,7 @@
         /// <param name="validatables"></param>
         protected void RegisterValidation(string group, params IValidatable[] validatables)
         {
-            if (validationGroup == null)
+            if (validationGroup is null)
             {
                 validationGroup = new Dictionary<string, List<IValidatable>>();
             }

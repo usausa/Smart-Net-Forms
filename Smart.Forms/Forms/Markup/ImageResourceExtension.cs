@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup
 {
     using System;
 
@@ -23,7 +23,7 @@
         /// <returns></returns>
         public object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Source == null ? null : ImageSource.FromResource(Source);
+            return Source is null ? null : ImageSource.FromResource(Source);
         }
     }
 }

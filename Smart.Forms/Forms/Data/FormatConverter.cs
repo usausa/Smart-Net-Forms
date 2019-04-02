@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Data
+namespace Smart.Forms.Data
 {
     using System;
     using System.Globalization;
@@ -24,7 +24,7 @@
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value is null)
             {
                 return string.Empty;
             }
