@@ -4,29 +4,12 @@ namespace Smart.Forms.Data
     using System.Globalization;
     using Xamarin.Forms;
 
-    /// <summary>
-    ///
-    /// </summary>
     public sealed class NullToParameterConverter : IValueConverter
     {
-        /// <summary>
-        ///
-        /// </summary>
         public bool Invert { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
         public bool HandleEmptyString { get; set; }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((value is null) ||
@@ -38,14 +21,6 @@ namespace Smart.Forms.Data
             return Invert ? parameter : value;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

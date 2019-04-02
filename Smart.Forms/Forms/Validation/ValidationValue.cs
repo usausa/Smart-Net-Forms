@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -6,27 +6,14 @@
 
     using Smart.ComponentModel;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public sealed class ValidationValue<T> : NotificationValue<T>, IValidatable, IValidationResult
     {
         private bool hasError;
 
-        /// <summary>
-        ///
-        /// </summary>
         public List<IValidator<T>> Validators { get; } = new List<IValidator<T>>();
 
-        /// <summary>
-        ///
-        /// </summary>
         public ObservableCollection<string> Errors { get; } = new ObservableCollection<string>();
 
-        /// <summary>
-        ///
-        /// </summary>
         public bool HasError
         {
             get => hasError;
@@ -37,26 +24,15 @@
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public ValidationValue()
         {
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="value"></param>
         public ValidationValue(T value)
             : base(value)
         {
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
         public bool Validate()
         {
             Errors.Clear();
