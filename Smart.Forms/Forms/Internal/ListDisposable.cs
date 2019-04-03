@@ -1,4 +1,4 @@
-namespace Smart.Forms.Internal
+﻿namespace Smart.Forms.Internal
 {
     using System;
     using System.Collections;

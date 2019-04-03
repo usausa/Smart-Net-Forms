@@ -1,4 +1,4 @@
-namespace Smart.Forms.Interactivity
+﻿namespace Smart.Forms.Interactivity
 {
     using System;
     using System.Linq;
