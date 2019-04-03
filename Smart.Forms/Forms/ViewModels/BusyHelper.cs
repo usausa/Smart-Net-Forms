@@ -1,4 +1,4 @@
-namespace Smart.Forms.ViewModels
+﻿namespace Smart.Forms.ViewModels
 {
     using System;
     using System.Threading.Tasks;

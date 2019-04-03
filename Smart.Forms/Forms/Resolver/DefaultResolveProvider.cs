@@ -1,4 +1,4 @@
-namespace Smart.Forms.Resolver
+﻿namespace Smart.Forms.Resolver
 {
     using System;
 

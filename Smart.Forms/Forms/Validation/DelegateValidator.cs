@@ -1,4 +1,4 @@
-namespace Smart.Forms.Validation
+﻿namespace Smart.Forms.Validation
 {
     using System;
 

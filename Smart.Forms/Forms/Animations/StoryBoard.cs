@@ -1,4 +1,4 @@
-namespace Smart.Forms.Animations
+﻿namespace Smart.Forms.Animations
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

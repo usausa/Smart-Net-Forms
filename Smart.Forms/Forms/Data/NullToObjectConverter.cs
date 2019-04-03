@@ -1,4 +1,4 @@
-namespace Smart.Forms.Data
+﻿namespace Smart.Forms.Data
 {
     using System;
     using System.Globalization;
@@ -9,7 +9,7 @@ namespace Smart.Forms.Data
     {
         public T NullValue { get; set; }
 
-        public T NonValue { get; set; }
+        public T NonNullValue { get; set; }
 
         public bool HandleEmptyString { get; set; }
 
@@ -21,7 +21,7 @@ namespace Smart.Forms.Data
                 return NullValue;
             }
 
-            return NullValue;
+            return NonNullValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
