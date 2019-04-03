@@ -9,7 +9,7 @@
     {
         public T NullValue { get; set; }
 
-        public T NonValue { get; set; }
+        public T NonNullValue { get; set; }
 
         public bool HandleEmptyString { get; set; }
 
@@ -21,7 +21,7 @@
                 return NullValue;
             }
 
-            return NullValue;
+            return NonNullValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
