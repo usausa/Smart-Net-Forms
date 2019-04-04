@@ -18,7 +18,7 @@
             if (value is IFormattable formattable)
             {
                 return formattable.ToString(Format, culture);
-          }
+            }
 
             return value.ToString();
         }
