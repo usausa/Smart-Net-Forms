@@ -8,13 +8,11 @@
 
     public sealed class ResolvePropertyAction : ActionBase<BindableObject, ResultEventArgs>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
             nameof(TargetObject),
             typeof(object),
             typeof(ResolvePropertyAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty PropertyNameProperty = BindableProperty.Create(
             nameof(PropertyName),
             typeof(string),

@@ -6,7 +6,6 @@
 
     public sealed class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetProperty = BindableProperty.Create(
             nameof(Target),
             typeof(IValidationResult),
@@ -18,7 +17,6 @@
             set => SetValue(TargetProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
@@ -26,7 +24,6 @@
             bindable.Focused += OnFocused;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(Entry bindable)
         {
             bindable.Focused -= OnFocused;

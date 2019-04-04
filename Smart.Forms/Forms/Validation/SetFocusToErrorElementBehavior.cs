@@ -8,7 +8,6 @@
 
     public sealed class SetFocusToErrorElementBehavior : BehaviorBase<VisualElement>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty RequestProperty = BindableProperty.Create(
             nameof(Request),
             typeof(ValidationRequest),
@@ -21,7 +20,6 @@
             set => SetValue(RequestProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(VisualElement bindable)
         {
             if (Request != null)

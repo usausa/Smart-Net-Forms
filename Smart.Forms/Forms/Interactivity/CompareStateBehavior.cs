@@ -6,34 +6,29 @@
 
     public sealed class CompareStateBehavior : BehaviorBase<VisualElement>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
             typeof(CompareStateBehavior),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
             nameof(Parameter),
             typeof(object),
             typeof(CompareStateBehavior),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
             nameof(Expression),
             typeof(ICompareExpression),
             typeof(CompareStateBehavior),
             CompareExpressions.Equal);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TrueStateProperty = BindableProperty.Create(
             nameof(TrueState),
             typeof(string),
             typeof(CompareStateBehavior));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty FalseStateProperty = BindableProperty.Create(
             nameof(FalseState),
             typeof(string),

@@ -6,7 +6,6 @@
 
     public sealed class CancelEventAction : ActionBase<BindableObject, CancelEventArgs>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty CancelProperty = BindableProperty.Create(
             nameof(Cancel),
             typeof(bool),

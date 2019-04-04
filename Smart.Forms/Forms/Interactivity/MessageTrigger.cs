@@ -8,7 +8,6 @@
 
     public sealed class MessageTrigger : TriggerBase<BindableObject>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
             nameof(Messenger),
             typeof(IMessenger),
@@ -26,7 +25,6 @@
 
         public Type MessageType { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
             if (Messenger != null)

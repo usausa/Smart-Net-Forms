@@ -6,31 +6,26 @@
 
     public sealed class ChangePropertyAction : BindableObject, IAction
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
             nameof(TargetObject),
             typeof(object),
             typeof(ChangePropertyAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty PropertyNameProperty = BindableProperty.Create(
             nameof(PropertyName),
             typeof(string),
             typeof(ChangePropertyAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
             nameof(Parameter),
             typeof(object),
             typeof(ChangePropertyAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ConverterProperty = BindableProperty.Create(
             nameof(Converter),
             typeof(IValueConverter),
             typeof(ChangePropertyAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ConverterParameterProperty = BindableProperty.Create(
             nameof(ConverterParameter),
             typeof(object),

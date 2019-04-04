@@ -6,21 +6,18 @@
 
     public sealed class CompareExpressionTrigger : TriggerBase<BindableObject>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
             typeof(CompareExpressionTrigger),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
             nameof(Parameter),
             typeof(object),
             typeof(CompareExpressionTrigger),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
             nameof(Expression),
             typeof(ICompareExpression),
