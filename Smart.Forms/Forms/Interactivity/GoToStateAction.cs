@@ -6,13 +6,11 @@
 
     public sealed class GoToStateAction : ActionBase<BindableObject>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty StateNameProperty = BindableProperty.Create(
             nameof(StateName),
             typeof(string),
             typeof(GoToStateAction));
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
             nameof(TargetObject),
             typeof(VisualElement),

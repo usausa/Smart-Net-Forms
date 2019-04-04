@@ -6,21 +6,18 @@
 
     public sealed class CompareTrigger : TriggerBase<BindableObject>
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty BindingProperty = BindableProperty.Create(
             nameof(Binding),
             typeof(object),
             typeof(CompareTrigger),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(
-            nameof(Value),
+        public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
+            nameof(Parameter),
             typeof(object),
             typeof(CompareTrigger),
             propertyChanged: HandlePropertyChanged);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty ExpressionProperty = BindableProperty.Create(
             nameof(Expression),
             typeof(ICompareExpression),
@@ -33,10 +30,10 @@
             set => SetValue(BindingProperty, value);
         }
 
-        public object Value
+        public object Parameter
         {
-            get => GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            get => GetValue(ParameterProperty);
+            set => SetValue(ParameterProperty, value);
         }
 
         public ICompareExpression Expression
@@ -57,7 +54,7 @@
 
         private void HandlePropertyChanged()
         {
-            if (Expression.Eval(Binding, Value))
+            if (Expression.Eval(Binding, Parameter))
             {
                 InvokeActions(null);
             }

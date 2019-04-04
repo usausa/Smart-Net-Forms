@@ -20,6 +20,7 @@
             Animations = animations;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected override async Task BeginAnimation()
         {
             foreach (var animation in Animations)

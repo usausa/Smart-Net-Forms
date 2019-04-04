@@ -9,7 +9,6 @@
     public abstract class RequestTriggerBase<TEventArgs> : TriggerBase<BindableObject>
         where TEventArgs : EventArgs
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
         public static readonly BindableProperty RequestProperty = BindableProperty.Create(
             nameof(Request),
             typeof(IEventRequest<TEventArgs>),
@@ -23,7 +22,6 @@
             set => SetValue(RequestProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(BindableObject bindable)
         {
             if (Request != null)

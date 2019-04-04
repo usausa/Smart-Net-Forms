@@ -1,6 +1,7 @@
 ﻿namespace Smart.Forms.Animations
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
 
     using Xamarin.Forms;
@@ -28,7 +29,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.FadeTo(Opacity, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.FadeTo(Opacity, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 
@@ -53,7 +54,7 @@
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Target.Animate("FadeIn", FadeIn(), 16, Convert.ToUInt32(Duration));
+                    Target.Animate("FadeIn", FadeIn(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
                 });
             });
         }
@@ -96,7 +97,7 @@
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Target.Animate("FadeOut", FadeOut(), 16, Convert.ToUInt32(Duration));
+                    Target.Animate("FadeOut", FadeOut(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
                 });
             });
         }
