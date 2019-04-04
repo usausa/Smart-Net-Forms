@@ -64,7 +64,7 @@
         {
             var label = Label;
             var messageType = MessageType;
-            if (((label is null) || label.Equals(e.Label)) &&
+            if (((label is null) || label.Equals(e.Label, StringComparison.Ordinal)) &&
                 ((messageType is null) || ((e.MessageType != null) && messageType.IsAssignableFrom(e.MessageType))))
             {
                 InvokeActions(e.Message);

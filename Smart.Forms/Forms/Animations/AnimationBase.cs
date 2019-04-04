@@ -58,6 +58,7 @@
             set => SetValue(EasingProperty, value);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task Begin()
         {
             if (Delay > 0)

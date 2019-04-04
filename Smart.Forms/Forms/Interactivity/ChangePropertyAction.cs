@@ -19,8 +19,8 @@
             typeof(ChangePropertyAction));
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(
-            nameof(Value),
+        public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
+            nameof(Parameter),
             typeof(object),
             typeof(ChangePropertyAction));
 
@@ -48,10 +48,10 @@
             set => SetValue(PropertyNameProperty, value);
         }
 
-        public object Value
+        public object Parameter
         {
-            get => GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            get => GetValue(ParameterProperty);
+            set => SetValue(ParameterProperty, value);
         }
 
         public IValueConverter Converter
@@ -84,8 +84,8 @@
                 property = target.GetType().GetRuntimeProperty(propertyName);
             }
 
-            var value = Value;
-            var propertyValue = (value != null) || IsSet(ValueProperty)
+            var value = Parameter;
+            var propertyValue = (value != null) || IsSet(ParameterProperty)
                 ? value
                 : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
             property.SetValue(target, propertyValue);

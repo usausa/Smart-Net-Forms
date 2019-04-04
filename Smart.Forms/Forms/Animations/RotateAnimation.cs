@@ -1,6 +1,7 @@
 ﻿namespace Smart.Forms.Animations
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
 
     using Xamarin.Forms;
@@ -22,7 +23,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.RotateTo(Rotation, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.RotateTo(Rotation, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 
@@ -43,7 +44,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.RelRotateTo(Rotation, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.RelRotateTo(Rotation, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 
@@ -64,7 +65,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.RotateXTo(Rotation, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.RotateXTo(Rotation, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 
@@ -85,7 +86,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.RotateYTo(Rotation, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.RotateYTo(Rotation, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 }

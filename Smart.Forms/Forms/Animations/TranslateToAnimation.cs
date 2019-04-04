@@ -1,6 +1,7 @@
 ﻿namespace Smart.Forms.Animations
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
 
     using Xamarin.Forms;
@@ -35,7 +36,7 @@
 
         protected override Task BeginAnimation()
         {
-            return Target.TranslateTo(TranslateX, TranslateY, Convert.ToUInt32(Duration), EasingHelper.GetEasing(Easing));
+            return Target.TranslateTo(TranslateX, TranslateY, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
         }
     }
 }

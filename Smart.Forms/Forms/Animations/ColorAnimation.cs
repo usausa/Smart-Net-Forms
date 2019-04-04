@@ -1,6 +1,7 @@
 ﻿namespace Smart.Forms.Animations
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
 
     using Xamarin.Forms;
@@ -27,7 +28,7 @@
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration));
+                    await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
                 });
             });
         }

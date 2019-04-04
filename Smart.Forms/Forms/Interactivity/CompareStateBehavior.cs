@@ -14,8 +14,8 @@
             propertyChanged: HandlePropertyChanged);
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "BindableProperty")]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(
-            nameof(Value),
+        public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
+            nameof(Parameter),
             typeof(object),
             typeof(CompareStateBehavior),
             propertyChanged: HandlePropertyChanged);
@@ -45,10 +45,10 @@
             set => SetValue(BindingProperty, value);
         }
 
-        public object Value
+        public object Parameter
         {
-            get => GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
+            get => GetValue(ParameterProperty);
+            set => SetValue(ParameterProperty, value);
         }
 
         public ICompareExpression Expression
@@ -86,7 +86,7 @@
                 return;
             }
 
-            var stateName = Expression.Eval(Binding, Value) ? TrueState : FalseState;
+            var stateName = Expression.Eval(Binding, Parameter) ? TrueState : FalseState;
             VisualStateManager.GoToState(AssociatedObject, stateName);
         }
     }
