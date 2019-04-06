@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup
 {
     using System;
 
@@ -10,9 +10,6 @@
     {
         public short Value { get; set; }
 
-        public object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return Value;
-        }
+        public object ProvideValue(IServiceProvider serviceProvider) => Value;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Resolver
+namespace Smart.Forms.Resolver
 {
     using System;
 
@@ -8,9 +8,6 @@
 
         public IResolveProvider Provider { get; set; } = DefaultResolveProvider.Default;
 
-        public object Resolve(Type type)
-        {
-            return Provider.Resolve(type);
-        }
+        public object Resolve(Type type) => Provider.Resolve(type);
     }
 }
