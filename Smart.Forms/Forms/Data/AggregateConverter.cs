@@ -9,7 +9,7 @@ namespace Smart.Forms.Data
     using Xamarin.Forms;
 
     [ContentProperty("Converters")]
-    public class AggregateConverter : IValueConverter
+    public sealed class AggregateConverter : IValueConverter
     {
         public Collection<IValueConverter> Converters { get; } = new Collection<IValueConverter>(new List<IValueConverter>());
 
