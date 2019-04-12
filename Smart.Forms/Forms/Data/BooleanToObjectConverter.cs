@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Data
+namespace Smart.Forms.Data
 {
     using System;
     using System.Globalization;
@@ -13,12 +13,12 @@
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is null)
+            if (value is bool boolValue)
             {
-                return FalseValue;
+                return boolValue ? TrueValue : FalseValue;
             }
 
-            return (bool)value ? TrueValue : FalseValue;
+            return FalseValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
