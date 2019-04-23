@@ -8,7 +8,11 @@
 
     public static class VisualTreeHelper
     {
-        public static T GetParent<T>(Element element)
+        // ------------------------------------------------------------
+        // Parent
+        // ------------------------------------------------------------
+
+        public static T FindParent<T>(Element element)
             where T : Element
         {
             while (true)
@@ -27,7 +31,11 @@
             }
         }
 
-        public static IEnumerable<T> GetChildren<T>(Element parent)
+        // ------------------------------------------------------------
+        // Children
+        // ------------------------------------------------------------
+
+        public static IEnumerable<T> FindChildren<T>(Element parent)
             where T : Element
         {
             // Content
