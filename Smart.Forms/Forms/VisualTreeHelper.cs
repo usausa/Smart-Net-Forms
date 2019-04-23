@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms
+namespace Smart.Forms
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -50,7 +50,7 @@
 
                 if (value is Element element)
                 {
-                    foreach (var child in GetChildren<T>(element))
+                    foreach (var child in FindChildren<T>(element))
                     {
                         yield return child;
                     }
@@ -74,7 +74,7 @@
 
                         if (child is Element element)
                         {
-                            foreach (var elementChild in GetChildren<T>(element))
+                            foreach (var elementChild in FindChildren<T>(element))
                             {
                                 yield return elementChild;
                             }
