@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System;
 
@@ -28,7 +28,7 @@
             base.OnDetachingFrom(bindable);
 
             bindable.BindingContextChanged -= HandleBindingContextChanged;
-            BindingContext = null;
+            AssociatedObject = null;
         }
 
         private void HandleBindingContextChanged(object sender, EventArgs eventArgs)
