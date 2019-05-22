@@ -43,7 +43,10 @@
                 Command.Execute(e.SelectedItem);
             }
 
-            AssociatedObject.SelectedItem = null;
+            if (AssociatedObject != null)
+            {
+                AssociatedObject.SelectedItem = null;
+            }
         }
     }
 }
