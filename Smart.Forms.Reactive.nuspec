@@ -14,7 +14,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="System.Reactive" version="4.1.5" />
-      <dependency id="Xamarin.Forms" version="4.0.0.425677" />
+      <dependency id="Xamarin.Forms" version="4.0.0.482894" />
       <dependency id="Usa.Smart.Core" version="1.7.3" />
       <dependency id="Usa.Smart.Forms" version="1.5.2" />
       <dependency id="Usa.Smart.Reactive" version="1.3.0" />

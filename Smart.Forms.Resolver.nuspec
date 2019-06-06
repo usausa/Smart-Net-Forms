@@ -13,7 +13,7 @@
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
-      <dependency id="Xamarin.Forms" version="4.0.0.425677" />
+      <dependency id="Xamarin.Forms" version="4.0.0.482894" />
       <dependency id="Usa.Smart.Core" version="1.7.3" />
       <dependency id="Usa.Smart.Forms" version="1.5.2" />
       <dependency id="Usa.Smart.Resolver" version="1.8.1" />
