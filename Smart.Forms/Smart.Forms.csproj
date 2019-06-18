@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Usa.Smart.Core" Version="1.7.3" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
 
 </Project>

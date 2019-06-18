@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System.Windows.Input;
 
@@ -17,6 +17,7 @@
             set => SetValue(CommandProperty, value);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(ListView bindable)
         {
             base.OnAttachedTo(bindable);
@@ -24,6 +25,7 @@
             bindable.ItemSelected += HandleItemSelected;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(ListView bindable)
         {
             bindable.ItemSelected -= HandleItemSelected;

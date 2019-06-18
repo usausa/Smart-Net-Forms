@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation
 {
     using System.Windows.Input;
 
@@ -41,6 +41,7 @@
             set => SetValue(CommandParameterProperty, value);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(VisualElement bindable)
         {
             base.OnAttachedTo(bindable);
@@ -48,6 +49,7 @@
             bindable.Unfocused += OnUnfocused;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(VisualElement bindable)
         {
             bindable.Unfocused -= OnUnfocused;
