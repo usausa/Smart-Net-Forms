@@ -58,5 +58,9 @@ namespace Smart.Forms.Data
 
     public sealed class MapToColorConverter : MapToObjectConverter<Color>
     {
+        public MapToColorConverter()
+        {
+            DefaultValue = Color.Default;
+        }
     }
 }
