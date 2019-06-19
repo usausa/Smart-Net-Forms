@@ -1,8 +1,6 @@
 namespace Smart.Forms
 {
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Reflection;
 
     using Xamarin.Forms;
 
@@ -39,11 +37,10 @@ namespace Smart.Forms
         public static IEnumerable<T> FindChildren<T>(Element parent)
             where T : Element
         {
-            // Content
-            var contentProperty = parent.GetType().GetRuntimeProperty("Content");
-            if (contentProperty != null)
+            // ContentView
+            if (parent is ContentView contentView)
             {
-                var value = contentProperty.GetValue(parent);
+                var value = contentView.Content;
                 if (value is T typedChild)
                 {
                     yield return typedChild;
@@ -60,25 +57,21 @@ namespace Smart.Forms
                 yield break;
             }
 
-            // Children
-            var childrenProperty = parent.GetType().GetRuntimeProperty("Children");
-            if (childrenProperty != null)
+            // Layout
+            if (parent is Layout layout)
             {
-                if (childrenProperty.GetValue(parent) is IEnumerable children)
+                foreach (var child in layout.Children)
                 {
-                    foreach (var child in children)
+                    if (child is T typedChild)
                     {
-                        if (child is T typedChild)
-                        {
-                            yield return typedChild;
-                        }
+                        yield return typedChild;
+                    }
 
-                        if (child is Element element)
+                    if (child is Element element)
+                    {
+                        foreach (var elementChild in FindChildren<T>(element))
                         {
-                            foreach (var elementChild in FindChildren<T>(element))
-                            {
-                                yield return elementChild;
-                            }
+                            yield return elementChild;
                         }
                     }
                 }
