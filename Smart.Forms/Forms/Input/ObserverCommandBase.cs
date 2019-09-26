@@ -90,7 +90,7 @@ namespace Smart.Forms.Input
             return (T)this;
         }
 
-        public T Observe(INotifyCollectionChanged target)
+        public T ObserveCollection(INotifyCollectionChanged target)
         {
             if (target is null)
             {
@@ -163,7 +163,7 @@ namespace Smart.Forms.Input
             return (T)this;
         }
 
-        public T RemoveObserver(INotifyCollectionChanged target)
+        public T RemoveCollectionObserver(INotifyCollectionChanged target)
         {
             if (target is null)
             {
