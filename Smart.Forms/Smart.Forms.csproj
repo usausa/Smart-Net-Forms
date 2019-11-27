@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
-    <PackageReference Include="Usa.Smart.Core" Version="1.7.8" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
+    <PackageReference Include="Usa.Smart.Core" Version="1.7.9" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
   </ItemGroup>
 
 </Project>
