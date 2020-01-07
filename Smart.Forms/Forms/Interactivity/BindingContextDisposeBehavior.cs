@@ -22,7 +22,7 @@ namespace Smart.Forms.Interactivity
             base.OnDetachingFrom(bindable);
         }
 
-        private void OnPopped(object sender, NavigationEventArgs e)
+        private static void OnPopped(object sender, NavigationEventArgs e)
         {
             (e.Page.BindingContext as IDisposable)?.Dispose();
         }

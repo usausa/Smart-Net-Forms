@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation
 {
     using System;
 
@@ -59,7 +59,7 @@
             element?.Focus();
         }
 
-        private VisualElement FindErrorElement(VisualElement element)
+        private static VisualElement FindErrorElement(VisualElement element)
         {
             if (ValidationProperty.GetHasError(element))
             {

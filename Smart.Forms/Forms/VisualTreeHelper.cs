@@ -37,44 +37,44 @@ namespace Smart.Forms
         public static IEnumerable<T> FindChildren<T>(Element parent)
             where T : Element
         {
-            // ContentView
-            if (parent is ContentView contentView)
+            while (true)
             {
-                var value = contentView.Content;
-                if (value is T typedChild)
+                // ContentView
+                if (parent is ContentView contentView)
                 {
-                    yield return typedChild;
-                }
-
-                if (value is Element element)
-                {
-                    foreach (var child in FindChildren<T>(element))
-                    {
-                        yield return child;
-                    }
-                }
-
-                yield break;
-            }
-
-            // Layout
-            if (parent is Layout layout)
-            {
-                foreach (var child in layout.Children)
-                {
-                    if (child is T typedChild)
+                    var value = contentView.Content;
+                    if (value is T typedChild)
                     {
                         yield return typedChild;
                     }
 
-                    if (child is Element element)
+                    if (value is Element element)
                     {
-                        foreach (var elementChild in FindChildren<T>(element))
+                        parent = element;
+                        continue;
+                    }
+
+                    yield break;
+                }
+
+                // Layout
+                if (parent is Layout layout)
+                {
+                    foreach (var child in layout.Children)
+                    {
+                        if (child is T typedChild)
+                        {
+                            yield return typedChild;
+                        }
+
+                        foreach (var elementChild in FindChildren<T>(child))
                         {
                             yield return elementChild;
                         }
                     }
                 }
+
+                break;
             }
         }
     }
