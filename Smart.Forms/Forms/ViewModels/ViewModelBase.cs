@@ -24,19 +24,19 @@ namespace Smart.Forms.ViewModels
         // Disposables
         // ------------------------------------------------------------
 
-        protected ICollection<IDisposable> Disposables => disposables ?? (disposables = new ListDisposable());
+        protected ICollection<IDisposable> Disposables => disposables ??= new ListDisposable();
 
         // ------------------------------------------------------------
         // Busy
         // ------------------------------------------------------------
 
-        public IBusyState BusyState => busyState ?? (busyState = new BusyState());
+        public IBusyState BusyState => busyState ??= new BusyState();
 
         // ------------------------------------------------------------
         // Messenger
         // ------------------------------------------------------------
 
-        public IMessenger Messenger => messenger ?? (messenger = new Messenger());
+        public IMessenger Messenger => messenger ??= new Messenger();
 
         // ------------------------------------------------------------
         // Constructor
@@ -143,6 +143,16 @@ namespace Smart.Forms.ViewModels
             return BusyHelper.ExecuteBusyAsync(BusyState, execute);
         }
 
+        protected ValueTask ExecuteBusyAsync(Func<ValueTask> execute)
+        {
+            return BusyHelper.ExecuteBusyAsync(BusyState, execute);
+        }
+
+        protected ValueTask<TResult> ExecuteBusyAsync<TResult>(Func<ValueTask<TResult>> execute)
+        {
+            return BusyHelper.ExecuteBusyAsync(BusyState, execute);
+        }
+
         // ------------------------------------------------------------
         // DelegateCommand helper
         // ------------------------------------------------------------
@@ -221,6 +231,31 @@ namespace Smart.Forms.ViewModels
                         BusyState.IsBusy = false;
                     }
                 }, parameter => !BusyState.IsBusy && canExecute(parameter))
+                .Observe(BusyState, nameof(IBusyState.IsBusy))
+                .RemoveObserverBy(Disposables);
+        }
+
+        protected AsyncCommand<TParameter> MakeAsyncCommand<TParameter>(Func<TParameter, ValueTask> execute)
+        {
+            return MakeAsyncCommand(execute, Actions<TParameter>.True);
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
+        protected AsyncCommand<TParameter> MakeAsyncCommand<TParameter>(Func<TParameter, ValueTask> execute, Func<TParameter, bool> canExecute)
+        {
+            return new AsyncCommand<TParameter>(
+                    async parameter =>
+                    {
+                        BusyState.IsBusy = true;
+                        try
+                        {
+                            await execute(parameter);
+                        }
+                        finally
+                        {
+                            BusyState.IsBusy = false;
+                        }
+                    }, parameter => !BusyState.IsBusy && canExecute(parameter))
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
                 .RemoveObserverBy(Disposables);
         }

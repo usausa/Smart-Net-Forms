@@ -51,18 +51,18 @@ namespace Smart.Forms.Input
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
-        private readonly Func<T, Task> execute;
+        private readonly Func<T, ValueTask> execute;
 
         private readonly Func<T, bool> canExecute;
 
         private bool executing;
 
-        public AsyncCommand(Func<T, Task> execute)
+        public AsyncCommand(Func<T, ValueTask> execute)
             : this(execute, Actions<T>.True)
         {
         }
 
-        public AsyncCommand(Func<T, Task> execute, Func<T, bool> canExecute)
+        public AsyncCommand(Func<T, ValueTask> execute, Func<T, bool> canExecute)
         {
             this.execute = execute;
             this.canExecute = canExecute;
