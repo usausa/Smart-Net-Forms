@@ -4,12 +4,12 @@ namespace Smart.Forms.Components
 
     public interface IDialogService
     {
-        ValueTask<bool> DisplayAlert(string title, string message, string acceptButton, string cancelButton);
+        Task<bool> DisplayAlert(string title, string message, string acceptButton, string cancelButton);
 
-        ValueTask DisplayAlert(string title, string message, string cancelButton);
+        Task DisplayAlert(string title, string message, string cancelButton);
 
-        ValueTask<string> DisplayActionSheet(string title, string cancelButton, string destroyButton, params string[] otherButtons);
+        Task<string> DisplayActionSheet(string title, string cancelButton, string destroyButton, params string[] otherButtons);
 
-        ValueTask DisplayActionSheet(string title, params ActionSheetButton[] buttons);
+        Task DisplayActionSheet(string title, params ActionSheetButton[] buttons);
     }
 }
