@@ -16,7 +16,7 @@
       <dependency id="Usa.Smart.Core" version="1.8.0" />
       <dependency id="Usa.Smart.Forms" version="1.6.1" />
       <dependency id="Usa.Smart.Resolver" version="1.9.0" />
-      <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+      <dependency id="Xamarin.Forms" version="4.4.0.991537" />
     </dependencies>
     <tags>smart xamarin mvvm</tags>
   </metadata>
