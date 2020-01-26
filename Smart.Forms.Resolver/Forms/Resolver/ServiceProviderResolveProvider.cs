@@ -2,11 +2,11 @@ namespace Smart.Forms.Resolver
 {
     using System;
 
-    public sealed class ServiceContainerResolverProvider : IResolveProvider
+    public sealed class ServiceProviderResolveProvider : IResolveProvider
     {
         private readonly IServiceProvider provider;
 
-        public ServiceContainerResolverProvider(IServiceProvider provider)
+        public ServiceProviderResolveProvider(IServiceProvider provider)
         {
             this.provider = provider;
         }
