@@ -14,8 +14,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <dependencies>
       <dependency id="Microsoft.CSharp" version="4.7.0" />
-      <dependency id="Usa.Smart.Core" version="1.8.0" />
-      <dependency id="Xamarin.Forms" version="4.4.0.991537" />
+      <dependency id="Usa.Smart.Core" version="1.8.2" />
+      <dependency id="Xamarin.Forms" version="4.5.0.356" />
     </dependencies>
     <tags>smart xamarin mvvm</tags>
   </metadata>
