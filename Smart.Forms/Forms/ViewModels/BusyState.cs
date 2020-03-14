@@ -13,20 +13,32 @@ namespace Smart.Forms.ViewModels
 
         public void Require()
         {
+            var current = IsBusy;
             counter++;
-            RaisePropertyChanged(nameof(IsBusy));
+            if (current != IsBusy)
+            {
+                RaisePropertyChanged(nameof(IsBusy));
+            }
         }
 
         public void Release()
         {
+            var current = IsBusy;
             counter--;
-            RaisePropertyChanged(nameof(IsBusy));
+            if (current != IsBusy)
+            {
+                RaisePropertyChanged(nameof(IsBusy));
+            }
         }
 
         public void Reset()
         {
+            var current = IsBusy;
             counter = 0;
-            RaisePropertyChanged(nameof(IsBusy));
+            if (current != IsBusy)
+            {
+                RaisePropertyChanged(nameof(IsBusy));
+            }
         }
     }
 }
