@@ -1,9 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <CodeAnalysisRuleSet>..\Smart.Forms.ruleset</CodeAnalysisRuleSet>
     <RootNamespace>Smart</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Usa.Smart.Forms</PackageId>
+    <Title>Smart.Forms .NET</Title>
+    <Description>Smart Xamarin support library for .NET</Description>
+    <Summary>Smart Xamarin support library for .NET</Summary>
+    <PackageTags>smart xamarin mvvm</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
