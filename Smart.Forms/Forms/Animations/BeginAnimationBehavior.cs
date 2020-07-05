@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations
 {
     using System.Threading.Tasks;
 
@@ -27,10 +27,7 @@
 
             if (Animation != null)
             {
-                if (Animation.Target is null)
-                {
-                    Animation.Target = AssociatedObject;
-                }
+                Animation.Target ??= AssociatedObject;
 
                 var delay = Task.Delay(250);
                 await Task.WhenAll(delay);

@@ -1,7 +1,6 @@
 namespace Smart.Forms.Resolver
 {
     using System;
-    using System.ComponentModel.Design;
 
     using Smart.Resolver;
 

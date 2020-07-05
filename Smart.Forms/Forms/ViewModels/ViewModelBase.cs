@@ -92,10 +92,7 @@ namespace Smart.Forms.ViewModels
 
         protected void RegisterValidation(string group, params IValidatable[] validatables)
         {
-            if (validationGroup is null)
-            {
-                validationGroup = new Dictionary<string, List<IValidatable>>();
-            }
+            validationGroup ??= new Dictionary<string, List<IValidatable>>();
 
             if (!validationGroup.TryGetValue(group, out var list))
             {

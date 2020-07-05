@@ -24,26 +24,17 @@ namespace Smart.Forms.Input
 
         private void PrepareObserveObjects()
         {
-            if (observeObjects is null)
-            {
-                observeObjects = new HashSet<INotifyPropertyChanged>();
-            }
+            observeObjects ??= new HashSet<INotifyPropertyChanged>();
         }
 
         private void PrepareObserveProperties()
         {
-            if (observeProperties is null)
-            {
-                observeProperties = new Dictionary<INotifyPropertyChanged, HashSet<string>>();
-            }
+            observeProperties ??= new Dictionary<INotifyPropertyChanged, HashSet<string>>();
         }
 
         private void PrepareObserveCollections()
         {
-            if (observeCollections is null)
-            {
-                observeCollections = new HashSet<INotifyCollectionChanged>();
-            }
+            observeCollections ??= new HashSet<INotifyCollectionChanged>();
         }
 
         public T Observe(INotifyPropertyChanged target)

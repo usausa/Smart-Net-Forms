@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations
 {
     using Smart.Forms.Interactivity;
 
@@ -23,10 +23,7 @@
         {
             if (Animation != null)
             {
-                if (Animation.Target is null)
-                {
-                    Animation.Target = associatedObject;
-                }
+                Animation.Target ??= associatedObject;
 
                 await Animation.Begin();
             }
