@@ -1,4 +1,4 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Interactivity
 {
     using Xamarin.Forms;
 
