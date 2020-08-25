@@ -1,5 +1,7 @@
 # Smart.Forms .NET - MVVM helper library for Xamarin.Forms
 
+[![NuGet Badge](https://buildstats.info/nuget/Usa.Smart.Forms)](https://www.nuget.org/packages/Usa.Smart.Forms/)
+
 ## What does if contain ?
 
 * Animation support.
@@ -15,11 +17,11 @@
 
 ## NuGet
 
-| Id                       | Note                       |
+| Package | Note |
 |--------------------------|----------------------------|
-| Usa.Smart.Forms          | Core libyrary              |
-| Usa.Smart.Forms.Reactive | Reactive helpers           |
-| Usa.Smart.Forms.Resolver | Smart.Resolver integration |
+| [![NuGet Badge](https://buildstats.info/nuget/Usa.Smart.Forms)](https://www.nuget.org/packages/Usa.Smart.Forms/) | Core libyrary |
+| [![NuGet Badge](https://buildstats.info/nuget/Usa.Smart.Forms.Reactive)](https://www.nuget.org/packages/Usa.Smart.Forms.Reactive/) | Reactive helpers |
+| [![NuGet Badge](https://buildstats.info/nuget/Usa.Smart.Forms.Resolver)](https://www.nuget.org/packages/Usa.Smart.Forms.Resolver/) | Smart.Resolver integration |
 
 ## Link
 
