@@ -17,7 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Usa.Smart.Core" Version="1.8.8" />
     <PackageReference Include="Usa.Smart.Resolver" Version="1.10.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
   </ItemGroup>
 
   <ItemGroup>
