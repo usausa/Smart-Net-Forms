@@ -1,11 +1,11 @@
-﻿namespace Smart.Forms
+namespace Smart.Forms
 {
     using System;
     using System.Threading;
 
     using Xamarin.Forms;
 
-    public sealed class Timer
+    public sealed class Timer : IDisposable
     {
         private readonly TimeSpan dueTime;
 
@@ -17,6 +17,18 @@
         {
             this.dueTime = dueTime;
             this.callback = callback;
+        }
+
+        public void Dispose()
+        {
+            Stop();
+        }
+
+        public static Timer StartNew(TimeSpan dueTime, Action callback)
+        {
+            var timer = new Timer(dueTime, callback);
+            timer.Start();
+            return timer;
         }
 
         public void Start()

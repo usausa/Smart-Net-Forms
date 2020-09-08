@@ -1,9 +1,10 @@
-﻿namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity
 {
     using System;
 
     using Xamarin.Forms;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
     public sealed class TimerTrigger : TriggerBase<BindableObject>
     {
         public static readonly BindableProperty IntervalProperty = BindableProperty.Create(
