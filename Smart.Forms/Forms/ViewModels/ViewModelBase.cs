@@ -127,20 +127,6 @@ namespace Smart.Forms.ViewModels
         }
 
         // ------------------------------------------------------------
-        // Execute helper
-        // ------------------------------------------------------------
-
-        protected Task ExecuteBusyAsync(Func<Task> execute)
-        {
-            return BusyHelper.ExecuteBusyAsync(BusyState, execute);
-        }
-
-        protected Task<TResult> ExecuteBusyAsync<TResult>(Func<Task<TResult>> execute)
-        {
-            return BusyHelper.ExecuteBusyAsync(BusyState, execute);
-        }
-
-        // ------------------------------------------------------------
         // DelegateCommand helper
         // ------------------------------------------------------------
 
