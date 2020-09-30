@@ -183,14 +183,9 @@ namespace Smart.Forms.ViewModels
             return new AsyncCommand(
                 async () =>
                 {
-                    BusyState.Require();
-                    try
+                    using (BusyState.Begin())
                     {
                         await execute();
-                    }
-                    finally
-                    {
-                        BusyState.Release();
                     }
                 }, () => !BusyState.IsBusy && canExecute())
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
@@ -208,14 +203,9 @@ namespace Smart.Forms.ViewModels
             return new AsyncCommand<TParameter>(
                 async parameter =>
                 {
-                    BusyState.Require();
-                    try
+                    using (BusyState.Begin())
                     {
                         await execute(parameter);
-                    }
-                    finally
-                    {
-                        BusyState.Release();
                     }
                 }, parameter => !BusyState.IsBusy && canExecute(parameter))
                 .Observe(BusyState, nameof(IBusyState.IsBusy))

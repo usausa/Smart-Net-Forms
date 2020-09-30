@@ -9,15 +9,9 @@ namespace Smart.Forms.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public static async Task ExecuteBusyAsync(IBusyState state, Func<Task> execute)
         {
-            try
+            using (state.Begin())
             {
-                state.Require();
-
                 await execute();
-            }
-            finally
-            {
-                state.Release();
             }
         }
 
@@ -25,15 +19,9 @@ namespace Smart.Forms.ViewModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public static async Task<TResult> ExecuteBusyAsync<TResult>(IBusyState state, Func<Task<TResult>> execute)
         {
-            try
+            using (state.Begin())
             {
-                state.Require();
-
                 return await execute();
-            }
-            finally
-            {
-                state.Release();
             }
         }
     }
