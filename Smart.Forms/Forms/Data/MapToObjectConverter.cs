@@ -21,7 +21,7 @@ namespace Smart.Forms.Data
 
     public class MapToObjectConverter<T> : IValueConverter
     {
-        public Collection<MapEntry<T>> Entries { get; } = new Collection<MapEntry<T>>(new List<MapEntry<T>>());
+        public Collection<MapEntry<T>> Entries { get; } = new(new List<MapEntry<T>>());
 
         public T DefaultValue { get; set; }
 

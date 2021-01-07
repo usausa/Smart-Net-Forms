@@ -11,7 +11,7 @@ namespace Smart.Forms.Data
     [ContentProperty("Converters")]
     public sealed class ChainConverter : IValueConverter
     {
-        public Collection<IValueConverter> Converters { get; } = new Collection<IValueConverter>(new List<IValueConverter>());
+        public Collection<IValueConverter> Converters { get; } = new(new List<IValueConverter>());
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

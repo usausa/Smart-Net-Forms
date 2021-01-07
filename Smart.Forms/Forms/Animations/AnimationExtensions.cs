@@ -39,7 +39,7 @@ namespace Smart.Forms.Animations
         private static Task<bool> ColorAnimation(VisualElement element, string name, Func<double, Color> transform, Action<Color> callback, uint length, Easing easing)
         {
             var tcs = new TaskCompletionSource<bool>();
-            element.Animate(name, transform, callback, 16, length, easing ?? Easing.Linear, (v, c) => tcs.SetResult(c));
+            element.Animate(name, transform, callback, 16, length, easing ?? Easing.Linear, (_, c) => tcs.SetResult(c));
             return tcs.Task;
         }
     }

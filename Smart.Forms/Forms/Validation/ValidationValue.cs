@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -10,9 +10,9 @@
     {
         private bool hasError;
 
-        public List<IValidator<T>> Validators { get; } = new List<IValidator<T>>();
+        public List<IValidator<T>> Validators { get; } = new();
 
-        public ObservableCollection<string> Errors { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> Errors { get; } = new();
 
         public bool HasError
         {

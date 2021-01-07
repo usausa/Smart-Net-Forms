@@ -14,7 +14,7 @@ namespace Smart.Forms.Markup
 
         public BooleanToObjectConverter<string> ProvideValue(IServiceProvider serviceProvider)
         {
-            return new BooleanToObjectConverter<string> { TrueValue = True, FalseValue = False };
+            return new() { TrueValue = True, FalseValue = False };
         }
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)

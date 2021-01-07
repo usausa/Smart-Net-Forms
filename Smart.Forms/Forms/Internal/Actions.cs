@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Internal
+namespace Smart.Forms.Internal
 {
     using System;
 
@@ -9,6 +9,6 @@
 
     internal static class Actions<T>
     {
-        public static Func<T, bool> True { get; } = x => true;
+        public static Func<T, bool> True { get; } = _ => true;
     }
 }

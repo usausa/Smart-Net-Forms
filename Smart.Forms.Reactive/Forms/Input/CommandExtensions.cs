@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Input
+namespace Smart.Forms.Input
 {
     using System;
     using System.Reactive.Linq;
@@ -9,7 +9,7 @@
         public static IObservable<EventArgs> CanExecuteChangedAsObservable(this ICommand command)
         {
             return Observable.FromEvent<EventHandler, EventArgs>(
-                h => (sender, e) => h(e),
+                h => (_, e) => h(e),
                 h => command.CanExecuteChanged += h,
                 h => command.CanExecuteChanged -= h);
         }
