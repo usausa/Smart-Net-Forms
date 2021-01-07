@@ -11,7 +11,7 @@ namespace Smart.Forms.Data
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value is null)
             {
                 return null;
             }
@@ -23,7 +23,7 @@ namespace Smart.Forms.Data
                 if (mis.Length > 0)
                 {
                     var attr = mis[0].GetCustomAttribute<DescriptionAttribute>();
-                    if (attr != null)
+                    if (attr is not null)
                     {
                         return attr.Description;
                     }

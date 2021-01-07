@@ -24,8 +24,8 @@ namespace Smart.Forms.Data
                 for (var i = 0; i < array.Length; i++)
                 {
                     var element = array.GetValue(i);
-                    if (((element != null) && element.Equals(value)) ||
-                         ((element == null) && (value == null)))
+                    if (((element is not null) && element.Equals(value)) ||
+                         ((element is null) && (value is null)))
                     {
                         return i;
                     }

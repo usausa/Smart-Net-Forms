@@ -45,7 +45,7 @@ namespace Smart.Forms.Interactivity
                 Command.Execute(e.SelectedItem);
             }
 
-            if (AssociatedObject != null)
+            if (AssociatedObject is not null)
             {
                 AssociatedObject.SelectedItem = null;
             }

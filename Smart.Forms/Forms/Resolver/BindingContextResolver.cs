@@ -50,7 +50,7 @@ namespace Smart.Forms.Resolver
                 disposable.Dispose();
             }
 
-            bindable.BindingContext = newValue != null ? ResolveProvider.Default.Resolve((Type)newValue) : null;
+            bindable.BindingContext = newValue is not null ? ResolveProvider.Default.Resolve((Type)newValue) : null;
         }
     }
 }

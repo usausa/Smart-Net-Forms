@@ -8,7 +8,7 @@
 
         public bool Validate(T value)
         {
-            if (value == null)
+            if (value is null)
             {
                 return false;
             }

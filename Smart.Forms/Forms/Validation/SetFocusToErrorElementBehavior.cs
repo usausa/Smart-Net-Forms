@@ -22,7 +22,7 @@ namespace Smart.Forms.Validation
 
         protected override void OnDetachingFrom(VisualElement bindable)
         {
-            if (Request != null)
+            if (Request is not null)
             {
                 Request.ValidationErrorRequested -= OnValidationErrorRequested;
             }
@@ -42,12 +42,12 @@ namespace Smart.Forms.Validation
                 return;
             }
 
-            if (oldValue != null)
+            if (oldValue is not null)
             {
                 oldValue.ValidationErrorRequested -= OnValidationErrorRequested;
             }
 
-            if (newValue != null)
+            if (newValue is not null)
             {
                 newValue.ValidationErrorRequested += OnValidationErrorRequested;
             }
@@ -71,7 +71,7 @@ namespace Smart.Forms.Validation
                 foreach (var child in layout.Children)
                 {
                     var find = FindErrorElement(child);
-                    if (find != null)
+                    if (find is not null)
                     {
                         return find;
                     }
@@ -81,7 +81,7 @@ namespace Smart.Forms.Validation
             if (element is ContentPage page)
             {
                 var find = FindErrorElement(page.Content);
-                if (find != null)
+                if (find is not null)
                 {
                     return find;
                 }
@@ -90,7 +90,7 @@ namespace Smart.Forms.Validation
             if (element is ContentView view)
             {
                 var find = FindErrorElement(view.Content);
-                if (find != null)
+                if (find is not null)
                 {
                     return find;
                 }

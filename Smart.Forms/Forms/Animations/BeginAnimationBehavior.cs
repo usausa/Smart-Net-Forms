@@ -25,7 +25,7 @@ namespace Smart.Forms.Animations
         {
             base.OnAttachedTo(bindable);
 
-            if (Animation != null)
+            if (Animation is not null)
             {
                 Animation.Target ??= AssociatedObject;
 

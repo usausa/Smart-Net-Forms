@@ -35,7 +35,7 @@ namespace Smart.Forms.Components
             var selectedText = await DisplayActionSheet(title, cancelButton?.Text, destroyButton?.Text, otherButtonTexts);
 
             var selectedButton = buttons.FirstOrDefault(b => b.Text == selectedText);
-            if ((selectedButton != null) && selectedButton.Command.CanExecute(selectedText))
+            if ((selectedButton is not null) && selectedButton.Command.CanExecute(selectedText))
             {
                 selectedButton.Command.Execute(selectedText);
             }

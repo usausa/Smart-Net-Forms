@@ -95,7 +95,7 @@
             if (cachedMethod.GetParameters().Length > 0)
             {
                 var methodParameter = MethodParameter;
-                var argument = (methodParameter != null) || IsSet(MethodParameterProperty)
+                var argument = (methodParameter is not null) || IsSet(MethodParameterProperty)
                     ? methodParameter
                     : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
                 cachedMethod.Invoke(target, new[] { argument });

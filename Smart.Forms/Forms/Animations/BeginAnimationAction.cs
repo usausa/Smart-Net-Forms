@@ -21,7 +21,7 @@ namespace Smart.Forms.Animations
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected override async void Invoke(VisualElement associatedObject, object parameter)
         {
-            if (Animation != null)
+            if (Animation is not null)
             {
                 Animation.Target ??= associatedObject;
 

@@ -24,7 +24,7 @@
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            if (Request != null)
+            if (Request is not null)
             {
                 Request.Requested -= EventRequestOnRequested;
             }
@@ -44,12 +44,12 @@
                 return;
             }
 
-            if (oldValue != null)
+            if (oldValue is not null)
             {
                 oldValue.Requested -= EventRequestOnRequested;
             }
 
-            if (newValue != null)
+            if (newValue is not null)
             {
                 newValue.Requested += EventRequestOnRequested;
             }

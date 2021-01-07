@@ -112,7 +112,7 @@ namespace Smart.Forms.ViewModels
         {
             var valid = true;
 
-            if ((validationGroup != null) && validationGroup.TryGetValue(group, out var list))
+            if ((validationGroup is not null) && validationGroup.TryGetValue(group, out var list))
             {
                 foreach (var validatable in list)
                 {

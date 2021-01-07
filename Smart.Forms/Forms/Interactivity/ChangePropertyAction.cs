@@ -80,7 +80,7 @@
             }
 
             var value = Parameter;
-            var propertyValue = (value != null) || IsSet(ParameterProperty)
+            var propertyValue = (value is not null) || IsSet(ParameterProperty)
                 ? value
                 : Converter?.Convert(parameter, typeof(object), ConverterParameter, null) ?? parameter;
             property.SetValue(target, propertyValue);

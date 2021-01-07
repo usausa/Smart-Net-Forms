@@ -36,7 +36,7 @@
             }
 
             var element = TargetObject ?? (associatedObject as VisualElement);
-            if (element != null)
+            if (element is not null)
             {
                 VisualStateManager.GoToState(element, StateName);
             }

@@ -35,7 +35,7 @@ namespace Smart.Forms.Validation
 
         private void OnFocused(object sender, FocusEventArgs e)
         {
-            if (e.IsFocused && (Target != null))
+            if (e.IsFocused && (Target is not null))
             {
                 Target.HasError = false;
             }

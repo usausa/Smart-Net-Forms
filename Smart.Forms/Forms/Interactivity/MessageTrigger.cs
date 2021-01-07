@@ -27,7 +27,7 @@
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            if (Messenger != null)
+            if (Messenger is not null)
             {
                 Messenger.Received -= MessengerOnReceived;
             }
@@ -47,12 +47,12 @@
                 return;
             }
 
-            if (oldValue != null)
+            if (oldValue is not null)
             {
                 oldValue.Received -= MessengerOnReceived;
             }
 
-            if (newValue != null)
+            if (newValue is not null)
             {
                 newValue.Received += MessengerOnReceived;
             }
@@ -63,7 +63,7 @@
             var label = Label;
             var messageType = MessageType;
             if (((label is null) || label.Equals(e.Label, StringComparison.Ordinal)) &&
-                ((messageType is null) || ((e.MessageType != null) && messageType.IsAssignableFrom(e.MessageType))))
+                ((messageType is null) || ((e.MessageType is not null) && messageType.IsAssignableFrom(e.MessageType))))
             {
                 InvokeActions(e.Message);
             }

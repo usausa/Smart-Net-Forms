@@ -61,7 +61,7 @@ namespace Smart.Forms.Validation
         {
             Target?.Validate();
 
-            if ((Command != null) && Command.CanExecute(null))
+            if ((Command is not null) && Command.CanExecute(null))
             {
                 Command.Execute(null);
             }

@@ -4,13 +4,13 @@ namespace Smart.Forms
 
     using Xamarin.Forms;
 
-    public static class VisualTreeHelper
+    public static class ElementExtensions
     {
         // ------------------------------------------------------------
         // Parent
         // ------------------------------------------------------------
 
-        public static T FindParent<T>(Element element)
+        public static T FindParent<T>(this Element element)
             where T : Element
         {
             while (true)
@@ -34,7 +34,7 @@ namespace Smart.Forms
         // ------------------------------------------------------------
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
-        public static IEnumerable<T> FindChildren<T>(Element parent)
+        public static IEnumerable<T> FindChildren<T>(this Element parent)
             where T : Element
         {
             while (true)
