@@ -1,4 +1,4 @@
-namespace Smart.Forms.ViewModels
+﻿namespace Smart.Forms.ViewModels
 {
     using Smart.ComponentModel;
 
@@ -6,10 +6,7 @@ namespace Smart.Forms.ViewModels
     {
         private int counter;
 
-        public bool IsBusy
-        {
-            get => counter > 0;
-        }
+        public bool IsBusy => counter > 0;
 
         public void Require()
         {
