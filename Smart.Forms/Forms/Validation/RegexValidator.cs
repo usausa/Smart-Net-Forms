@@ -23,7 +23,7 @@
             }
 
             var str = Convert.ToString(value, CultureInfo.CurrentCulture);
-            var m = regex.Match(str);
+            var m = regex.Match(str!);
 
             return m.Success && (m.Index == 0) && (m.Length == str.Length);
         }
