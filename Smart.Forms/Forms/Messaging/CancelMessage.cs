@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Messaging
+namespace Smart.Forms.Messaging
 {
     public sealed class CancelMessage
     {

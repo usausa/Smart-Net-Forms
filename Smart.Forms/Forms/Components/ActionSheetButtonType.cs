@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Components
+namespace Smart.Forms.Components
 {
     public enum ActionSheetButtonType
     {

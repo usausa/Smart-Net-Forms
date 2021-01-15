@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations
 {
     public enum EasingType
     {

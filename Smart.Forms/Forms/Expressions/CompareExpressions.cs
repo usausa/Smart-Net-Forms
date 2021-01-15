@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Expressions
+namespace Smart.Forms.Expressions
 {
     using System;
     using System.Globalization;

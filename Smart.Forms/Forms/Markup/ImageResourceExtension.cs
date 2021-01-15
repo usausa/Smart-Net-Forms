@@ -1,4 +1,4 @@
-﻿namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup
 {
     using System;
 
