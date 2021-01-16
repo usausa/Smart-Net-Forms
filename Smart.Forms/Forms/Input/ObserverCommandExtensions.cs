@@ -45,7 +45,6 @@ namespace Smart.Forms.Input
             return command;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         public static TCommand RemoveObserverBy<TCommand>(this TCommand command, ICollection<IDisposable> disposables)
             where TCommand : ObserveCommandBase<TCommand>
         {

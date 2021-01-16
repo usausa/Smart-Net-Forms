@@ -41,7 +41,6 @@ namespace Smart.Forms.Validation
             set => SetValue(CommandParameterProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
@@ -49,7 +48,6 @@ namespace Smart.Forms.Validation
             bindable.TextChanged += OnTextChanged;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(Entry bindable)
         {
             bindable.TextChanged -= OnTextChanged;

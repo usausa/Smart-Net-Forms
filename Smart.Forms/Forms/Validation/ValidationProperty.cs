@@ -10,10 +10,8 @@ namespace Smart.Forms.Validation
             typeof(ValidationProperty),
             false);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         public static bool GetHasError(BindableObject view) => (bool)view.GetValue(HasErrorProperty);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         public static void SetHasError(BindableObject view, bool value) => view.SetValue(HasErrorProperty, value);
     }
 }

@@ -107,7 +107,6 @@ namespace Smart.Forms.Interactivity
             handler = null;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
         private void OnEvent(object sender, EventArgs e)
         {
             var command = Command;
