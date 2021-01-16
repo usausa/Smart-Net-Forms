@@ -29,7 +29,7 @@ namespace Smart.Forms.ViewModels
         {
             using (state.Begin())
             {
-                await execute();
+                await execute().ConfigureAwait(false);
             }
         }
 
@@ -39,7 +39,7 @@ namespace Smart.Forms.ViewModels
         {
             using (state.Begin())
             {
-                return await execute();
+                return await execute().ConfigureAwait(false);
             }
         }
 
