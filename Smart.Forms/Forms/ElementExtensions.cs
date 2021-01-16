@@ -33,6 +33,7 @@ namespace Smart.Forms
         // Children
         // ------------------------------------------------------------
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         public static IEnumerable<T> FindChildren<T>(this Element parent)
             where T : Element
         {

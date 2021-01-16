@@ -19,6 +19,7 @@ namespace Smart.Forms.Expressions
 
         private abstract class CompareExpression : ICompareExpression
         {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
             public bool Eval(object left, object right)
             {
                 if ((left is IComparable comparable) && (right is not null))

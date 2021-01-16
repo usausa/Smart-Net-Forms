@@ -28,6 +28,7 @@ namespace Smart.Forms.Input
 
         bool ICommand.CanExecute(object parameter) => !executing && canExecute();
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         async void ICommand.Execute(object parameter)
         {
             executing = true;
@@ -74,6 +75,7 @@ namespace Smart.Forms.Input
             Execute(Cast(parameter));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async void Execute(T parameter)
         {
             executing = true;

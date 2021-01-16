@@ -17,6 +17,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(CommandProperty, value);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(ListView bindable)
         {
             base.OnAttachedTo(bindable);
@@ -24,6 +25,7 @@ namespace Smart.Forms.Interactivity
             bindable.ItemSelected += HandleItemSelected;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(ListView bindable)
         {
             bindable.ItemSelected -= HandleItemSelected;

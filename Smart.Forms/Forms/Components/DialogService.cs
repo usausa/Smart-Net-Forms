@@ -7,21 +7,25 @@ namespace Smart.Forms.Components
 
     public sealed class DialogService : IDialogService
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<bool> DisplayAlert(string title, string message, string acceptButton, string cancelButton)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, acceptButton, cancelButton);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task DisplayAlert(string title, string message, string cancelButton)
         {
             await Application.Current.MainPage.DisplayAlert(title, message, cancelButton);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task<string> DisplayActionSheet(string title, string cancelButton, string destroyButton, params string[] otherButtons)
         {
             return await Application.Current.MainPage.DisplayActionSheet(title, cancelButton, destroyButton, otherButtons);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         public async Task DisplayActionSheet(string title, params ActionSheetButton[] buttons)
         {
             var cancelButton = buttons.FirstOrDefault(b => b.ButtonType == ActionSheetButtonType.Cancel);

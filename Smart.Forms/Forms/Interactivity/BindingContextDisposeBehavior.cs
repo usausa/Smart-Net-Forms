@@ -6,6 +6,7 @@ namespace Smart.Forms.Interactivity
 
     public sealed class BindingContextDisposeBehavior : BehaviorBase<NavigationPage>
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnAttachedTo(NavigationPage bindable)
         {
             base.OnAttachedTo(bindable);
@@ -13,6 +14,7 @@ namespace Smart.Forms.Interactivity
             bindable.Popped += OnPopped;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void OnDetachingFrom(NavigationPage bindable)
         {
             bindable.Popped -= OnPopped;
