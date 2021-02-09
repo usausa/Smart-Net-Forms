@@ -7,7 +7,7 @@ namespace Smart.Forms.Markup
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
-    public sealed class BooleanToColorConverterExtension : IMarkupExtension<BooleanToObjectConverter<Color>>
+    public sealed class BoolToColorExtension : IMarkupExtension<BooleanToObjectConverter<Color>>
     {
         public Color True { get; set; }
 

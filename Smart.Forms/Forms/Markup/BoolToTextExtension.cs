@@ -6,7 +6,7 @@ namespace Smart.Forms.Markup
 
     using Xamarin.Forms.Xaml;
 
-    public sealed class BooleanToTextConverterExtension : IMarkupExtension<BooleanToObjectConverter<string>>
+    public sealed class BoolToTextExtension : IMarkupExtension<BooleanToObjectConverter<string>>
     {
         public string True { get; set; }
 
