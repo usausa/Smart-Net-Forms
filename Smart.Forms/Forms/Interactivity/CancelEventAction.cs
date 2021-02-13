@@ -18,7 +18,6 @@ namespace Smart.Forms.Interactivity
             set => SetValue(CancelProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void Invoke(BindableObject associatedObject, CancelEventArgs parameter)
         {
             parameter.Cancel = Cancel;

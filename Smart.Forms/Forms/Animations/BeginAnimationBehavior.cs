@@ -20,7 +20,6 @@ namespace Smart.Forms.Animations
             set => SetValue(AnimationProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected override async void OnAttachedTo(VisualElement bindable)
         {
             base.OnAttachedTo(bindable);

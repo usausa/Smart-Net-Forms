@@ -33,7 +33,6 @@ namespace Smart.Forms.Interactivity
 
         private MethodInfo cachedMethod;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Ignore")]
         protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
             var target = TargetObject ?? associatedObject;

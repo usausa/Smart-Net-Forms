@@ -21,7 +21,6 @@ namespace Smart.Forms.Animations
             set => SetValue(ToColorProperty, value);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected override Task BeginAnimation()
         {
             var fromColor = Target.BackgroundColor;

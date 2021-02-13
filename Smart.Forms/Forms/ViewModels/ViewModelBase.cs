@@ -163,7 +163,6 @@ namespace Smart.Forms.ViewModels
             return MakeAsyncCommand(execute, Functions.True);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected AsyncCommand MakeAsyncCommand(Func<Task> execute, Func<bool> canExecute)
         {
             return new AsyncCommand(
@@ -183,7 +182,6 @@ namespace Smart.Forms.ViewModels
             return MakeAsyncCommand(execute, Functions<TParameter>.True);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected AsyncCommand<TParameter> MakeAsyncCommand<TParameter>(Func<TParameter, Task> execute, Func<TParameter, bool> canExecute)
         {
             return new AsyncCommand<TParameter>(

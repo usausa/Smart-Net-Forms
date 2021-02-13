@@ -7,7 +7,6 @@ namespace Smart.Forms.Animations
     {
         public AnimationBase Animation { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2007:DoNotDirectlyAwaitATask", Justification = "Ignore")]
         protected override async void Invoke(VisualElement sender)
         {
             if (Animation is not null)
