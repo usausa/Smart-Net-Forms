@@ -5,7 +5,7 @@ namespace Smart.Forms.Data
 
     using Xamarin.Forms;
 
-    public sealed class ObjectToBooleanConverter<T> : IValueConverter
+    public sealed class ObjectToBoolConverter<T> : IValueConverter
     {
         public T TrueValue { get; set; }
 
