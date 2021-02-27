@@ -2,13 +2,14 @@ namespace Smart.Forms.Data
 {
     using System;
     using System.Globalization;
+
     using Xamarin.Forms;
 
     public sealed class ColorBlendConverter : IValueConverter
     {
         private double raito;
 
-        public Color BlendColor { get; set; }
+        public Color Color { get; set; }
 
         public double Raito
         {
@@ -32,9 +33,9 @@ namespace Smart.Forms.Data
             }
 
             var color = (Color)value;
-            var r = Math.Min((byte)Math.Round(color.R + ((BlendColor.R - color.R) * raito)), (byte)255);
-            var g = Math.Min((byte)Math.Round(color.G + ((BlendColor.G - color.G) * raito)), (byte)255);
-            var b = Math.Min((byte)Math.Round(color.B + ((BlendColor.B - color.B) * raito)), (byte)255);
+            var r = Math.Min((byte)Math.Round(color.R + ((Color.R - color.R) * raito)), (byte)255);
+            var g = Math.Min((byte)Math.Round(color.G + ((Color.G - color.G) * raito)), (byte)255);
+            var b = Math.Min((byte)Math.Round(color.B + ((Color.B - color.B) * raito)), (byte)255);
             return new Color(r, g, b);
         }
 

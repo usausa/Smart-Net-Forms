@@ -4,28 +4,27 @@ namespace Smart.Forms.Markup
 
     using Smart.Forms.Data;
 
-    using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
-    public sealed class BoolToTextExtension : IMarkupExtension<BoolToObjectConverter<string>>
+    public sealed class TextToBoolExtension : IMarkupExtension<ObjectToBoolConverter<string>>
     {
         public string True { get; set; }
 
         public string False { get; set; }
 
-        public BoolToObjectConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
+        public ObjectToBoolConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
             new() { TrueValue = True, FalseValue = False };
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
     }
 
-    public sealed class BoolToColorExtension : IMarkupExtension<BoolToObjectConverter<Color>>
+    public sealed class IntToBoolExtension : IMarkupExtension<ObjectToBoolConverter<int>>
     {
-        public Color True { get; set; }
+        public int True { get; set; }
 
-        public Color False { get; set; }
+        public int False { get; set; }
 
-        public BoolToObjectConverter<Color> ProvideValue(IServiceProvider serviceProvider) =>
+        public ObjectToBoolConverter<int> ProvideValue(IServiceProvider serviceProvider) =>
             new() { TrueValue = True, FalseValue = False };
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);

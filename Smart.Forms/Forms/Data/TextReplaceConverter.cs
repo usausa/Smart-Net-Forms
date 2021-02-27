@@ -14,7 +14,7 @@ namespace Smart.Forms.Data
 
         public RegexOptions Options { get; set; }
 
-        public bool ReplaceAll { get; set; }
+        public bool ReplaceAll { get; set; } = true;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
