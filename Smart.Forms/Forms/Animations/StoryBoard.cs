@@ -5,6 +5,7 @@ namespace Smart.Forms.Animations
 
     using Xamarin.Forms;
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Ignore")]
     [ContentProperty("Animations")]
     public sealed class StoryBoard : AnimationBase
     {

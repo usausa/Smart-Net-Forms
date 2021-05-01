@@ -24,6 +24,7 @@ namespace Smart.Forms
             Stop();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrect", Justification = "Ignore")]
         public static Timer StartNew(TimeSpan dueTime, Action callback)
         {
             var timer = new Timer(dueTime, callback);

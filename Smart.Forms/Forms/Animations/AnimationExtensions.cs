@@ -7,6 +7,7 @@ namespace Smart.Forms.Animations
 
     public static class AnimationExtensions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
         public static async Task<bool> Animate(this VisualElement visualElement, AnimationBase animation)
         {
             try

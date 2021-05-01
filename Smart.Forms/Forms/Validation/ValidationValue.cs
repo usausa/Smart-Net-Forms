@@ -10,6 +10,7 @@ namespace Smart.Forms.Validation
     {
         private bool hasError;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Ignore")]
         public List<IValidator<T>> Validators { get; } = new();
 
         public ObservableCollection<string> Errors { get; } = new();
