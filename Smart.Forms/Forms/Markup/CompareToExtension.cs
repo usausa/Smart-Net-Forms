@@ -8,10 +8,9 @@ namespace Smart.Forms.Markup
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
-#pragma warning disable IDE0054
     public sealed class CompareToBoolExtension : IMarkupExtension<CompareConverter<bool>>
     {
-        public ICompareExpression Expression { get; set; }
+        public ICompareExpression? Expression { get; set; }
 
         public CompareConverter<bool> ProvideValue(IServiceProvider serviceProvider) =>
             new() { Expression = Expression ?? CompareExpressions.Equal, TrueValue = true, FalseValue = false };
@@ -21,11 +20,11 @@ namespace Smart.Forms.Markup
 
     public sealed class CompareToTextExtension : IMarkupExtension<CompareConverter<string>>
     {
-        public ICompareExpression Expression { get; set; }
+        public ICompareExpression? Expression { get; set; }
 
-        public string True { get; set; }
+        public string True { get; set; } = string.Empty;
 
-        public string False { get; set; }
+        public string False { get; set; } = string.Empty;
 
         public CompareConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
             new() { Expression = Expression ?? CompareExpressions.Equal, TrueValue = True, FalseValue = False };
@@ -35,7 +34,7 @@ namespace Smart.Forms.Markup
 
     public sealed class CompareToColorExtension : IMarkupExtension<CompareConverter<Color>>
     {
-        public ICompareExpression Expression { get; set; }
+        public ICompareExpression? Expression { get; set; }
 
         public Color True { get; set; }
 
@@ -46,5 +45,4 @@ namespace Smart.Forms.Markup
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
     }
-#pragma warning restore IDE0054
 }

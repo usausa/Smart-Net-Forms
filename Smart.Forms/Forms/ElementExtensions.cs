@@ -10,7 +10,7 @@ namespace Smart.Forms
         // Parent
         // ------------------------------------------------------------
 
-        public static T FindParent<T>(this Element element)
+        public static T? FindParent<T>(this Element element)
             where T : Element
         {
             while (true)

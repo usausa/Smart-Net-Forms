@@ -23,12 +23,12 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             execute();
         }
 
-        bool ICommand.CanExecute(object parameter) => canExecute();
+        bool ICommand.CanExecute(object? parameter) => canExecute();
     }
 
     public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>, ICommand
@@ -50,21 +50,21 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             execute(Cast(parameter));
         }
 
-        bool ICommand.CanExecute(object parameter) => canExecute(Cast(parameter));
+        bool ICommand.CanExecute(object? parameter) => canExecute(Cast(parameter));
 
-        private static T Cast(object parameter)
+        private static T Cast(object? parameter)
         {
             if ((parameter is null) && IsValueType)
             {
-                return default;
+                return default!;
             }
 
-            return (T)parameter;
+            return (T)parameter!;
         }
     }
 }

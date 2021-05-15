@@ -9,7 +9,8 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty StateNameProperty = BindableProperty.Create(
             nameof(StateName),
             typeof(string),
-            typeof(GoToStateAction));
+            typeof(GoToStateAction),
+            string.Empty);
 
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
             nameof(TargetObject),
@@ -22,13 +23,13 @@ namespace Smart.Forms.Interactivity
             set => SetValue(StateNameProperty, value);
         }
 
-        public VisualElement TargetObject
+        public VisualElement? TargetObject
         {
             get => (VisualElement)GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
         }
 
-        protected override void Invoke(BindableObject associatedObject, object parameter)
+        protected override void Invoke(BindableObject associatedObject, object? parameter)
         {
             if (String.IsNullOrEmpty(StateName))
             {

@@ -8,9 +8,9 @@ namespace Smart.Forms.Markup
 
     public sealed class TextToBoolExtension : IMarkupExtension<ObjectToBoolConverter<string>>
     {
-        public string True { get; set; }
+        public string True { get; set; } = string.Empty;
 
-        public string False { get; set; }
+        public string False { get; set; } = string.Empty;
 
         public ObjectToBoolConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
             new() { TrueValue = True, FalseValue = False };

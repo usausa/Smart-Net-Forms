@@ -3,6 +3,7 @@ namespace Smart.Forms.Data
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
 
@@ -10,8 +11,10 @@ namespace Smart.Forms.Data
 
     public class MapEntry<T>
     {
+        [AllowNull]
         public object Key { get; set; }
 
+        [AllowNull]
         public T Value { get; set; }
     }
 
@@ -23,9 +26,10 @@ namespace Smart.Forms.Data
     {
         public Collection<MapEntry<T>> Entries { get; } = new(new List<MapEntry<T>>());
 
+        [AllowNull]
         public T DefaultValue { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not null)
             {
@@ -50,7 +54,7 @@ namespace Smart.Forms.Data
             return DefaultValue;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

@@ -4,7 +4,7 @@ namespace Smart.Forms.Animations
 
     public static class EasingHelper
     {
-        public static Easing GetEasing(EasingType type)
+        public static Easing? GetEasing(EasingType type)
         {
             return type switch
             {

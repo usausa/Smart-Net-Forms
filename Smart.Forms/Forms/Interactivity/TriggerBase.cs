@@ -9,8 +9,13 @@ namespace Smart.Forms.Interactivity
     {
         public IList<IAction> Actions { get; } = new List<IAction>();
 
-        protected void InvokeActions(object parameter)
+        protected void InvokeActions(object? parameter)
         {
+            if (AssociatedObject is null)
+            {
+                return;
+            }
+
             foreach (var action in Actions)
             {
                 action.DoInvoke(AssociatedObject, parameter);

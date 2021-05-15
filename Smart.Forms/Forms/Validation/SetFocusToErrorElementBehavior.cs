@@ -14,7 +14,7 @@ namespace Smart.Forms.Validation
             typeof(SetFocusToErrorElementBehavior),
             propertyChanged: HandleRequestPropertyChanged);
 
-        public ValidationRequest Request
+        public ValidationRequest? Request
         {
             get => (ValidationRequest)GetValue(RequestProperty);
             set => SetValue(RequestProperty, value);
@@ -30,12 +30,12 @@ namespace Smart.Forms.Validation
             base.OnDetachingFrom(bindable);
         }
 
-        private static void HandleRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleRequestPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             ((SetFocusToErrorElementBehavior)bindable).HandleRequestPropertyChanged(oldValue as ValidationRequest, newValue as ValidationRequest);
         }
 
-        private void HandleRequestPropertyChanged(ValidationRequest oldValue, ValidationRequest newValue)
+        private void HandleRequestPropertyChanged(ValidationRequest? oldValue, ValidationRequest? newValue)
         {
             if (oldValue == newValue)
             {
@@ -55,11 +55,16 @@ namespace Smart.Forms.Validation
 
         private void OnValidationErrorRequested(object sender, EventArgs eventArgs)
         {
+            if (AssociatedObject is null)
+            {
+                return;
+            }
+
             var element = FindErrorElement(AssociatedObject);
             element?.Focus();
         }
 
-        private static VisualElement FindErrorElement(VisualElement element)
+        private static VisualElement? FindErrorElement(VisualElement element)
         {
             if (ValidationProperty.GetHasError(element))
             {

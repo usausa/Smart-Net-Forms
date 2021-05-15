@@ -27,20 +27,22 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty TrueStateProperty = BindableProperty.Create(
             nameof(TrueState),
             typeof(string),
-            typeof(CompareStateBehavior));
+            typeof(CompareStateBehavior),
+            string.Empty);
 
         public static readonly BindableProperty FalseStateProperty = BindableProperty.Create(
             nameof(FalseState),
             typeof(string),
-            typeof(CompareStateBehavior));
+            typeof(CompareStateBehavior),
+            string.Empty);
 
-        public object Binding
+        public object? Binding
         {
             get => GetValue(BindingProperty);
             set => SetValue(BindingProperty, value);
         }
 
-        public object Parameter
+        public object? Parameter
         {
             get => GetValue(ParameterProperty);
             set => SetValue(ParameterProperty, value);
@@ -64,7 +66,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(FalseStateProperty, value);
         }
 
-        private static void HandlePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandlePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             if (oldValue == newValue)
             {

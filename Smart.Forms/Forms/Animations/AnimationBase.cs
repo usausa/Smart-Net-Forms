@@ -34,7 +34,7 @@ namespace Smart.Forms.Animations
             EasingType.Linear,
             BindingMode.TwoWay);
 
-        public VisualElement Target
+        public VisualElement? Target
         {
             get => (VisualElement)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);

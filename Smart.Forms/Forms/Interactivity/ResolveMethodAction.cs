@@ -1,5 +1,6 @@
 namespace Smart.Forms.Interactivity
 {
+    using System;
     using System.Linq;
     using System.Reflection;
 
@@ -17,9 +18,10 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
             nameof(MethodName),
             typeof(string),
-            typeof(ResolveMethodAction));
+            typeof(ResolveMethodAction),
+            string.Empty);
 
-        public object TargetObject
+        public object? TargetObject
         {
             get => GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
@@ -31,13 +33,13 @@ namespace Smart.Forms.Interactivity
             set => SetValue(MethodNameProperty, value);
         }
 
-        private MethodInfo cachedMethod;
+        private MethodInfo? cachedMethod;
 
         protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
             var target = TargetObject ?? associatedObject;
             var methodName = MethodName;
-            if ((target is null) || (methodName is null))
+            if (String.IsNullOrEmpty(methodName))
             {
                 return;
             }

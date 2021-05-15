@@ -26,9 +26,9 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        bool ICommand.CanExecute(object parameter) => !executing && canExecute();
+        bool ICommand.CanExecute(object? parameter) => !executing && canExecute();
 
-        async void ICommand.Execute(object parameter)
+        async void ICommand.Execute(object? parameter)
         {
             executing = true;
             RaiseCanExecuteChanged();
@@ -67,9 +67,9 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        bool ICommand.CanExecute(object parameter) => !executing && canExecute(Cast(parameter));
+        bool ICommand.CanExecute(object? parameter) => !executing && canExecute(Cast(parameter));
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             Execute(Cast(parameter));
         }
@@ -91,14 +91,14 @@ namespace Smart.Forms.Input
             }
         }
 
-        private static T Cast(object parameter)
+        private static T Cast(object? parameter)
         {
             if ((parameter is null) && IsValueType)
             {
-                return default;
+                return default!;
             }
 
-            return (T)parameter;
+            return (T)parameter!;
         }
     }
 }

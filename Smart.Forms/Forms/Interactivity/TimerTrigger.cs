@@ -30,7 +30,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(ParameterProperty, value);
         }
 
-        private Timer timer;
+        private Timer? timer;
 
         protected override void OnAttachedTo(BindableObject bindable)
         {
@@ -42,7 +42,7 @@ namespace Smart.Forms.Interactivity
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
-            timer.Stop();
+            timer?.Stop();
 
             base.OnDetachingFrom(bindable);
         }

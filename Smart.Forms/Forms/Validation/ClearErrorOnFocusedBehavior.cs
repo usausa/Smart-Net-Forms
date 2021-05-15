@@ -11,7 +11,7 @@ namespace Smart.Forms.Validation
             typeof(IValidationResult),
             typeof(ClearErrorOnFocusedBehavior));
 
-        public IValidationResult Target
+        public IValidationResult? Target
         {
             get => (IValidationResult)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);

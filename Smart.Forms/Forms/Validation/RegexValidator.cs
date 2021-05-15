@@ -8,7 +8,7 @@ namespace Smart.Forms.Validation
     {
         private readonly Regex regex;
 
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
 
         public RegexValidator(Regex regex)
         {

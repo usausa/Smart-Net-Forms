@@ -14,7 +14,7 @@ namespace Smart.Forms.Animations
             typeof(AnimationBase),
             typeof(BeginAnimationBehavior));
 
-        public AnimationBase Animation
+        public AnimationBase? Animation
         {
             get => (AnimationBase)GetValue(AnimationProperty);
             set => SetValue(AnimationProperty, value);

@@ -15,15 +15,15 @@ namespace Smart.Forms.Interactivity
             null,
             propertyChanged: HandleMessengerPropertyChanged);
 
-        public IMessenger Messenger
+        public IMessenger? Messenger
         {
             get => (IMessenger)GetValue(MessengerProperty);
             set => SetValue(MessengerProperty, value);
         }
 
-        public string Label { get; set; }
+        public string? Label { get; set; }
 
-        public Type MessageType { get; set; }
+        public Type? MessageType { get; set; }
 
         protected override void OnDetachingFrom(BindableObject bindable)
         {
@@ -35,12 +35,12 @@ namespace Smart.Forms.Interactivity
             base.OnDetachingFrom(bindable);
         }
 
-        private static void HandleMessengerPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleMessengerPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             ((MessageTrigger)bindable).HandleMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
         }
 
-        private void HandleMessengerPropertyChanged(IMessenger oldValue, IMessenger newValue)
+        private void HandleMessengerPropertyChanged(IMessenger? oldValue, IMessenger? newValue)
         {
             if (oldValue == newValue)
             {

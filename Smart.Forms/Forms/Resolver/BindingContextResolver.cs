@@ -39,7 +39,7 @@ namespace Smart.Forms.Resolver
             obj.SetValue(DisposeOnChangedProperty, value);
         }
 
-        private static void HandleTypePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleTypePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             if (bindable.BindingContext is IDisposable disposable && GetDisposeOnChanged(bindable))
             {

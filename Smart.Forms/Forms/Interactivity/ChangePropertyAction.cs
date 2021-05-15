@@ -1,5 +1,6 @@
 namespace Smart.Forms.Interactivity
 {
+    using System;
     using System.Reflection;
 
     using Xamarin.Forms;
@@ -14,7 +15,8 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty PropertyNameProperty = BindableProperty.Create(
             nameof(PropertyName),
             typeof(string),
-            typeof(ChangePropertyAction));
+            typeof(ChangePropertyAction),
+            string.Empty);
 
         public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
             nameof(Parameter),
@@ -31,7 +33,7 @@ namespace Smart.Forms.Interactivity
             typeof(object),
             typeof(ChangePropertyAction));
 
-        public object TargetObject
+        public object? TargetObject
         {
             get => GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
@@ -43,13 +45,13 @@ namespace Smart.Forms.Interactivity
             set => SetValue(PropertyNameProperty, value);
         }
 
-        public object Parameter
+        public object? Parameter
         {
             get => GetValue(ParameterProperty);
             set => SetValue(ParameterProperty, value);
         }
 
-        public IValueConverter Converter
+        public IValueConverter? Converter
         {
             get => (IValueConverter)GetValue(ConverterProperty);
             set => SetValue(ConverterProperty, value);
@@ -61,13 +63,13 @@ namespace Smart.Forms.Interactivity
             set => SetValue(ConverterParameterProperty, value);
         }
 
-        private PropertyInfo property;
+        private PropertyInfo? property;
 
-        public void DoInvoke(BindableObject associatedObject, object parameter)
+        public void DoInvoke(BindableObject associatedObject, object? parameter)
         {
             var target = TargetObject ?? associatedObject;
             var propertyName = PropertyName;
-            if ((target is null) || (propertyName is null))
+            if (String.IsNullOrEmpty(propertyName))
             {
                 return;
             }

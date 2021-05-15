@@ -23,14 +23,9 @@ namespace Smart.Forms.Animations
 
         protected override Task BeginAnimation()
         {
-            var fromColor = Target.BackgroundColor;
-            return Task.Run(() =>
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
-                });
-            });
+            var fromColor = Target!.BackgroundColor;
+            return Task.Run(() => Device.BeginInvokeOnMainThread(async () =>
+                await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture))));
         }
     }
 }

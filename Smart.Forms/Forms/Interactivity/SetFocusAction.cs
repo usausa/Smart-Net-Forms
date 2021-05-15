@@ -9,13 +9,13 @@ namespace Smart.Forms.Interactivity
             typeof(VisualElement),
             typeof(SetFocusAction));
 
-        public VisualElement TargetObject
+        public VisualElement? TargetObject
         {
             get => (VisualElement)GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
         }
 
-        protected override void Invoke(BindableObject associatedObject, object parameter)
+        protected override void Invoke(BindableObject associatedObject, object? parameter)
         {
             var element = TargetObject ?? (associatedObject as VisualElement);
             element?.Focus();

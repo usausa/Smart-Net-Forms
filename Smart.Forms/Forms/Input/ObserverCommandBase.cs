@@ -8,13 +8,13 @@ namespace Smart.Forms.Input
     public abstract class ObserveCommandBase<T>
         where T : ObserveCommandBase<T>
     {
-        private HashSet<INotifyPropertyChanged> observeObjects;
+        private HashSet<INotifyPropertyChanged>? observeObjects;
 
-        private Dictionary<INotifyPropertyChanged, HashSet<string>> observeProperties;
+        private Dictionary<INotifyPropertyChanged, HashSet<string>>? observeProperties;
 
-        private HashSet<INotifyCollectionChanged> observeCollections;
+        private HashSet<INotifyCollectionChanged>? observeCollections;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore.")]
         public void RaiseCanExecuteChanged()
@@ -197,7 +197,7 @@ namespace Smart.Forms.Input
 
         private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var properties = observeProperties[(INotifyPropertyChanged)sender];
+            var properties = observeProperties![(INotifyPropertyChanged)sender];
             if (properties.Contains(e.PropertyName))
             {
                 RaiseCanExecuteChanged();

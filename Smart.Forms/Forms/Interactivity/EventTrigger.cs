@@ -11,11 +11,12 @@ namespace Smart.Forms.Interactivity
             nameof(EventName),
             typeof(string),
             typeof(EventTrigger),
+            string.Empty,
             propertyChanged: HandleEventNamePropertyChanged);
 
-        private EventInfo eventInfo;
+        private EventInfo? eventInfo;
 
-        private Delegate handler;
+        private Delegate? handler;
 
         public string EventName
         {
@@ -44,7 +45,7 @@ namespace Smart.Forms.Interactivity
                 return;
             }
 
-            eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
+            eventInfo = AssociatedObject?.GetType().GetRuntimeEvent(EventName);
             if (eventInfo is null)
             {
                 throw new ArgumentException(nameof(EventName));
@@ -68,7 +69,7 @@ namespace Smart.Forms.Interactivity
             InvokeActions(e);
         }
 
-        private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleEventNamePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             var behavior = (EventTrigger)bindable;
             if (behavior.AssociatedObject is null)
@@ -77,7 +78,10 @@ namespace Smart.Forms.Interactivity
             }
 
             behavior.RemoveEventHandler();
-            behavior.AddEventHandler((string)newValue);
+            if (newValue is not null)
+            {
+                behavior.AddEventHandler((string)newValue);
+            }
         }
     }
 }

@@ -24,13 +24,13 @@ namespace Smart.Forms.Interactivity
             typeof(CompareTrigger),
             CompareExpressions.Equal);
 
-        public object Binding
+        public object? Binding
         {
             get => GetValue(BindingProperty);
             set => SetValue(BindingProperty, value);
         }
 
-        public object Parameter
+        public object? Parameter
         {
             get => GetValue(ParameterProperty);
             set => SetValue(ParameterProperty, value);
@@ -42,7 +42,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(ExpressionProperty, value);
         }
 
-        private static void HandlePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandlePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             if (oldValue == newValue)
             {

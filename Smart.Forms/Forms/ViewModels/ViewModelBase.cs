@@ -12,13 +12,13 @@ namespace Smart.Forms.ViewModels
 
     public abstract class ViewModelBase : NotificationObject, IDisposable
     {
-        private ListDisposable disposables;
+        private ListDisposable? disposables;
 
-        private IBusyState busyState;
+        private IBusyState? busyState;
 
-        private IMessenger messenger;
+        private IMessenger? messenger;
 
-        private Dictionary<string, List<IValidatable>> validationGroup;
+        private Dictionary<string, List<IValidatable>>? validationGroup;
 
         // ------------------------------------------------------------
         // Disposables
@@ -51,7 +51,7 @@ namespace Smart.Forms.ViewModels
             this.busyState = busyState;
         }
 
-        protected ViewModelBase(Messenger messenger)
+        protected ViewModelBase(IMessenger messenger)
         {
             this.messenger = messenger;
         }

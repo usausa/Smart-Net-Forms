@@ -16,7 +16,7 @@ namespace Smart.Forms.Interactivity
             null,
             propertyChanged: HandleRequestPropertyChanged);
 
-        public IEventRequest<TEventArgs> Request
+        public IEventRequest<TEventArgs>? Request
         {
             get => (IEventRequest<TEventArgs>)GetValue(RequestProperty);
             set => SetValue(RequestProperty, value);
@@ -32,12 +32,12 @@ namespace Smart.Forms.Interactivity
             base.OnDetachingFrom(bindable);
         }
 
-        private static void HandleRequestPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleRequestPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             ((RequestTriggerBase<TEventArgs>)bindable).OnMessengerPropertyChanged(oldValue as IEventRequest<TEventArgs>, newValue as IEventRequest<TEventArgs>);
         }
 
-        private void OnMessengerPropertyChanged(IEventRequest<TEventArgs> oldValue, IEventRequest<TEventArgs> newValue)
+        private void OnMessengerPropertyChanged(IEventRequest<TEventArgs>? oldValue, IEventRequest<TEventArgs>? newValue)
         {
             if (oldValue == newValue)
             {

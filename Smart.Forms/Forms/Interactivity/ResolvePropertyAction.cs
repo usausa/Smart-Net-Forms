@@ -1,5 +1,6 @@
 namespace Smart.Forms.Interactivity
 {
+    using System;
     using System.Reflection;
 
     using Smart.Forms.Messaging;
@@ -16,9 +17,10 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty PropertyNameProperty = BindableProperty.Create(
             nameof(PropertyName),
             typeof(string),
-            typeof(ResolvePropertyAction));
+            typeof(ResolvePropertyAction),
+            string.Empty);
 
-        public object TargetObject
+        public object? TargetObject
         {
             get => GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
@@ -30,13 +32,13 @@ namespace Smart.Forms.Interactivity
             set => SetValue(PropertyNameProperty, value);
         }
 
-        private PropertyInfo property;
+        private PropertyInfo? property;
 
         protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
             var target = TargetObject ?? associatedObject;
             var propertyName = PropertyName;
-            if ((target is null) || (propertyName is null))
+            if (String.IsNullOrEmpty(propertyName))
             {
                 return;
             }

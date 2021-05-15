@@ -12,6 +12,7 @@ namespace Smart.Forms.Interactivity
             nameof(EventName),
             typeof(string),
             typeof(CallMethodBehavior),
+            string.Empty,
             propertyChanged: HandleEventNamePropertyChanged);
 
         public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
@@ -22,7 +23,8 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
             nameof(MethodName),
             typeof(string),
-            typeof(CallMethodBehavior));
+            typeof(CallMethodBehavior),
+            string.Empty);
 
         public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
             nameof(MethodParameter),
@@ -30,11 +32,11 @@ namespace Smart.Forms.Interactivity
             typeof(CallMethodBehavior),
             propertyChanged: HandleMethodParameterPropertyChanged);
 
-        private EventInfo eventInfo;
+        private EventInfo? eventInfo;
 
-        private Delegate handler;
+        private Delegate? handler;
 
-        private MethodInfo cachedMethod;
+        private MethodInfo? cachedMethod;
 
         public string EventName
         {
@@ -42,7 +44,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(EventNameProperty, value);
         }
 
-        public object TargetObject
+        public object? TargetObject
         {
             get => GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
@@ -54,7 +56,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(MethodNameProperty, value);
         }
 
-        public object MethodParameter
+        public object? MethodParameter
         {
             get => GetValue(MethodParameterProperty);
             set => SetValue(MethodParameterProperty, value);
@@ -81,7 +83,7 @@ namespace Smart.Forms.Interactivity
                 return;
             }
 
-            eventInfo = AssociatedObject.GetType().GetRuntimeEvent(EventName);
+            eventInfo = AssociatedObject!.GetType().GetRuntimeEvent(EventName);
             if (eventInfo is null)
             {
                 throw new ArgumentException(nameof(EventName));
@@ -130,7 +132,7 @@ namespace Smart.Forms.Interactivity
             cachedMethod.Invoke(target, cachedMethod.GetParameters().Length > 0 ? new[] { MethodParameter } : null);
         }
 
-        private static void HandleEventNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleEventNamePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             var behavior = (CallMethodBehavior)bindable;
             if (behavior.AssociatedObject is null)
@@ -139,10 +141,13 @@ namespace Smart.Forms.Interactivity
             }
 
             behavior.RemoveEventHandler();
-            behavior.AddEventHandler((string)newValue);
+            if (newValue is not null)
+            {
+                behavior.AddEventHandler((string)newValue);
+            }
         }
 
-        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             ((CallMethodBehavior)bindable).cachedMethod = null;
         }

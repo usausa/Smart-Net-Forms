@@ -21,9 +21,9 @@ namespace Smart.Forms.Markup
 
     public sealed class NullToTextExtension : IMarkupExtension<NullToObjectConverter<string>>
     {
-        public string Null { get; set; }
+        public string Null { get; set; } = string.Empty;
 
-        public string NonNull { get; set; }
+        public string NonNull { get; set; } = string.Empty;
 
         public bool HandleEmptyString { get; set; }
 

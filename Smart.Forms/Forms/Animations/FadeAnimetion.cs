@@ -50,27 +50,22 @@ namespace Smart.Forms.Animations
 
         protected override Task BeginAnimation()
         {
-            return Task.Run(() =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Target.Animate("FadeIn", FadeIn(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
-                });
-            });
+            return Task.Run(() => Device.BeginInvokeOnMainThread(() =>
+                Target.Animate("FadeIn", FadeIn(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture))));
         }
 
         private Animation FadeIn()
         {
             var animation = new Animation();
             animation.WithConcurrent(
-                x => Target.Opacity = x,
+                x => Target!.Opacity = x,
                 0,
                 1,
                 Xamarin.Forms.Easing.CubicOut);
             animation.WithConcurrent(
-                x => Target.TranslationY = x,
-                Target.TranslationY + ((Direction == FadeDirection.Up) ? 50 : -50),
-                Target.TranslationY,
+                x => Target!.TranslationY = x,
+                Target!.TranslationY + ((Direction == FadeDirection.Up) ? 50 : -50),
+                Target!.TranslationY,
                 Xamarin.Forms.Easing.CubicOut);
             return animation;
         }
@@ -93,26 +88,21 @@ namespace Smart.Forms.Animations
 
         protected override Task BeginAnimation()
         {
-            return Task.Run(() =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Target.Animate("FadeOut", FadeOut(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture));
-                });
-            });
+            return Task.Run(() => Device.BeginInvokeOnMainThread(() =>
+                Target.Animate("FadeOut", FadeOut(), 16, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture))));
         }
 
         private Animation FadeOut()
         {
             var animation = new Animation();
             animation.WithConcurrent(
-                x => Target.Opacity = x,
+                x => Target!.Opacity = x,
                 1,
                 0);
             animation.WithConcurrent(
-                x => Target.TranslationY = x,
-                Target.TranslationY,
-                Target.TranslationY + ((Direction == FadeDirection.Up) ? 50 : -50));
+                x => Target!.TranslationY = x,
+                Target!.TranslationY,
+                Target!.TranslationY + ((Direction == FadeDirection.Up) ? 50 : -50));
             return animation;
         }
     }

@@ -11,7 +11,7 @@ namespace Smart.Forms.Interactivity
             typeof(ICommand),
             typeof(ListViewSelectedToCommandBehavior));
 
-        public ICommand Command
+        public ICommand? Command
         {
             get => (ICommand)GetValue(CommandProperty);
             set => SetValue(CommandProperty, value);

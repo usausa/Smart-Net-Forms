@@ -9,7 +9,7 @@ namespace Smart.Forms.Validation
 
         private readonly int maxLength;
 
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
 
         public StringLengthValidator(int maxLength)
             : this(0, maxLength)

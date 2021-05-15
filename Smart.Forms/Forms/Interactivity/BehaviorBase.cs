@@ -7,7 +7,7 @@ namespace Smart.Forms.Interactivity
     public abstract class BehaviorBase<T> : Behavior<T>
         where T : BindableObject
     {
-        public T AssociatedObject { get; private set; }
+        public T? AssociatedObject { get; private set; }
 
         protected override void OnAttachedTo(T bindable)
         {
@@ -40,7 +40,7 @@ namespace Smart.Forms.Interactivity
         {
             base.OnBindingContextChanged();
 
-            BindingContext = AssociatedObject.BindingContext;
+            BindingContext = AssociatedObject?.BindingContext;
         }
     }
 }

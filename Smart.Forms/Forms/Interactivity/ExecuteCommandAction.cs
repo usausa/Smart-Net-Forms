@@ -26,31 +26,31 @@ namespace Smart.Forms.Interactivity
             typeof(object),
             typeof(ExecuteCommandAction));
 
-        public ICommand Command
+        public ICommand? Command
         {
             get => (ICommand)GetValue(CommandProperty);
             set => SetValue(CommandProperty, value);
         }
 
-        public object CommandParameter
+        public object? CommandParameter
         {
             get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);
         }
 
-        public IValueConverter Converter
+        public IValueConverter? Converter
         {
             get => (IValueConverter)GetValue(ConverterProperty);
             set => SetValue(ConverterProperty, value);
         }
 
-        public object ConverterParameter
+        public object? ConverterParameter
         {
             get => GetValue(ConverterParameterProperty);
             set => SetValue(ConverterParameterProperty, value);
         }
 
-        public void DoInvoke(BindableObject associatedObject, object parameter)
+        public void DoInvoke(BindableObject associatedObject, object? parameter)
         {
             var command = Command;
             if (command is null)

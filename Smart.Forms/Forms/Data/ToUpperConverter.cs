@@ -7,17 +7,12 @@ namespace Smart.Forms.Data
 
     public sealed class ToUpperConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (value is string text)
-            {
-                return text.ToUpper(culture);
-            }
-
-            return null;
+            return value is string text ? text.ToUpper(culture) : null;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

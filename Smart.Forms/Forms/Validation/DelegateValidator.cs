@@ -6,7 +6,7 @@ namespace Smart.Forms.Validation
     {
         private readonly Func<T, bool> predicate;
 
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
 
         public DelegateValidator(Func<T, bool> predicate)
         {

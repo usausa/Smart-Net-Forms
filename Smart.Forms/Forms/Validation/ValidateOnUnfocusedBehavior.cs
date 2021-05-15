@@ -23,19 +23,19 @@ namespace Smart.Forms.Validation
             typeof(object),
             typeof(ValidateOnUnfocusedBehavior));
 
-        public IValidatable Target
+        public IValidatable? Target
         {
             get => (IValidatable)GetValue(TargetProperty);
             set => SetValue(TargetProperty, value);
         }
 
-        public ICommand Command
+        public ICommand? Command
         {
             get => (ICommand)GetValue(CommandProperty);
             set => SetValue(CommandProperty, value);
         }
 
-        public object CommandParameter
+        public object? CommandParameter
         {
             get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);

@@ -1,5 +1,6 @@
 namespace Smart.Forms.Interactivity
 {
+    using System;
     using System.Linq;
     using System.Reflection;
 
@@ -15,7 +16,8 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty MethodNameProperty = BindableProperty.Create(
             nameof(MethodName),
             typeof(string),
-            typeof(CallMethodAction));
+            typeof(CallMethodAction),
+            string.Empty);
 
         public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
             nameof(MethodParameter),
@@ -33,7 +35,7 @@ namespace Smart.Forms.Interactivity
             typeof(object),
             typeof(CallMethodAction));
 
-        public object TargetObject
+        public object? TargetObject
         {
             get => GetValue(TargetObjectProperty);
             set => SetValue(TargetObjectProperty, value);
@@ -45,31 +47,31 @@ namespace Smart.Forms.Interactivity
             set => SetValue(MethodNameProperty, value);
         }
 
-        public object MethodParameter
+        public object? MethodParameter
         {
             get => GetValue(MethodParameterProperty);
             set => SetValue(MethodParameterProperty, value);
         }
 
-        public IValueConverter Converter
+        public IValueConverter? Converter
         {
             get => (IValueConverter)GetValue(ConverterProperty);
             set => SetValue(ConverterProperty, value);
         }
 
-        public object ConverterParameter
+        public object? ConverterParameter
         {
             get => GetValue(ConverterParameterProperty);
             set => SetValue(ConverterParameterProperty, value);
         }
 
-        private MethodInfo cachedMethod;
+        private MethodInfo? cachedMethod;
 
-        public void DoInvoke(BindableObject associatedObject, object parameter)
+        public void DoInvoke(BindableObject associatedObject, object? parameter)
         {
             var target = TargetObject ?? associatedObject;
             var methodName = MethodName;
-            if ((target is null) || (methodName is null))
+            if (String.IsNullOrEmpty(methodName))
             {
                 return;
             }
@@ -106,7 +108,7 @@ namespace Smart.Forms.Interactivity
             }
         }
 
-        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
         {
             ((CallMethodAction)bindable).cachedMethod = null;
         }
