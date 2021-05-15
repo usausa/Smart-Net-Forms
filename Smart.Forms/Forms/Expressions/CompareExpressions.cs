@@ -2,6 +2,7 @@ namespace Smart.Forms.Expressions
 {
     using System;
     using System.Globalization;
+    using Smart.Forms.Internal;
 
     public static class CompareExpressions
     {
@@ -24,16 +25,7 @@ namespace Smart.Forms.Expressions
             {
                 if ((left is IComparable comparable) && (right is not null))
                 {
-                    object? convertedValue;
-                    try
-                    {
-                        convertedValue = Convert.ChangeType(right, left.GetType(), CultureInfo.CurrentCulture);
-                    }
-                    catch
-                    {
-                        convertedValue = null;
-                    }
-
+                    var convertedValue = ConvertHelper.Convert(left.GetType(), right);
                     if (convertedValue is null)
                     {
                         return WhenRightIsUnmatch();

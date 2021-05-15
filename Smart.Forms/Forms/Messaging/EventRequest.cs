@@ -4,7 +4,7 @@ namespace Smart.Forms.Messaging
 
     public sealed class EventRequest : IEventRequest<ParameterEventArgs>
     {
-        private static readonly ParameterEventArgs EmptyArgs = new(null!);
+        private static readonly ParameterEventArgs EmptyArgs = new(null);
 
         public event EventHandler<ParameterEventArgs>? Requested;
 
