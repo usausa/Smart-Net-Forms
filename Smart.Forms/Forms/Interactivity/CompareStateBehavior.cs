@@ -48,7 +48,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(ParameterProperty, value);
         }
 
-        public ICompareExpression Expression
+        public ICompareExpression? Expression
         {
             get => (ICompareExpression)GetValue(ExpressionProperty);
             set => SetValue(ExpressionProperty, value);
@@ -83,7 +83,8 @@ namespace Smart.Forms.Interactivity
                 return;
             }
 
-            var stateName = Expression.Eval(Binding, Parameter) ? TrueState : FalseState;
+            var expression = Expression ?? CompareExpressions.Equal;
+            var stateName = expression.Eval(Binding, Parameter) ? TrueState : FalseState;
             VisualStateManager.GoToState(AssociatedObject, stateName);
         }
     }

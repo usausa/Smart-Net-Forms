@@ -36,7 +36,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(ParameterProperty, value);
         }
 
-        public ICompareExpression Expression
+        public ICompareExpression? Expression
         {
             get => (ICompareExpression)GetValue(ExpressionProperty);
             set => SetValue(ExpressionProperty, value);
@@ -54,7 +54,8 @@ namespace Smart.Forms.Interactivity
 
         private void HandlePropertyChanged()
         {
-            if (Expression.Eval(Binding, Parameter))
+            var expression = Expression ?? CompareExpressions.Equal;
+            if (expression.Eval(Binding, Parameter))
             {
                 InvokeActions(null);
             }

@@ -32,7 +32,7 @@ namespace Smart.Forms.Interactivity
             set => SetValue(PropertyNameProperty, value);
         }
 
-        private PropertyInfo? property;
+        private PropertyInfo? cachedProperty;
 
         protected override void Invoke(BindableObject associatedObject, ResultEventArgs parameter)
         {
@@ -43,14 +43,18 @@ namespace Smart.Forms.Interactivity
                 return;
             }
 
-            if ((property is null) ||
-                (property.DeclaringType != target.GetType()) ||
-                (property.Name != propertyName))
+            if ((cachedProperty is null) ||
+                (cachedProperty.DeclaringType != target.GetType()) ||
+                (cachedProperty.Name != propertyName))
             {
-                property = target.GetType().GetRuntimeProperty(propertyName);
+                cachedProperty = target.GetType().GetRuntimeProperty(propertyName);
+                if (cachedProperty is null)
+                {
+                    return;
+                }
             }
 
-            parameter.Result = property.GetValue(target);
+            parameter.Result = cachedProperty.GetValue(target);
         }
     }
 }

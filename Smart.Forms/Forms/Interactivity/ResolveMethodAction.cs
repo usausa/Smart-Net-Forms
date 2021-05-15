@@ -48,15 +48,13 @@ namespace Smart.Forms.Interactivity
                 (cachedMethod.DeclaringType != target.GetType() ||
                  (cachedMethod.Name != methodName)))
             {
-                var methodInfo = target.GetType().GetRuntimeMethods().FirstOrDefault(m =>
+                cachedMethod = target.GetType().GetRuntimeMethods().FirstOrDefault(m =>
                     m.Name == methodName &&
                     (m.GetParameters().Length == 0));
-                if (methodInfo is null)
+                if (cachedMethod is null)
                 {
                     return;
                 }
-
-                cachedMethod = methodInfo;
             }
 
             parameter.Result = cachedMethod.Invoke(target, null);

@@ -29,8 +29,7 @@ namespace Smart.Forms.Interactivity
         public static readonly BindableProperty MethodParameterProperty = BindableProperty.Create(
             nameof(MethodParameter),
             typeof(object),
-            typeof(CallMethodBehavior),
-            propertyChanged: HandleMethodParameterPropertyChanged);
+            typeof(CallMethodBehavior));
 
         private EventInfo? eventInfo;
 
@@ -145,11 +144,6 @@ namespace Smart.Forms.Interactivity
             {
                 behavior.AddEventHandler((string)newValue);
             }
-        }
-
-        private static void HandleMethodParameterPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
-        {
-            ((CallMethodBehavior)bindable).cachedMethod = null;
         }
     }
 }
