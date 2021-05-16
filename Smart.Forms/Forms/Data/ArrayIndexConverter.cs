@@ -5,7 +5,7 @@ namespace Smart.Forms.Data
 
     using Xamarin.Forms;
 
-    public sealed class IndexToArrayConverter : IValueConverter
+    public sealed class ArrayIndexConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
