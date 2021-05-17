@@ -15,17 +15,18 @@ namespace Smart.Forms
         {
             while (true)
             {
+                var parent = element.Parent;
+                if (parent is null)
+                {
+                    return null;
+                }
+
                 if (element is T variable)
                 {
                     return variable;
                 }
 
-                if (element.Parent is null)
-                {
-                    return default;
-                }
-
-                element = element.Parent;
+                element = parent;
             }
         }
 
@@ -36,44 +37,17 @@ namespace Smart.Forms
         public static IEnumerable<T> FindChildren<T>(this Element parent)
             where T : Element
         {
-            while (true)
+            foreach (var child in parent.LogicalChildren)
             {
-                // ContentView
-                if (parent is ContentView contentView)
+                if (child is T typedChild)
                 {
-                    var value = contentView.Content;
-                    if (value is T typedChild)
-                    {
-                        yield return typedChild;
-                    }
-
-                    if (value is Element element)
-                    {
-                        parent = element;
-                        continue;
-                    }
-
-                    yield break;
+                    yield return typedChild;
                 }
 
-                // Layout
-                if (parent is Layout layout)
+                foreach (var descendant in child.FindChildren<T>())
                 {
-                    foreach (var child in layout.Children)
-                    {
-                        if (child is T typedChild)
-                        {
-                            yield return typedChild;
-                        }
-
-                        foreach (var elementChild in FindChildren<T>(child))
-                        {
-                            yield return elementChild;
-                        }
-                    }
+                    yield return descendant;
                 }
-
-                break;
             }
         }
     }
