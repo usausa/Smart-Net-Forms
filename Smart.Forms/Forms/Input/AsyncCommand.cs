@@ -7,7 +7,7 @@ namespace Smart.Forms.Input
 
     using Smart.Forms.Internal;
 
-    public sealed class AsyncCommand : ObserveCommandBase<AsyncCommand>, ICommand
+    public sealed class AsyncCommand : ObserveCommandBase<AsyncCommand>, ICommand, IDisposable
     {
         private readonly Func<Task> execute;
 
@@ -25,6 +25,8 @@ namespace Smart.Forms.Input
             this.execute = execute;
             this.canExecute = canExecute;
         }
+
+        public void Dispose() => RemoveObservers();
 
         bool ICommand.CanExecute(object? parameter) => !executing && canExecute();
 
@@ -46,7 +48,7 @@ namespace Smart.Forms.Input
         }
     }
 
-    public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>, ICommand
+    public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>, ICommand, IDisposable
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
@@ -66,6 +68,8 @@ namespace Smart.Forms.Input
             this.execute = execute;
             this.canExecute = canExecute;
         }
+
+        public void Dispose() => RemoveObservers();
 
         bool ICommand.CanExecute(object? parameter) => !executing && canExecute(Cast(parameter));
 

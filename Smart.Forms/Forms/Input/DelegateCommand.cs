@@ -6,7 +6,7 @@ namespace Smart.Forms.Input
 
     using Smart.Forms.Internal;
 
-    public sealed class DelegateCommand : ObserveCommandBase<DelegateCommand>, ICommand
+    public sealed class DelegateCommand : ObserveCommandBase<DelegateCommand>, ICommand, IDisposable
     {
         private readonly Action execute;
 
@@ -23,15 +23,14 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        void ICommand.Execute(object? parameter)
-        {
-            execute();
-        }
+        public void Dispose() => RemoveObservers();
+
+        void ICommand.Execute(object? parameter) => execute();
 
         bool ICommand.CanExecute(object? parameter) => canExecute();
     }
 
-    public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>, ICommand
+    public sealed class DelegateCommand<T> : ObserveCommandBase<DelegateCommand<T>>, ICommand, IDisposable
     {
         private static readonly bool IsValueType = typeof(T).GetTypeInfo().IsValueType;
 
@@ -50,10 +49,9 @@ namespace Smart.Forms.Input
             this.canExecute = canExecute;
         }
 
-        void ICommand.Execute(object? parameter)
-        {
-            execute(Cast(parameter));
-        }
+        public void Dispose() => RemoveObservers();
+
+        void ICommand.Execute(object? parameter) => execute(Cast(parameter));
 
         bool ICommand.CanExecute(object? parameter) => canExecute(Cast(parameter));
 

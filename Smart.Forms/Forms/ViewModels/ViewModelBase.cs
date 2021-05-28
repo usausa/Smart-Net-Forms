@@ -135,11 +135,12 @@ namespace Smart.Forms.ViewModels
             return MakeDelegateCommand(execute, Functions.True);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         protected DelegateCommand MakeDelegateCommand(Action execute, Func<bool> canExecute)
         {
             return new DelegateCommand(execute, () => !BusyState.IsBusy && canExecute())
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
-                .RemoveObserverBy(Disposables);
+                .AddTo(Disposables);
         }
 
         protected DelegateCommand<TParameter> MakeDelegateCommand<TParameter>(Action<TParameter> execute)
@@ -147,11 +148,12 @@ namespace Smart.Forms.ViewModels
             return MakeDelegateCommand(execute, Functions<TParameter>.True);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         protected DelegateCommand<TParameter> MakeDelegateCommand<TParameter>(Action<TParameter> execute, Func<TParameter, bool> canExecute)
         {
             return new DelegateCommand<TParameter>(execute, x => !BusyState.IsBusy && canExecute(x))
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
-                .RemoveObserverBy(Disposables);
+                .AddTo(Disposables);
         }
 
         // ------------------------------------------------------------
@@ -163,6 +165,7 @@ namespace Smart.Forms.ViewModels
             return MakeAsyncCommand(execute, Functions.True);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         protected AsyncCommand MakeAsyncCommand(Func<Task> execute, Func<bool> canExecute)
         {
             return new AsyncCommand(
@@ -174,7 +177,7 @@ namespace Smart.Forms.ViewModels
                     }
                 }, () => !BusyState.IsBusy && canExecute())
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
-                .RemoveObserverBy(Disposables);
+                .AddTo(Disposables);
         }
 
         protected AsyncCommand<TParameter> MakeAsyncCommand<TParameter>(Func<TParameter, Task> execute)
@@ -182,6 +185,7 @@ namespace Smart.Forms.ViewModels
             return MakeAsyncCommand(execute, Functions<TParameter>.True);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
         protected AsyncCommand<TParameter> MakeAsyncCommand<TParameter>(Func<TParameter, Task> execute, Func<TParameter, bool> canExecute)
         {
             return new AsyncCommand<TParameter>(
@@ -193,7 +197,7 @@ namespace Smart.Forms.ViewModels
                     }
                 }, parameter => !BusyState.IsBusy && canExecute(parameter))
                 .Observe(BusyState, nameof(IBusyState.IsBusy))
-                .RemoveObserverBy(Disposables);
+                .AddTo(Disposables);
         }
     }
 }
