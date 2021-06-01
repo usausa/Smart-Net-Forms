@@ -136,6 +136,7 @@ namespace Smart.Forms.ViewModels
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:MarkMembersAsStatic", Justification = "Ignore")]
         protected DelegateCommand MakeDelegateCommand(Action execute, Func<bool> canExecute)
         {
             return new(execute, canExecute);
@@ -147,6 +148,7 @@ namespace Smart.Forms.ViewModels
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification = "Ignore")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:MarkMembersAsStatic", Justification = "Ignore")]
         protected DelegateCommand<TParameter> MakeDelegateCommand<TParameter>(Action<TParameter> execute, Func<TParameter, bool> canExecute)
         {
             return new(execute, canExecute);
@@ -187,7 +189,7 @@ namespace Smart.Forms.ViewModels
                 {
                     await execute(parameter);
                 }
-            });
+            }, canExecute);
         }
     }
 }
