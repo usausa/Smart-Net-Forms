@@ -13,8 +13,6 @@ namespace Smart.Forms.Input
 
         private readonly Func<bool> canExecute;
 
-        private bool executing;
-
         public AsyncCommand(Func<Task> execute)
             : this(execute, Functions.True)
         {
@@ -28,24 +26,9 @@ namespace Smart.Forms.Input
 
         public void Dispose() => RemoveObservers();
 
-        bool ICommand.CanExecute(object? parameter) => !executing && canExecute();
+        bool ICommand.CanExecute(object? parameter) => canExecute();
 
-        async void ICommand.Execute(object? parameter)
-        {
-            executing = true;
-            RaiseCanExecuteChanged();
-
-            try
-            {
-                var task = execute();
-                await task;
-            }
-            finally
-            {
-                executing = false;
-                RaiseCanExecuteChanged();
-            }
-        }
+        async void ICommand.Execute(object? parameter) => await execute();
     }
 
     public sealed class AsyncCommand<T> : ObserveCommandBase<AsyncCommand<T>>, ICommand, IDisposable
@@ -55,8 +38,6 @@ namespace Smart.Forms.Input
         private readonly Func<T, Task> execute;
 
         private readonly Func<T, bool> canExecute;
-
-        private bool executing;
 
         public AsyncCommand(Func<T, Task> execute)
             : this(execute, Functions<T>.True)
@@ -71,29 +52,14 @@ namespace Smart.Forms.Input
 
         public void Dispose() => RemoveObservers();
 
-        bool ICommand.CanExecute(object? parameter) => !executing && canExecute(Cast(parameter));
+        bool ICommand.CanExecute(object? parameter) => canExecute(Cast(parameter));
 
         void ICommand.Execute(object? parameter)
         {
             Execute(Cast(parameter));
         }
 
-        public async void Execute(T parameter)
-        {
-            executing = true;
-            RaiseCanExecuteChanged();
-
-            try
-            {
-                var task = execute(parameter);
-                await task;
-            }
-            finally
-            {
-                executing = false;
-                RaiseCanExecuteChanged();
-            }
-        }
+        public async void Execute(T parameter) => await execute(parameter);
 
         private static T Cast(object? parameter)
         {
