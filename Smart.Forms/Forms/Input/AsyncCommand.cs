@@ -54,12 +54,7 @@ namespace Smart.Forms.Input
 
         bool ICommand.CanExecute(object? parameter) => canExecute(Cast(parameter));
 
-        void ICommand.Execute(object? parameter)
-        {
-            Execute(Cast(parameter));
-        }
-
-        public async void Execute(T parameter) => await execute(parameter);
+        async void ICommand.Execute(object? parameter) => await execute(Cast(parameter));
 
         private static T Cast(object? parameter)
         {
