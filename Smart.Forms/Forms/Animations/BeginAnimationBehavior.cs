@@ -1,7 +1,5 @@
 namespace Smart.Forms.Animations
 {
-    using System.Threading.Tasks;
-
     using Smart.Forms.Interactivity;
 
     using Xamarin.Forms;
@@ -28,8 +26,6 @@ namespace Smart.Forms.Animations
             {
                 Animation.Target ??= AssociatedObject;
 
-                var delay = Task.Delay(250);
-                await Task.WhenAll(delay);
                 await Animation.Begin();
             }
         }
