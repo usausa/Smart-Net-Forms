@@ -1,34 +1,33 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Ignore")]
+[ContentProperty("Animations")]
+public sealed class StoryBoard : AnimationBase
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+    public List<AnimationBase> Animations { get; }
 
-    using Xamarin.Forms;
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Ignore")]
-    [ContentProperty("Animations")]
-    public sealed class StoryBoard : AnimationBase
+    public StoryBoard()
     {
-        public List<AnimationBase> Animations { get; }
+        Animations = new List<AnimationBase>();
+    }
 
-        public StoryBoard()
+    public StoryBoard(List<AnimationBase> animations)
+    {
+        Animations = animations;
+    }
+
+    protected override async Task BeginAnimation()
+    {
+        foreach (var animation in Animations)
         {
-            Animations = new List<AnimationBase>();
-        }
+            animation.Target ??= Target;
 
-        public StoryBoard(List<AnimationBase> animations)
-        {
-            Animations = animations;
-        }
-
-        protected override async Task BeginAnimation()
-        {
-            foreach (var animation in Animations)
-            {
-                animation.Target ??= Target;
-
-                await animation.Begin();
-            }
+            await animation.Begin();
         }
     }
 }

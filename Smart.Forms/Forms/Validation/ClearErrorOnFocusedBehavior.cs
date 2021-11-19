@@ -1,42 +1,41 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using Smart.Forms.Interactivity;
+
+using Xamarin.Forms;
+
+public sealed class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
 {
-    using Smart.Forms.Interactivity;
+    public static readonly BindableProperty TargetProperty = BindableProperty.Create(
+        nameof(Target),
+        typeof(IValidationResult),
+        typeof(ClearErrorOnFocusedBehavior));
 
-    using Xamarin.Forms;
-
-    public sealed class ClearErrorOnFocusedBehavior : BehaviorBase<Entry>
+    public IValidationResult? Target
     {
-        public static readonly BindableProperty TargetProperty = BindableProperty.Create(
-            nameof(Target),
-            typeof(IValidationResult),
-            typeof(ClearErrorOnFocusedBehavior));
+        get => (IValidationResult)GetValue(TargetProperty);
+        set => SetValue(TargetProperty, value);
+    }
 
-        public IValidationResult? Target
+    protected override void OnAttachedTo(Entry bindable)
+    {
+        base.OnAttachedTo(bindable);
+
+        bindable.Focused += OnFocused;
+    }
+
+    protected override void OnDetachingFrom(Entry bindable)
+    {
+        bindable.Focused -= OnFocused;
+
+        base.OnDetachingFrom(bindable);
+    }
+
+    private void OnFocused(object sender, FocusEventArgs e)
+    {
+        if (e.IsFocused && (Target is not null))
         {
-            get => (IValidationResult)GetValue(TargetProperty);
-            set => SetValue(TargetProperty, value);
-        }
-
-        protected override void OnAttachedTo(Entry bindable)
-        {
-            base.OnAttachedTo(bindable);
-
-            bindable.Focused += OnFocused;
-        }
-
-        protected override void OnDetachingFrom(Entry bindable)
-        {
-            bindable.Focused -= OnFocused;
-
-            base.OnDetachingFrom(bindable);
-        }
-
-        private void OnFocused(object sender, FocusEventArgs e)
-        {
-            if (e.IsFocused && (Target is not null))
-            {
-                Target.HasError = false;
-            }
+            Target.HasError = false;
         }
     }
 }

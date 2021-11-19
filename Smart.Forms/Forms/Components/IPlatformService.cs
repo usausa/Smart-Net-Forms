@@ -1,11 +1,10 @@
-namespace Smart.Forms.Components
+namespace Smart.Forms.Components;
+
+using System;
+
+public interface IPlatformService
 {
-    using System;
+    void BeginInvokeOnMainThread(Action action);
 
-    public interface IPlatformService
-    {
-        void BeginInvokeOnMainThread(Action action);
-
-        void StartTimer(TimeSpan interval, Func<bool> callBack);
-    }
+    void StartTimer(TimeSpan interval, Func<bool> callBack);
 }

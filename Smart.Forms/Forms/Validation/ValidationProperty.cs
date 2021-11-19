@@ -1,17 +1,16 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using Xamarin.Forms;
+
+public static class ValidationProperty
 {
-    using Xamarin.Forms;
+    public static readonly BindableProperty HasErrorProperty = BindableProperty.CreateAttached(
+        "HasError",
+        typeof(bool),
+        typeof(ValidationProperty),
+        false);
 
-    public static class ValidationProperty
-    {
-        public static readonly BindableProperty HasErrorProperty = BindableProperty.CreateAttached(
-            "HasError",
-            typeof(bool),
-            typeof(ValidationProperty),
-            false);
+    public static bool GetHasError(BindableObject view) => (bool)view.GetValue(HasErrorProperty);
 
-        public static bool GetHasError(BindableObject view) => (bool)view.GetValue(HasErrorProperty);
-
-        public static void SetHasError(BindableObject view, bool value) => view.SetValue(HasErrorProperty, value);
-    }
+    public static void SetHasError(BindableObject view, bool value) => view.SetValue(HasErrorProperty, value);
 }

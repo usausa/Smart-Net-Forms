@@ -1,7 +1,6 @@
-namespace Smart.Forms.Expressions
+namespace Smart.Forms.Expressions;
+
+public interface IBinaryExpression
 {
-    public interface IBinaryExpression
-    {
-        object? Eval(object? left, object? right);
-    }
+    object? Eval(object? left, object? right);
 }

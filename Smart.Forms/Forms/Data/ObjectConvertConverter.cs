@@ -1,24 +1,23 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.Globalization;
+
+using Smart.Converter;
+
+using Xamarin.Forms;
+
+public sealed class ObjectConvertConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
+    public IObjectConverter Converter { get; set; } = ObjectConverter.Default;
 
-    using Smart.Converter;
-
-    using Xamarin.Forms;
-
-    public sealed class ObjectConvertConverter : IValueConverter
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        public IObjectConverter Converter { get; set; } = ObjectConverter.Default;
+        return Converter.Convert(value, targetType);
+    }
 
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            return Converter.Convert(value, targetType);
-        }
-
-        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            return Converter.Convert(value, targetType);
-        }
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        return Converter.Convert(value, targetType);
     }
 }

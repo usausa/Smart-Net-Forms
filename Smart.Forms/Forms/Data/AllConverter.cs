@@ -1,23 +1,22 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.Globalization;
+using System.Linq;
+
+using Xamarin.Forms;
+
+public sealed class AllConverter : IMultiValueConverter
 {
-    using System;
-    using System.Globalization;
-    using System.Linq;
+    public bool Invert { get; set; }
 
-    using Xamarin.Forms;
-
-    public sealed class AllConverter : IMultiValueConverter
+    public object? Convert(object?[] values, Type targetType, object? parameter, CultureInfo culture)
     {
-        public bool Invert { get; set; }
+        return values.All(value => System.Convert.ToBoolean(value, culture)) ? !Invert : Invert;
+    }
 
-        public object? Convert(object?[] values, Type targetType, object? parameter, CultureInfo culture)
-        {
-            return values.All(value => System.Convert.ToBoolean(value, culture)) ? !Invert : Invert;
-        }
-
-        public object?[] ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+    public object?[] ConvertBack(object? value, Type[] targetTypes, object? parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

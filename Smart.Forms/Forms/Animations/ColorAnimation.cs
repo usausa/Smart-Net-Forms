@@ -1,32 +1,31 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+using System;
+using System.Globalization;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+
+public sealed class ColorAnimation : AnimationBase
 {
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
+    public static readonly BindableProperty ToColorProperty = BindableProperty.Create(
+        nameof(ToColor),
+        typeof(Color),
+        typeof(ColorAnimation),
+        Color.Default,
+        BindingMode.TwoWay);
 
-    using Xamarin.Forms;
-
-    public sealed class ColorAnimation : AnimationBase
+    public Color ToColor
     {
-        public static readonly BindableProperty ToColorProperty = BindableProperty.Create(
-            nameof(ToColor),
-            typeof(Color),
-            typeof(ColorAnimation),
-            Color.Default,
-            BindingMode.TwoWay);
+        get => (Color)GetValue(ToColorProperty);
+        set => SetValue(ToColorProperty, value);
+    }
 
-        public Color ToColor
-        {
-            get => (Color)GetValue(ToColorProperty);
-            set => SetValue(ToColorProperty, value);
-        }
-
-        protected override Task BeginAnimation()
-        {
-            var fromColor = Target!.BackgroundColor;
-            // ReSharper disable once AsyncVoidLambda
-            return Task.Run(() => Device.BeginInvokeOnMainThread(async () =>
-                await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture))));
-        }
+    protected override Task BeginAnimation()
+    {
+        var fromColor = Target!.BackgroundColor;
+        // ReSharper disable once AsyncVoidLambda
+        return Task.Run(() => Device.BeginInvokeOnMainThread(async () =>
+            await Target.ColorTo(fromColor, ToColor, c => Target.BackgroundColor = c, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture))));
     }
 }

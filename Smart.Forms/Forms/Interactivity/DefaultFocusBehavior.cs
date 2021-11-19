@@ -1,14 +1,13 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using Xamarin.Forms;
+
+public class DefaultFocusBehavior : BehaviorBase<VisualElement>
 {
-    using Xamarin.Forms;
-
-    public class DefaultFocusBehavior : BehaviorBase<VisualElement>
+    protected override void OnAttachedTo(VisualElement bindable)
     {
-        protected override void OnAttachedTo(VisualElement bindable)
-        {
-            base.OnAttachedTo(bindable);
+        base.OnAttachedTo(bindable);
 
-            Device.BeginInvokeOnMainThread(() => bindable.Focus());
-        }
+        Device.BeginInvokeOnMainThread(() => bindable.Focus());
     }
 }

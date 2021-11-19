@@ -1,7 +1,6 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+public interface IValidationResult
 {
-    public interface IValidationResult
-    {
-        bool HasError { get; set; }
-    }
+    bool HasError { get; set; }
 }

@@ -1,19 +1,18 @@
-namespace Smart.Forms.Components
+namespace Smart.Forms.Components;
+
+using System;
+
+using Xamarin.Forms;
+
+public sealed class PlatformService : IPlatformService
 {
-    using System;
-
-    using Xamarin.Forms;
-
-    public sealed class PlatformService : IPlatformService
+    public void BeginInvokeOnMainThread(Action action)
     {
-        public void BeginInvokeOnMainThread(Action action)
-        {
-            Device.BeginInvokeOnMainThread(action);
-        }
+        Device.BeginInvokeOnMainThread(action);
+    }
 
-        public void StartTimer(TimeSpan interval, Func<bool> callBack)
-        {
-            Device.StartTimer(interval, callBack);
-        }
+    public void StartTimer(TimeSpan interval, Func<bool> callBack)
+    {
+        Device.StartTimer(interval, callBack);
     }
 }

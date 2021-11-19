@@ -1,57 +1,56 @@
-namespace Smart.Forms
+namespace Smart.Forms;
+
+using System;
+using System.Threading;
+
+using Xamarin.Forms;
+
+public sealed class Timer : IDisposable
 {
-    using System;
-    using System.Threading;
+    private readonly TimeSpan dueTime;
 
-    using Xamarin.Forms;
+    private readonly Action callback;
 
-    public sealed class Timer : IDisposable
+    private int running;
+
+    public Timer(TimeSpan dueTime, Action callback)
     {
-        private readonly TimeSpan dueTime;
+        this.dueTime = dueTime;
+        this.callback = callback;
+    }
 
-        private readonly Action callback;
+    public void Dispose()
+    {
+        Stop();
+    }
 
-        private int running;
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrect", Justification = "Ignore")]
+    public static Timer StartNew(TimeSpan dueTime, Action callback)
+    {
+        var timer = new Timer(dueTime, callback);
+        timer.Start();
+        return timer;
+    }
 
-        public Timer(TimeSpan dueTime, Action callback)
+    public void Start()
+    {
+        if (Interlocked.Exchange(ref running, 1) == 0)
         {
-            this.dueTime = dueTime;
-            this.callback = callback;
-        }
-
-        public void Dispose()
-        {
-            Stop();
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrect", Justification = "Ignore")]
-        public static Timer StartNew(TimeSpan dueTime, Action callback)
-        {
-            var timer = new Timer(dueTime, callback);
-            timer.Start();
-            return timer;
-        }
-
-        public void Start()
-        {
-            if (Interlocked.Exchange(ref running, 1) == 0)
+            Device.StartTimer(dueTime, () =>
             {
-                Device.StartTimer(dueTime, () =>
+                var state = Interlocked.Exchange(ref running, running) == 1;
+                if (state)
                 {
-                    var state = Interlocked.Exchange(ref running, running) == 1;
-                    if (state)
-                    {
-                        callback();
-                    }
+                    callback();
+                }
 
-                    return state;
-                });
-            }
+                return state;
+            });
         }
+    }
 
-        public void Stop()
-        {
-            Interlocked.Exchange(ref running, 0);
-        }
+    public void Stop()
+    {
+        Interlocked.Exchange(ref running, 0);
     }
 }

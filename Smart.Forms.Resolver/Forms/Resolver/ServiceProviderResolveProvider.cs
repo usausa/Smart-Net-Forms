@@ -1,16 +1,15 @@
-namespace Smart.Forms.Resolver
+namespace Smart.Forms.Resolver;
+
+using System;
+
+public sealed class ServiceProviderResolveProvider : IResolveProvider
 {
-    using System;
+    private readonly IServiceProvider provider;
 
-    public sealed class ServiceProviderResolveProvider : IResolveProvider
+    public ServiceProviderResolveProvider(IServiceProvider provider)
     {
-        private readonly IServiceProvider provider;
-
-        public ServiceProviderResolveProvider(IServiceProvider provider)
-        {
-            this.provider = provider;
-        }
-
-        public object Resolve(Type type) => provider.GetService(type);
+        this.provider = provider;
     }
+
+    public object Resolve(Type type) => provider.GetService(type);
 }

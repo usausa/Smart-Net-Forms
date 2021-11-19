@@ -1,87 +1,86 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System;
+using System.Reflection;
+
+using Xamarin.Forms;
+
+public sealed class EventTrigger : TriggerBase<BindableObject>
 {
-    using System;
-    using System.Reflection;
+    public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
+        nameof(EventName),
+        typeof(string),
+        typeof(EventTrigger),
+        string.Empty,
+        propertyChanged: HandleEventNamePropertyChanged);
 
-    using Xamarin.Forms;
+    private EventInfo? eventInfo;
 
-    public sealed class EventTrigger : TriggerBase<BindableObject>
+    private Delegate? handler;
+
+    public string EventName
     {
-        public static readonly BindableProperty EventNameProperty = BindableProperty.Create(
-            nameof(EventName),
-            typeof(string),
-            typeof(EventTrigger),
-            string.Empty,
-            propertyChanged: HandleEventNamePropertyChanged);
+        get => (string)GetValue(EventNameProperty);
+        set => SetValue(EventNameProperty, value);
+    }
 
-        private EventInfo? eventInfo;
+    protected override void OnAttachedTo(BindableObject bindable)
+    {
+        base.OnAttachedTo(bindable);
 
-        private Delegate? handler;
+        AddEventHandler(EventName);
+    }
 
-        public string EventName
+    protected override void OnDetachingFrom(BindableObject bindable)
+    {
+        RemoveEventHandler();
+
+        base.OnDetachingFrom(bindable);
+    }
+
+    private void AddEventHandler(string eventName)
+    {
+        if (String.IsNullOrEmpty(eventName))
         {
-            get => (string)GetValue(EventNameProperty);
-            set => SetValue(EventNameProperty, value);
+            return;
         }
 
-        protected override void OnAttachedTo(BindableObject bindable)
+        eventInfo = AssociatedObject?.GetType().GetRuntimeEvent(EventName);
+        if (eventInfo is null)
         {
-            base.OnAttachedTo(bindable);
-
-            AddEventHandler(EventName);
+            throw new ArgumentException(nameof(EventName));
         }
 
-        protected override void OnDetachingFrom(BindableObject bindable)
-        {
-            RemoveEventHandler();
+        var methodInfo = typeof(EventTrigger).GetTypeInfo().GetDeclaredMethod(nameof(OnEvent));
+        handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
+        eventInfo.AddEventHandler(AssociatedObject, handler);
+    }
 
-            base.OnDetachingFrom(bindable);
+    private void RemoveEventHandler()
+    {
+        eventInfo?.RemoveEventHandler(AssociatedObject, handler);
+        eventInfo = null;
+        handler = null;
+    }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
+    private void OnEvent(object sender, EventArgs e)
+    {
+        InvokeActions(e);
+    }
+
+    private static void HandleEventNamePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+    {
+        var behavior = (EventTrigger)bindable;
+        if (behavior.AssociatedObject is null)
+        {
+            return;
         }
 
-        private void AddEventHandler(string eventName)
+        behavior.RemoveEventHandler();
+        if (newValue is not null)
         {
-            if (String.IsNullOrEmpty(eventName))
-            {
-                return;
-            }
-
-            eventInfo = AssociatedObject?.GetType().GetRuntimeEvent(EventName);
-            if (eventInfo is null)
-            {
-                throw new ArgumentException(nameof(EventName));
-            }
-
-            var methodInfo = typeof(EventTrigger).GetTypeInfo().GetDeclaredMethod(nameof(OnEvent));
-            handler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
-            eventInfo.AddEventHandler(AssociatedObject, handler);
-        }
-
-        private void RemoveEventHandler()
-        {
-            eventInfo?.RemoveEventHandler(AssociatedObject, handler);
-            eventInfo = null;
-            handler = null;
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
-        private void OnEvent(object sender, EventArgs e)
-        {
-            InvokeActions(e);
-        }
-
-        private static void HandleEventNamePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
-        {
-            var behavior = (EventTrigger)bindable;
-            if (behavior.AssociatedObject is null)
-            {
-                return;
-            }
-
-            behavior.RemoveEventHandler();
-            if (newValue is not null)
-            {
-                behavior.AddEventHandler((string)newValue);
-            }
+            behavior.AddEventHandler((string)newValue);
         }
     }
 }

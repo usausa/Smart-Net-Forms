@@ -1,49 +1,48 @@
-namespace Smart.Forms
+namespace Smart.Forms;
+
+using Xamarin.Forms;
+
+public static class VisualElementExtensions
 {
-    using Xamarin.Forms;
+    // ------------------------------------------------------------
+    // Tree
+    // ------------------------------------------------------------
 
-    public static class VisualElementExtensions
+    public static bool IsEnabledInTree(this VisualElement element)
     {
-        // ------------------------------------------------------------
-        // Tree
-        // ------------------------------------------------------------
-
-        public static bool IsEnabledInTree(this VisualElement element)
+        do
         {
-            do
+            if (!element.IsEnabled)
             {
-                if (!element.IsEnabled)
-                {
-                    return false;
-                }
-
-                if (element.Parent is not VisualElement visualElement)
-                {
-                    return false;
-                }
-
-                element = visualElement;
+                return false;
             }
-            while (true);
-        }
 
-        public static bool IsVisibleInTree(this VisualElement element)
+            if (element.Parent is not VisualElement visualElement)
+            {
+                return false;
+            }
+
+            element = visualElement;
+        }
+        while (true);
+    }
+
+    public static bool IsVisibleInTree(this VisualElement element)
+    {
+        do
         {
-            do
+            if (!element.IsVisible)
             {
-                if (!element.IsVisible)
-                {
-                    return false;
-                }
-
-                if (element.Parent is not VisualElement visualElement)
-                {
-                    return false;
-                }
-
-                element = visualElement;
+                return false;
             }
-            while (true);
+
+            if (element.Parent is not VisualElement visualElement)
+            {
+                return false;
+            }
+
+            element = visualElement;
         }
+        while (true);
     }
 }

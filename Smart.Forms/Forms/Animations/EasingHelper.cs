@@ -1,26 +1,25 @@
-namespace Smart.Forms.Animations
-{
-    using Xamarin.Forms;
+namespace Smart.Forms.Animations;
 
-    public static class EasingHelper
+using Xamarin.Forms;
+
+public static class EasingHelper
+{
+    public static Easing? GetEasing(EasingType type)
     {
-        public static Easing? GetEasing(EasingType type)
+        return type switch
         {
-            return type switch
-            {
-                EasingType.BounceIn => Easing.BounceIn,
-                EasingType.BounceOut => Easing.BounceOut,
-                EasingType.CubicIn => Easing.CubicIn,
-                EasingType.CubicInOut => Easing.CubicInOut,
-                EasingType.CubicOut => Easing.CubicOut,
-                EasingType.Linear => Easing.Linear,
-                EasingType.SinIn => Easing.SinIn,
-                EasingType.SinInOut => Easing.SinInOut,
-                EasingType.SinOut => Easing.SinOut,
-                EasingType.SpringIn => Easing.SpringIn,
-                EasingType.SpringOut => Easing.SpringOut,
-                _ => null
-            };
-        }
+            EasingType.BounceIn => Easing.BounceIn,
+            EasingType.BounceOut => Easing.BounceOut,
+            EasingType.CubicIn => Easing.CubicIn,
+            EasingType.CubicInOut => Easing.CubicInOut,
+            EasingType.CubicOut => Easing.CubicOut,
+            EasingType.Linear => Easing.Linear,
+            EasingType.SinIn => Easing.SinIn,
+            EasingType.SinInOut => Easing.SinInOut,
+            EasingType.SinOut => Easing.SinOut,
+            EasingType.SpringIn => Easing.SpringIn,
+            EasingType.SpringOut => Easing.SpringOut,
+            _ => null
+        };
     }
 }

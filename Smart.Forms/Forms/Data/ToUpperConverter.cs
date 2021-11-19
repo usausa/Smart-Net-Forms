@@ -1,20 +1,19 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.Globalization;
+
+using Xamarin.Forms;
+
+public sealed class ToUpperConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
-
-    using Xamarin.Forms;
-
-    public sealed class ToUpperConverter : IValueConverter
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            return value is string text ? text.ToUpper(culture) : null;
-        }
+        return value is string text ? text.ToUpper(culture) : null;
+    }
 
-        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

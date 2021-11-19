@@ -1,20 +1,19 @@
-namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup;
+
+using System;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[ContentProperty("Type")]
+public sealed class EnumValuesExtension : IMarkupExtension
 {
-    using System;
+    public Type Type { get; set; }
 
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
-
-    [ContentProperty("Type")]
-    public sealed class EnumValuesExtension : IMarkupExtension
+    public EnumValuesExtension(Type type)
     {
-        public Type Type { get; set; }
-
-        public EnumValuesExtension(Type type)
-        {
-            Type = type;
-        }
-
-        public object ProvideValue(IServiceProvider serviceProvider) => Enum.GetValues(Type);
+        Type = type;
     }
+
+    public object ProvideValue(IServiceProvider serviceProvider) => Enum.GetValues(Type);
 }

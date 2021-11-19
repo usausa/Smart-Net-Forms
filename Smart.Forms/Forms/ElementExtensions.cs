@@ -1,53 +1,52 @@
-namespace Smart.Forms
+namespace Smart.Forms;
+
+using System.Collections.Generic;
+
+using Xamarin.Forms;
+
+public static class ElementExtensions
 {
-    using System.Collections.Generic;
+    // ------------------------------------------------------------
+    // Parent
+    // ------------------------------------------------------------
 
-    using Xamarin.Forms;
-
-    public static class ElementExtensions
+    public static T? FindParent<T>(this Element element)
+        where T : Element
     {
-        // ------------------------------------------------------------
-        // Parent
-        // ------------------------------------------------------------
-
-        public static T? FindParent<T>(this Element element)
-            where T : Element
+        while (true)
         {
-            while (true)
+            var parent = element.Parent;
+            if (parent is null)
             {
-                var parent = element.Parent;
-                if (parent is null)
-                {
-                    return null;
-                }
-
-                if (element is T variable)
-                {
-                    return variable;
-                }
-
-                element = parent;
+                return null;
             }
-        }
 
-        // ------------------------------------------------------------
-        // Children
-        // ------------------------------------------------------------
-
-        public static IEnumerable<T> FindChildren<T>(this Element parent)
-            where T : Element
-        {
-            foreach (var child in parent.LogicalChildren)
+            if (element is T variable)
             {
-                if (child is T typedChild)
-                {
-                    yield return typedChild;
-                }
+                return variable;
+            }
 
-                foreach (var descendant in child.FindChildren<T>())
-                {
-                    yield return descendant;
-                }
+            element = parent;
+        }
+    }
+
+    // ------------------------------------------------------------
+    // Children
+    // ------------------------------------------------------------
+
+    public static IEnumerable<T> FindChildren<T>(this Element parent)
+        where T : Element
+    {
+        foreach (var child in parent.LogicalChildren)
+        {
+            if (child is T typedChild)
+            {
+                yield return typedChild;
+            }
+
+            foreach (var descendant in child.FindChildren<T>())
+            {
+                yield return descendant;
             }
         }
     }

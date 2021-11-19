@@ -1,32 +1,31 @@
-namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup;
+
+using System;
+
+using Smart.Forms.Data;
+
+using Xamarin.Forms.Xaml;
+
+public sealed class TextToBoolExtension : IMarkupExtension<ObjectToBoolConverter<string>>
 {
-    using System;
+    public string True { get; set; } = string.Empty;
 
-    using Smart.Forms.Data;
+    public string False { get; set; } = string.Empty;
 
-    using Xamarin.Forms.Xaml;
+    public ObjectToBoolConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
+        new() { TrueValue = True, FalseValue = False };
 
-    public sealed class TextToBoolExtension : IMarkupExtension<ObjectToBoolConverter<string>>
-    {
-        public string True { get; set; } = string.Empty;
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
+}
 
-        public string False { get; set; } = string.Empty;
+public sealed class IntToBoolExtension : IMarkupExtension<ObjectToBoolConverter<int>>
+{
+    public int True { get; set; }
 
-        public ObjectToBoolConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
-            new() { TrueValue = True, FalseValue = False };
+    public int False { get; set; }
 
-        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
-    }
+    public ObjectToBoolConverter<int> ProvideValue(IServiceProvider serviceProvider) =>
+        new() { TrueValue = True, FalseValue = False };
 
-    public sealed class IntToBoolExtension : IMarkupExtension<ObjectToBoolConverter<int>>
-    {
-        public int True { get; set; }
-
-        public int False { get; set; }
-
-        public ObjectToBoolConverter<int> ProvideValue(IServiceProvider serviceProvider) =>
-            new() { TrueValue = True, FalseValue = False };
-
-        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
-    }
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
 }

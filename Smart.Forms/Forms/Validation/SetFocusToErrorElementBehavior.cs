@@ -1,107 +1,106 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using System;
+
+using Smart.Forms.Interactivity;
+
+using Xamarin.Forms;
+
+public sealed class SetFocusToErrorElementBehavior : BehaviorBase<VisualElement>
 {
-    using System;
+    public static readonly BindableProperty RequestProperty = BindableProperty.Create(
+        nameof(Request),
+        typeof(ValidationRequest),
+        typeof(SetFocusToErrorElementBehavior),
+        propertyChanged: HandleRequestPropertyChanged);
 
-    using Smart.Forms.Interactivity;
-
-    using Xamarin.Forms;
-
-    public sealed class SetFocusToErrorElementBehavior : BehaviorBase<VisualElement>
+    public ValidationRequest? Request
     {
-        public static readonly BindableProperty RequestProperty = BindableProperty.Create(
-            nameof(Request),
-            typeof(ValidationRequest),
-            typeof(SetFocusToErrorElementBehavior),
-            propertyChanged: HandleRequestPropertyChanged);
+        get => (ValidationRequest)GetValue(RequestProperty);
+        set => SetValue(RequestProperty, value);
+    }
 
-        public ValidationRequest? Request
+    protected override void OnDetachingFrom(VisualElement bindable)
+    {
+        if (Request is not null)
         {
-            get => (ValidationRequest)GetValue(RequestProperty);
-            set => SetValue(RequestProperty, value);
+            Request.ValidationErrorRequested -= OnValidationErrorRequested;
         }
 
-        protected override void OnDetachingFrom(VisualElement bindable)
-        {
-            if (Request is not null)
-            {
-                Request.ValidationErrorRequested -= OnValidationErrorRequested;
-            }
+        base.OnDetachingFrom(bindable);
+    }
 
-            base.OnDetachingFrom(bindable);
+    private static void HandleRequestPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+    {
+        ((SetFocusToErrorElementBehavior)bindable).HandleRequestPropertyChanged(oldValue as ValidationRequest, newValue as ValidationRequest);
+    }
+
+    private void HandleRequestPropertyChanged(ValidationRequest? oldValue, ValidationRequest? newValue)
+    {
+        if (oldValue == newValue)
+        {
+            return;
         }
 
-        private static void HandleRequestPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+        if (oldValue is not null)
         {
-            ((SetFocusToErrorElementBehavior)bindable).HandleRequestPropertyChanged(oldValue as ValidationRequest, newValue as ValidationRequest);
+            oldValue.ValidationErrorRequested -= OnValidationErrorRequested;
         }
 
-        private void HandleRequestPropertyChanged(ValidationRequest? oldValue, ValidationRequest? newValue)
+        if (newValue is not null)
         {
-            if (oldValue == newValue)
-            {
-                return;
-            }
+            newValue.ValidationErrorRequested += OnValidationErrorRequested;
+        }
+    }
 
-            if (oldValue is not null)
-            {
-                oldValue.ValidationErrorRequested -= OnValidationErrorRequested;
-            }
-
-            if (newValue is not null)
-            {
-                newValue.ValidationErrorRequested += OnValidationErrorRequested;
-            }
+    private void OnValidationErrorRequested(object sender, EventArgs eventArgs)
+    {
+        if (AssociatedObject is null)
+        {
+            return;
         }
 
-        private void OnValidationErrorRequested(object sender, EventArgs eventArgs)
-        {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
+        var element = FindErrorElement(AssociatedObject);
+        element?.Focus();
+    }
 
-            var element = FindErrorElement(AssociatedObject);
-            element?.Focus();
+    private static VisualElement? FindErrorElement(VisualElement element)
+    {
+        if (ValidationProperty.GetHasError(element))
+        {
+            return element;
         }
 
-        private static VisualElement? FindErrorElement(VisualElement element)
+        if (element is IViewContainer<View> layout)
         {
-            if (ValidationProperty.GetHasError(element))
+            foreach (var child in layout.Children)
             {
-                return element;
-            }
-
-            if (element is IViewContainer<View> layout)
-            {
-                foreach (var child in layout.Children)
-                {
-                    var find = FindErrorElement(child);
-                    if (find is not null)
-                    {
-                        return find;
-                    }
-                }
-            }
-
-            if (element is ContentPage page)
-            {
-                var find = FindErrorElement(page.Content);
+                var find = FindErrorElement(child);
                 if (find is not null)
                 {
                     return find;
                 }
             }
-
-            if (element is ContentView view)
-            {
-                var find = FindErrorElement(view.Content);
-                if (find is not null)
-                {
-                    return find;
-                }
-            }
-
-            return null;
         }
+
+        if (element is ContentPage page)
+        {
+            var find = FindErrorElement(page.Content);
+            if (find is not null)
+            {
+                return find;
+            }
+        }
+
+        if (element is ContentView view)
+        {
+            var find = FindErrorElement(view.Content);
+            if (find is not null)
+            {
+                return find;
+            }
+        }
+
+        return null;
     }
 }

@@ -1,15 +1,14 @@
-namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup;
+
+using System;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[ContentProperty("Value")]
+public sealed class FloatExtension : IMarkupExtension
 {
-    using System;
+    public float Value { get; set; }
 
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
-
-    [ContentProperty("Value")]
-    public sealed class FloatExtension : IMarkupExtension
-    {
-        public float Value { get; set; }
-
-        public object ProvideValue(IServiceProvider serviceProvider) => Value;
-    }
+    public object ProvideValue(IServiceProvider serviceProvider) => Value;
 }

@@ -1,42 +1,41 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+using System;
+using System.Globalization;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+
+public sealed class TranslateToAnimation : AnimationBase
 {
-    using System;
-    using System.Globalization;
-    using System.Threading.Tasks;
+    public static readonly BindableProperty TranslateXProperty = BindableProperty.Create(
+        nameof(TranslateX),
+        typeof(double),
+        typeof(TranslateToAnimation),
+        0.0d,
+        BindingMode.TwoWay);
 
-    using Xamarin.Forms;
+    public static readonly BindableProperty TranslateYProperty = BindableProperty.Create(
+        nameof(TranslateY),
+        typeof(double),
+        typeof(TranslateToAnimation),
+        0.0d,
+        BindingMode.TwoWay);
 
-    public sealed class TranslateToAnimation : AnimationBase
+    public double TranslateX
     {
-        public static readonly BindableProperty TranslateXProperty = BindableProperty.Create(
-            nameof(TranslateX),
-            typeof(double),
-            typeof(TranslateToAnimation),
-            0.0d,
-            BindingMode.TwoWay);
+        get => (double)GetValue(TranslateXProperty);
+        set => SetValue(TranslateXProperty, value);
+    }
 
-        public static readonly BindableProperty TranslateYProperty = BindableProperty.Create(
-            nameof(TranslateY),
-            typeof(double),
-            typeof(TranslateToAnimation),
-            0.0d,
-            BindingMode.TwoWay);
+    public double TranslateY
+    {
+        get => (double)GetValue(TranslateYProperty);
+        set => SetValue(TranslateYProperty, value);
+    }
 
-        public double TranslateX
-        {
-            get => (double)GetValue(TranslateXProperty);
-            set => SetValue(TranslateXProperty, value);
-        }
-
-        public double TranslateY
-        {
-            get => (double)GetValue(TranslateYProperty);
-            set => SetValue(TranslateYProperty, value);
-        }
-
-        protected override Task BeginAnimation()
-        {
-            return Target.TranslateTo(TranslateX, TranslateY, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
-        }
+    protected override Task BeginAnimation()
+    {
+        return Target.TranslateTo(TranslateX, TranslateY, Convert.ToUInt32(Duration, CultureInfo.InvariantCulture), EasingHelper.GetEasing(Easing));
     }
 }

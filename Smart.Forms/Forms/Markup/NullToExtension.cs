@@ -1,49 +1,48 @@
-namespace Smart.Forms.Markup
+namespace Smart.Forms.Markup;
+
+using System;
+
+using Smart.Forms.Data;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+public sealed class NullToBoolExtension : IMarkupExtension<NullToObjectConverter<bool>>
 {
-    using System;
+    public bool Invert { get; set; }
 
-    using Smart.Forms.Data;
+    public bool HandleEmptyString { get; set; }
 
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
+    public NullToObjectConverter<bool> ProvideValue(IServiceProvider serviceProvider) =>
+        new() { NullValue = !Invert, NonNullValue = Invert, HandleEmptyString = HandleEmptyString };
 
-    public sealed class NullToBoolExtension : IMarkupExtension<NullToObjectConverter<bool>>
-    {
-        public bool Invert { get; set; }
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
+}
 
-        public bool HandleEmptyString { get; set; }
+public sealed class NullToTextExtension : IMarkupExtension<NullToObjectConverter<string>>
+{
+    public string Null { get; set; } = string.Empty;
 
-        public NullToObjectConverter<bool> ProvideValue(IServiceProvider serviceProvider) =>
-            new() { NullValue = !Invert, NonNullValue = Invert, HandleEmptyString = HandleEmptyString };
+    public string NonNull { get; set; } = string.Empty;
 
-        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
-    }
+    public bool HandleEmptyString { get; set; }
 
-    public sealed class NullToTextExtension : IMarkupExtension<NullToObjectConverter<string>>
-    {
-        public string Null { get; set; } = string.Empty;
+    public NullToObjectConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
+        new() { NullValue = Null, NonNullValue = NonNull, HandleEmptyString = HandleEmptyString };
 
-        public string NonNull { get; set; } = string.Empty;
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
+}
 
-        public bool HandleEmptyString { get; set; }
+public sealed class NullToColorExtension : IMarkupExtension<NullToObjectConverter<Color>>
+{
+    public Color Null { get; set; }
 
-        public NullToObjectConverter<string> ProvideValue(IServiceProvider serviceProvider) =>
-            new() { NullValue = Null, NonNullValue = NonNull, HandleEmptyString = HandleEmptyString };
+    public Color NonNull { get; set; }
 
-        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
-    }
+    public bool HandleEmptyString { get; set; }
 
-    public sealed class NullToColorExtension : IMarkupExtension<NullToObjectConverter<Color>>
-    {
-        public Color Null { get; set; }
+    public NullToObjectConverter<Color> ProvideValue(IServiceProvider serviceProvider) =>
+        new() { NullValue = Null, NonNullValue = NonNull, HandleEmptyString = HandleEmptyString };
 
-        public Color NonNull { get; set; }
-
-        public bool HandleEmptyString { get; set; }
-
-        public NullToObjectConverter<Color> ProvideValue(IServiceProvider serviceProvider) =>
-            new() { NullValue = Null, NonNullValue = NonNull, HandleEmptyString = HandleEmptyString };
-
-        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
-    }
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider) => ProvideValue(serviceProvider);
 }

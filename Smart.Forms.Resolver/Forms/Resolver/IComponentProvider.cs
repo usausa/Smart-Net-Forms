@@ -1,9 +1,8 @@
-namespace Smart.Forms.Resolver
-{
-    using Smart.Resolver;
+namespace Smart.Forms.Resolver;
 
-    public interface IComponentProvider
-    {
-        void RegisterComponents(ResolverConfig config);
-    }
+using Smart.Resolver;
+
+public interface IComponentProvider
+{
+    void RegisterComponents(ResolverConfig config);
 }

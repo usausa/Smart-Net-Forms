@@ -1,52 +1,51 @@
-namespace Smart.Forms.Resolver
+namespace Smart.Forms.Resolver;
+
+using System;
+
+using Xamarin.Forms;
+
+public static class BindingContextResolver
 {
-    using System;
+    public static readonly BindableProperty TypeProperty = BindableProperty.CreateAttached(
+        "Type",
+        typeof(Type),
+        typeof(BindingContextResolver),
+        null,
+        propertyChanged: HandleTypePropertyChanged);
 
-    using Xamarin.Forms;
+    public static readonly BindableProperty DisposeOnChangedProperty = BindableProperty.CreateAttached(
+        "DisposeOnChanged",
+        typeof(bool),
+        typeof(BindingContextResolver),
+        true);
 
-    public static class BindingContextResolver
+    public static Type GetType(BindableObject obj)
     {
-        public static readonly BindableProperty TypeProperty = BindableProperty.CreateAttached(
-            "Type",
-            typeof(Type),
-            typeof(BindingContextResolver),
-            null,
-            propertyChanged: HandleTypePropertyChanged);
+        return (Type)obj.GetValue(TypeProperty);
+    }
 
-        public static readonly BindableProperty DisposeOnChangedProperty = BindableProperty.CreateAttached(
-            "DisposeOnChanged",
-            typeof(bool),
-            typeof(BindingContextResolver),
-            true);
+    public static void SetType(BindableObject obj, Type value)
+    {
+        obj.SetValue(TypeProperty, value);
+    }
 
-        public static Type GetType(BindableObject obj)
+    public static bool GetDisposeOnChanged(BindableObject obj)
+    {
+        return (bool)obj.GetValue(DisposeOnChangedProperty);
+    }
+
+    public static void SetDisposeOnChanged(BindableObject obj, bool value)
+    {
+        obj.SetValue(DisposeOnChangedProperty, value);
+    }
+
+    private static void HandleTypePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+    {
+        if (bindable.BindingContext is IDisposable disposable && GetDisposeOnChanged(bindable))
         {
-            return (Type)obj.GetValue(TypeProperty);
+            disposable.Dispose();
         }
 
-        public static void SetType(BindableObject obj, Type value)
-        {
-            obj.SetValue(TypeProperty, value);
-        }
-
-        public static bool GetDisposeOnChanged(BindableObject obj)
-        {
-            return (bool)obj.GetValue(DisposeOnChangedProperty);
-        }
-
-        public static void SetDisposeOnChanged(BindableObject obj, bool value)
-        {
-            obj.SetValue(DisposeOnChangedProperty, value);
-        }
-
-        private static void HandleTypePropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
-        {
-            if (bindable.BindingContext is IDisposable disposable && GetDisposeOnChanged(bindable))
-            {
-                disposable.Dispose();
-            }
-
-            bindable.BindingContext = newValue is not null ? ResolveProvider.Default.Resolve((Type)newValue) : null;
-        }
+        bindable.BindingContext = newValue is not null ? ResolveProvider.Default.Resolve((Type)newValue) : null;
     }
 }

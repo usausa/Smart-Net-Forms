@@ -1,58 +1,57 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
+
+using Xamarin.Forms;
+
+public sealed class TextReplaceConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
-    using System.Text.RegularExpressions;
+    private string pattern = string.Empty;
 
-    using Xamarin.Forms;
+    private RegexOptions options;
 
-    public sealed class TextReplaceConverter : IValueConverter
+    private Regex? regex;
+
+    public string Pattern
     {
-        private string pattern = string.Empty;
-
-        private RegexOptions options;
-
-        private Regex? regex;
-
-        public string Pattern
+        get => pattern;
+        set
         {
-            get => pattern;
-            set
-            {
-                pattern = value;
-                regex = null;
-            }
+            pattern = value;
+            regex = null;
+        }
+    }
+
+    public RegexOptions Options
+    {
+        get => options;
+        set
+        {
+            options = value;
+            regex = null;
+        }
+    }
+
+    public string Replacement { get; set; } = string.Empty;
+
+    public bool ReplaceAll { get; set; } = true;
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        var str = value as string;
+        if (String.IsNullOrEmpty(str))
+        {
+            return value;
         }
 
-        public RegexOptions Options
-        {
-            get => options;
-            set
-            {
-                options = value;
-                regex = null;
-            }
-        }
+        regex ??= new Regex(pattern, options);
+        return regex.Replace(str, Replacement, ReplaceAll ? -1 : 1);
+    }
 
-        public string Replacement { get; set; } = string.Empty;
-
-        public bool ReplaceAll { get; set; } = true;
-
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            var str = value as string;
-            if (String.IsNullOrEmpty(str))
-            {
-                return value;
-            }
-
-            regex ??= new Regex(pattern, options);
-            return regex.Replace(str, Replacement, ReplaceAll ? -1 : 1);
-        }
-
-        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

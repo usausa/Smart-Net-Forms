@@ -1,35 +1,34 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+
+using Xamarin.Forms;
+
+public sealed class NullToObjectConverter<T> : IValueConverter
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
+    [AllowNull]
+    public T NullValue { get; set; }
 
-    using Xamarin.Forms;
+    [AllowNull]
+    public T NonNullValue { get; set; }
 
-    public sealed class NullToObjectConverter<T> : IValueConverter
+    public bool HandleEmptyString { get; set; }
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        [AllowNull]
-        public T NullValue { get; set; }
-
-        [AllowNull]
-        public T NonNullValue { get; set; }
-
-        public bool HandleEmptyString { get; set; }
-
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        if ((value is null) ||
+            (HandleEmptyString && value is string { Length: 0 }))
         {
-            if ((value is null) ||
-                (HandleEmptyString && value is string { Length: 0 }))
-            {
-                return NullValue;
-            }
-
-            return NonNullValue;
+            return NullValue;
         }
 
-        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        return NonNullValue;
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

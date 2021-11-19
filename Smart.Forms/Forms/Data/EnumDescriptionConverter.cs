@@ -1,41 +1,40 @@
-namespace Smart.Forms.Data
+namespace Smart.Forms.Data;
+
+using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.Reflection;
+
+using Xamarin.Forms;
+
+public sealed class EnumDescriptionConverter : IValueConverter
 {
-    using System;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Reflection;
-
-    using Xamarin.Forms;
-
-    public sealed class EnumDescriptionConverter : IValueConverter
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        if (value is null)
         {
-            if (value is null)
-            {
-                return null;
-            }
+            return null;
+        }
 
-            if (value is Enum)
+        if (value is Enum)
+        {
+            var type = value.GetType();
+            var mis = type.GetMember(value.ToString());
+            if (mis.Length > 0)
             {
-                var type = value.GetType();
-                var mis = type.GetMember(value.ToString());
-                if (mis.Length > 0)
+                var attr = mis[0].GetCustomAttribute<DescriptionAttribute>();
+                if (attr is not null)
                 {
-                    var attr = mis[0].GetCustomAttribute<DescriptionAttribute>();
-                    if (attr is not null)
-                    {
-                        return attr.Description;
-                    }
+                    return attr.Description;
                 }
             }
-
-            return value.ToString();
         }
 
-        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        return value.ToString();
+    }
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException();
     }
 }

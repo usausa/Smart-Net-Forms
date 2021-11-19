@@ -1,17 +1,16 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+public enum EasingType
 {
-    public enum EasingType
-    {
-        BounceIn,
-        BounceOut,
-        CubicIn,
-        CubicInOut,
-        CubicOut,
-        Linear,
-        SinIn,
-        SinInOut,
-        SinOut,
-        SpringIn,
-        SpringOut
-    }
+    BounceIn,
+    BounceOut,
+    CubicIn,
+    CubicInOut,
+    CubicOut,
+    Linear,
+    SinIn,
+    SinInOut,
+    SinOut,
+    SpringIn,
+    SpringOut
 }

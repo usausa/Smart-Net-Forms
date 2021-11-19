@@ -1,7 +1,6 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+public interface IValidatable
 {
-    public interface IValidatable
-    {
-        bool Validate();
-    }
+    bool Validate();
 }

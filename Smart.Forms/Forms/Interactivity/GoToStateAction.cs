@@ -1,46 +1,45 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System;
+
+using Xamarin.Forms;
+
+public sealed class GoToStateAction : ActionBase<BindableObject>
 {
-    using System;
+    public static readonly BindableProperty StateNameProperty = BindableProperty.Create(
+        nameof(StateName),
+        typeof(string),
+        typeof(GoToStateAction),
+        string.Empty);
 
-    using Xamarin.Forms;
+    public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+        nameof(TargetObject),
+        typeof(VisualElement),
+        typeof(GoToStateAction));
 
-    public sealed class GoToStateAction : ActionBase<BindableObject>
+    public string StateName
     {
-        public static readonly BindableProperty StateNameProperty = BindableProperty.Create(
-            nameof(StateName),
-            typeof(string),
-            typeof(GoToStateAction),
-            string.Empty);
+        get => (string)GetValue(StateNameProperty);
+        set => SetValue(StateNameProperty, value);
+    }
 
-        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
-            nameof(TargetObject),
-            typeof(VisualElement),
-            typeof(GoToStateAction));
+    public VisualElement? TargetObject
+    {
+        get => (VisualElement)GetValue(TargetObjectProperty);
+        set => SetValue(TargetObjectProperty, value);
+    }
 
-        public string StateName
+    protected override void Invoke(BindableObject associatedObject, object? parameter)
+    {
+        if (String.IsNullOrEmpty(StateName))
         {
-            get => (string)GetValue(StateNameProperty);
-            set => SetValue(StateNameProperty, value);
+            return;
         }
 
-        public VisualElement? TargetObject
+        var element = TargetObject ?? (associatedObject as VisualElement);
+        if (element is not null)
         {
-            get => (VisualElement)GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
-        }
-
-        protected override void Invoke(BindableObject associatedObject, object? parameter)
-        {
-            if (String.IsNullOrEmpty(StateName))
-            {
-                return;
-            }
-
-            var element = TargetObject ?? (associatedObject as VisualElement);
-            if (element is not null)
-            {
-                VisualStateManager.GoToState(element, StateName);
-            }
+            VisualStateManager.GoToState(element, StateName);
         }
     }
 }

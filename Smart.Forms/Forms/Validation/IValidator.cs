@@ -1,9 +1,8 @@
-namespace Smart.Forms.Validation
-{
-    public interface IValidator<in T>
-    {
-        string ErrorMessage { get; }
+namespace Smart.Forms.Validation;
 
-        bool Validate(T value);
-    }
+public interface IValidator<in T>
+{
+    string ErrorMessage { get; }
+
+    bool Validate(T value);
 }

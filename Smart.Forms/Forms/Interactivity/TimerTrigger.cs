@@ -1,55 +1,54 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System;
+
+using Xamarin.Forms;
+
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
+public sealed class TimerTrigger : TriggerBase<BindableObject>
 {
-    using System;
+    public static readonly BindableProperty IntervalProperty = BindableProperty.Create(
+        nameof(Interval),
+        typeof(TimeSpan),
+        typeof(TimerTrigger),
+        TimeSpan.FromSeconds(1));
 
-    using Xamarin.Forms;
+    public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
+        nameof(Parameter),
+        typeof(object),
+        typeof(TimerTrigger));
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]
-    public sealed class TimerTrigger : TriggerBase<BindableObject>
+    public TimeSpan Interval
     {
-        public static readonly BindableProperty IntervalProperty = BindableProperty.Create(
-            nameof(Interval),
-            typeof(TimeSpan),
-            typeof(TimerTrigger),
-            TimeSpan.FromSeconds(1));
+        get => (TimeSpan)GetValue(IntervalProperty);
+        set => SetValue(IntervalProperty, value);
+    }
 
-        public static readonly BindableProperty ParameterProperty = BindableProperty.Create(
-            nameof(Parameter),
-            typeof(object),
-            typeof(TimerTrigger));
+    public object Parameter
+    {
+        get => GetValue(ParameterProperty);
+        set => SetValue(ParameterProperty, value);
+    }
 
-        public TimeSpan Interval
-        {
-            get => (TimeSpan)GetValue(IntervalProperty);
-            set => SetValue(IntervalProperty, value);
-        }
+    private Timer? timer;
 
-        public object Parameter
-        {
-            get => GetValue(ParameterProperty);
-            set => SetValue(ParameterProperty, value);
-        }
+    protected override void OnAttachedTo(BindableObject bindable)
+    {
+        base.OnAttachedTo(bindable);
 
-        private Timer? timer;
+        timer = new Timer(Interval, OnTick);
+        timer.Start();
+    }
 
-        protected override void OnAttachedTo(BindableObject bindable)
-        {
-            base.OnAttachedTo(bindable);
+    protected override void OnDetachingFrom(BindableObject bindable)
+    {
+        timer?.Stop();
 
-            timer = new Timer(Interval, OnTick);
-            timer.Start();
-        }
+        base.OnDetachingFrom(bindable);
+    }
 
-        protected override void OnDetachingFrom(BindableObject bindable)
-        {
-            timer?.Stop();
-
-            base.OnDetachingFrom(bindable);
-        }
-
-        private void OnTick()
-        {
-            InvokeActions(Parameter);
-        }
+    private void OnTick()
+    {
+        InvokeActions(Parameter);
     }
 }

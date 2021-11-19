@@ -1,10 +1,9 @@
-namespace Smart.Forms.Messaging
-{
-    using System;
+namespace Smart.Forms.Messaging;
 
-    public interface IEventRequest<TEventArgs>
-        where TEventArgs : EventArgs
-    {
-        event EventHandler<TEventArgs> Requested;
-    }
+using System;
+
+public interface IEventRequest<TEventArgs>
+    where TEventArgs : EventArgs
+{
+    event EventHandler<TEventArgs> Requested;
 }

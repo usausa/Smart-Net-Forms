@@ -1,21 +1,20 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using System;
+
+public sealed class DelegateValidator<T> : IValidator<T>
 {
-    using System;
+    private readonly Func<T, bool> predicate;
 
-    public sealed class DelegateValidator<T> : IValidator<T>
+    public string ErrorMessage { get; set; } = string.Empty;
+
+    public DelegateValidator(Func<T, bool> predicate)
     {
-        private readonly Func<T, bool> predicate;
+        this.predicate = predicate;
+    }
 
-        public string ErrorMessage { get; set; } = string.Empty;
-
-        public DelegateValidator(Func<T, bool> predicate)
-        {
-            this.predicate = predicate;
-        }
-
-        public bool Validate(T value)
-        {
-            return predicate(value);
-        }
+    public bool Validate(T value)
+    {
+        return predicate(value);
     }
 }

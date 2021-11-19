@@ -1,18 +1,17 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+using Xamarin.Forms;
+
+[ContentProperty("Animation")]
+public sealed class BeginAnimationTriggerAction : TriggerAction<VisualElement>
 {
-    using Xamarin.Forms;
+    public AnimationBase? Animation { get; set; }
 
-    [ContentProperty("Animation")]
-    public sealed class BeginAnimationTriggerAction : TriggerAction<VisualElement>
+    protected override async void Invoke(VisualElement sender)
     {
-        public AnimationBase? Animation { get; set; }
-
-        protected override async void Invoke(VisualElement sender)
+        if (Animation is not null)
         {
-            if (Animation is not null)
-            {
-                await Animation.Begin();
-            }
+            await Animation.Begin();
         }
     }
 }

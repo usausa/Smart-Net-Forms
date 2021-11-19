@@ -1,33 +1,32 @@
-namespace Smart.Forms.Animations
+namespace Smart.Forms.Animations;
+
+using Smart.Forms.Interactivity;
+
+using Xamarin.Forms;
+
+[ContentProperty("Animation")]
+public sealed class BeginAnimationBehavior : BehaviorBase<VisualElement>
 {
-    using Smart.Forms.Interactivity;
+    public static readonly BindableProperty AnimationProperty = BindableProperty.Create(
+        nameof(Animation),
+        typeof(AnimationBase),
+        typeof(BeginAnimationBehavior));
 
-    using Xamarin.Forms;
-
-    [ContentProperty("Animation")]
-    public sealed class BeginAnimationBehavior : BehaviorBase<VisualElement>
+    public AnimationBase? Animation
     {
-        public static readonly BindableProperty AnimationProperty = BindableProperty.Create(
-            nameof(Animation),
-            typeof(AnimationBase),
-            typeof(BeginAnimationBehavior));
+        get => (AnimationBase)GetValue(AnimationProperty);
+        set => SetValue(AnimationProperty, value);
+    }
 
-        public AnimationBase? Animation
+    protected override async void OnAttachedTo(VisualElement bindable)
+    {
+        base.OnAttachedTo(bindable);
+
+        if (Animation is not null)
         {
-            get => (AnimationBase)GetValue(AnimationProperty);
-            set => SetValue(AnimationProperty, value);
-        }
+            Animation.Target ??= AssociatedObject;
 
-        protected override async void OnAttachedTo(VisualElement bindable)
-        {
-            base.OnAttachedTo(bindable);
-
-            if (Animation is not null)
-            {
-                Animation.Target ??= AssociatedObject;
-
-                await Animation.Begin();
-            }
+            await Animation.Begin();
         }
     }
 }

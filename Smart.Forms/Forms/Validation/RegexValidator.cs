@@ -1,31 +1,30 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
+
+public sealed class RegexValidator<T> : IValidator<T>
 {
-    using System;
-    using System.Globalization;
-    using System.Text.RegularExpressions;
+    private readonly Regex regex;
 
-    public sealed class RegexValidator<T> : IValidator<T>
+    public string ErrorMessage { get; set; } = string.Empty;
+
+    public RegexValidator(Regex regex)
     {
-        private readonly Regex regex;
+        this.regex = regex;
+    }
 
-        public string ErrorMessage { get; set; } = string.Empty;
-
-        public RegexValidator(Regex regex)
+    public bool Validate(T value)
+    {
+        if (value is null)
         {
-            this.regex = regex;
+            return true;
         }
 
-        public bool Validate(T value)
-        {
-            if (value is null)
-            {
-                return true;
-            }
+        var str = Convert.ToString(value, CultureInfo.CurrentCulture);
+        var m = regex.Match(str!);
 
-            var str = Convert.ToString(value, CultureInfo.CurrentCulture);
-            var m = regex.Match(str!);
-
-            return m.Success && (m.Index == 0) && (m.Length == str.Length);
-        }
+        return m.Success && (m.Index == 0) && (m.Length == str.Length);
     }
 }

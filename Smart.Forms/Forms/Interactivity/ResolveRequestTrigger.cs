@@ -1,12 +1,11 @@
-namespace Smart.Forms.Interactivity
-{
-    using Smart.Forms.Messaging;
+namespace Smart.Forms.Interactivity;
 
-    public sealed class ResolveRequestTrigger : RequestTriggerBase<ResultEventArgs>
+using Smart.Forms.Messaging;
+
+public sealed class ResolveRequestTrigger : RequestTriggerBase<ResultEventArgs>
+{
+    protected override void OnEventRequest(object sender, ResultEventArgs e)
     {
-        protected override void OnEventRequest(object sender, ResultEventArgs e)
-        {
-            InvokeActions(e);
-        }
+        InvokeActions(e);
     }
 }

@@ -1,26 +1,25 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System.ComponentModel;
+
+using Xamarin.Forms;
+
+public sealed class CancelEventAction : ActionBase<BindableObject, CancelEventArgs>
 {
-    using System.ComponentModel;
+    public static readonly BindableProperty CancelProperty = BindableProperty.Create(
+        nameof(Cancel),
+        typeof(bool),
+        typeof(CancelEventAction),
+        false);
 
-    using Xamarin.Forms;
-
-    public sealed class CancelEventAction : ActionBase<BindableObject, CancelEventArgs>
+    public bool Cancel
     {
-        public static readonly BindableProperty CancelProperty = BindableProperty.Create(
-            nameof(Cancel),
-            typeof(bool),
-            typeof(CancelEventAction),
-            false);
+        get => (bool)GetValue(CancelProperty);
+        set => SetValue(CancelProperty, value);
+    }
 
-        public bool Cancel
-        {
-            get => (bool)GetValue(CancelProperty);
-            set => SetValue(CancelProperty, value);
-        }
-
-        protected override void Invoke(BindableObject associatedObject, CancelEventArgs parameter)
-        {
-            parameter.Cancel = Cancel;
-        }
+    protected override void Invoke(BindableObject associatedObject, CancelEventArgs parameter)
+    {
+        parameter.Cancel = Cancel;
     }
 }

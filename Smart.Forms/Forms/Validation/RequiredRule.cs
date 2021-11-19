@@ -1,20 +1,19 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using System;
+
+public sealed class RequiredRule<T> : IValidator<T>
 {
-    using System;
+    public string ErrorMessage { get; set; } = string.Empty;
 
-    public sealed class RequiredRule<T> : IValidator<T>
+    public bool Validate(T value)
     {
-        public string ErrorMessage { get; set; } = string.Empty;
-
-        public bool Validate(T value)
+        if (value is null)
         {
-            if (value is null)
-            {
-                return false;
-            }
-
-            var str = value as string;
-            return !String.IsNullOrWhiteSpace(str);
+            return false;
         }
+
+        var str = value as string;
+        return !String.IsNullOrWhiteSpace(str);
     }
 }

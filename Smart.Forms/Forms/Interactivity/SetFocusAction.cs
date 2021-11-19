@@ -1,24 +1,23 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using Xamarin.Forms;
+
+public sealed class SetFocusAction : ActionBase<BindableObject>
 {
-    using Xamarin.Forms;
+    public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
+        nameof(TargetObject),
+        typeof(VisualElement),
+        typeof(SetFocusAction));
 
-    public sealed class SetFocusAction : ActionBase<BindableObject>
+    public VisualElement? TargetObject
     {
-        public static readonly BindableProperty TargetObjectProperty = BindableProperty.Create(
-            nameof(TargetObject),
-            typeof(VisualElement),
-            typeof(SetFocusAction));
+        get => (VisualElement)GetValue(TargetObjectProperty);
+        set => SetValue(TargetObjectProperty, value);
+    }
 
-        public VisualElement? TargetObject
-        {
-            get => (VisualElement)GetValue(TargetObjectProperty);
-            set => SetValue(TargetObjectProperty, value);
-        }
-
-        protected override void Invoke(BindableObject associatedObject, object? parameter)
-        {
-            var element = TargetObject ?? (associatedObject as VisualElement);
-            element?.Focus();
-        }
+    protected override void Invoke(BindableObject associatedObject, object? parameter)
+    {
+        var element = TargetObject ?? (associatedObject as VisualElement);
+        element?.Focus();
     }
 }

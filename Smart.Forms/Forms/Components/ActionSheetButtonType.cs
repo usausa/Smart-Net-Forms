@@ -1,9 +1,8 @@
-namespace Smart.Forms.Components
+namespace Smart.Forms.Components;
+
+public enum ActionSheetButtonType
 {
-    public enum ActionSheetButtonType
-    {
-        Other,
-        Cancel,
-        Destroy
-    }
+    Other,
+    Cancel,
+    Destroy
 }

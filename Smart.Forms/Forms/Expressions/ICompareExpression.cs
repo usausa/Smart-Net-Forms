@@ -1,7 +1,6 @@
-namespace Smart.Forms.Expressions
+namespace Smart.Forms.Expressions;
+
+public interface ICompareExpression
 {
-    public interface ICompareExpression
-    {
-        bool Eval(object? left, object? right);
-    }
+    bool Eval(object? left, object? right);
 }

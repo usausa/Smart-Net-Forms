@@ -1,18 +1,17 @@
-namespace Smart.Forms.Resolver
+namespace Smart.Forms.Resolver;
+
+using System;
+
+using Smart.Resolver;
+
+public sealed class SmartResolveProvider : IResolveProvider
 {
-    using System;
+    private readonly SmartResolver resolver;
 
-    using Smart.Resolver;
-
-    public sealed class SmartResolveProvider : IResolveProvider
+    public SmartResolveProvider(SmartResolver resolver)
     {
-        private readonly SmartResolver resolver;
-
-        public SmartResolveProvider(SmartResolver resolver)
-        {
-            this.resolver = resolver;
-        }
-
-        public object Resolve(Type type) => resolver.Get(type);
+        this.resolver = resolver;
     }
+
+    public object Resolve(Type type) => resolver.Get(type);
 }

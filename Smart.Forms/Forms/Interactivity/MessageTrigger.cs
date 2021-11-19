@@ -1,72 +1,71 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System;
+
+using Smart.Forms.Messaging;
+
+using Xamarin.Forms;
+
+public sealed class MessageTrigger : TriggerBase<BindableObject>
 {
-    using System;
+    public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
+        nameof(Messenger),
+        typeof(IMessenger),
+        typeof(MessageTrigger),
+        null,
+        propertyChanged: HandleMessengerPropertyChanged);
 
-    using Smart.Forms.Messaging;
-
-    using Xamarin.Forms;
-
-    public sealed class MessageTrigger : TriggerBase<BindableObject>
+    public IMessenger? Messenger
     {
-        public static readonly BindableProperty MessengerProperty = BindableProperty.Create(
-            nameof(Messenger),
-            typeof(IMessenger),
-            typeof(MessageTrigger),
-            null,
-            propertyChanged: HandleMessengerPropertyChanged);
+        get => (IMessenger)GetValue(MessengerProperty);
+        set => SetValue(MessengerProperty, value);
+    }
 
-        public IMessenger? Messenger
+    public string? Label { get; set; }
+
+    public Type? MessageType { get; set; }
+
+    protected override void OnDetachingFrom(BindableObject bindable)
+    {
+        if (Messenger is not null)
         {
-            get => (IMessenger)GetValue(MessengerProperty);
-            set => SetValue(MessengerProperty, value);
+            Messenger.Received -= MessengerOnReceived;
         }
 
-        public string? Label { get; set; }
+        base.OnDetachingFrom(bindable);
+    }
 
-        public Type? MessageType { get; set; }
+    private static void HandleMessengerPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+    {
+        ((MessageTrigger)bindable).HandleMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
+    }
 
-        protected override void OnDetachingFrom(BindableObject bindable)
+    private void HandleMessengerPropertyChanged(IMessenger? oldValue, IMessenger? newValue)
+    {
+        if (oldValue == newValue)
         {
-            if (Messenger is not null)
-            {
-                Messenger.Received -= MessengerOnReceived;
-            }
-
-            base.OnDetachingFrom(bindable);
+            return;
         }
 
-        private static void HandleMessengerPropertyChanged(BindableObject bindable, object? oldValue, object? newValue)
+        if (oldValue is not null)
         {
-            ((MessageTrigger)bindable).HandleMessengerPropertyChanged(oldValue as IMessenger, newValue as IMessenger);
+            oldValue.Received -= MessengerOnReceived;
         }
 
-        private void HandleMessengerPropertyChanged(IMessenger? oldValue, IMessenger? newValue)
+        if (newValue is not null)
         {
-            if (oldValue == newValue)
-            {
-                return;
-            }
-
-            if (oldValue is not null)
-            {
-                oldValue.Received -= MessengerOnReceived;
-            }
-
-            if (newValue is not null)
-            {
-                newValue.Received += MessengerOnReceived;
-            }
+            newValue.Received += MessengerOnReceived;
         }
+    }
 
-        private void MessengerOnReceived(object sender, MessengerEventArgs e)
+    private void MessengerOnReceived(object sender, MessengerEventArgs e)
+    {
+        var label = Label;
+        var messageType = MessageType;
+        if (((label is null) || label.Equals(e.Label, StringComparison.Ordinal)) &&
+            ((messageType is null) || ((e.MessageType is not null) && messageType.IsAssignableFrom(e.MessageType))))
         {
-            var label = Label;
-            var messageType = MessageType;
-            if (((label is null) || label.Equals(e.Label, StringComparison.Ordinal)) &&
-                ((messageType is null) || ((e.MessageType is not null) && messageType.IsAssignableFrom(e.MessageType))))
-            {
-                InvokeActions(e.Message);
-            }
+            InvokeActions(e.Message);
         }
     }
 }

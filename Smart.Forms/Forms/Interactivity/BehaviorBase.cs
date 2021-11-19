@@ -1,46 +1,45 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System;
+
+using Xamarin.Forms;
+
+public abstract class BehaviorBase<T> : Behavior<T>
+    where T : BindableObject
 {
-    using System;
+    public T? AssociatedObject { get; private set; }
 
-    using Xamarin.Forms;
-
-    public abstract class BehaviorBase<T> : Behavior<T>
-        where T : BindableObject
+    protected override void OnAttachedTo(T bindable)
     {
-        public T? AssociatedObject { get; private set; }
+        base.OnAttachedTo(bindable);
 
-        protected override void OnAttachedTo(T bindable)
+        AssociatedObject = bindable;
+
+        if (bindable.BindingContext is not null)
         {
-            base.OnAttachedTo(bindable);
-
-            AssociatedObject = bindable;
-
-            if (bindable.BindingContext is not null)
-            {
-                BindingContext = bindable.BindingContext;
-            }
-
-            bindable.BindingContextChanged += HandleBindingContextChanged;
+            BindingContext = bindable.BindingContext;
         }
 
-        protected override void OnDetachingFrom(T bindable)
-        {
-            base.OnDetachingFrom(bindable);
+        bindable.BindingContextChanged += HandleBindingContextChanged;
+    }
 
-            bindable.BindingContextChanged -= HandleBindingContextChanged;
-            AssociatedObject = null;
-        }
+    protected override void OnDetachingFrom(T bindable)
+    {
+        base.OnDetachingFrom(bindable);
 
-        private void HandleBindingContextChanged(object sender, EventArgs eventArgs)
-        {
-            OnBindingContextChanged();
-        }
+        bindable.BindingContextChanged -= HandleBindingContextChanged;
+        AssociatedObject = null;
+    }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+    private void HandleBindingContextChanged(object sender, EventArgs eventArgs)
+    {
+        OnBindingContextChanged();
+    }
 
-            BindingContext = AssociatedObject?.BindingContext;
-        }
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+
+        BindingContext = AssociatedObject?.BindingContext;
     }
 }

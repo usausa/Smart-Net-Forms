@@ -1,15 +1,14 @@
-namespace Smart.Forms.ViewModels
+namespace Smart.Forms.ViewModels;
+
+using System.ComponentModel;
+
+public interface IBusyState : INotifyPropertyChanged
 {
-    using System.ComponentModel;
+    bool IsBusy { get; }
 
-    public interface IBusyState : INotifyPropertyChanged
-    {
-        bool IsBusy { get; }
+    void Require();
 
-        void Require();
+    void Release();
 
-        void Release();
-
-        void Reset();
-    }
+    void Reset();
 }

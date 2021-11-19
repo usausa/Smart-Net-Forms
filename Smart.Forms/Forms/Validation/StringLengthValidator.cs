@@ -1,37 +1,36 @@
-namespace Smart.Forms.Validation
+namespace Smart.Forms.Validation;
+
+using System;
+using System.Globalization;
+
+public sealed class StringLengthValidator<T> : IValidator<T>
 {
-    using System;
-    using System.Globalization;
+    private readonly int minLength;
 
-    public sealed class StringLengthValidator<T> : IValidator<T>
+    private readonly int maxLength;
+
+    public string ErrorMessage { get; set; } = string.Empty;
+
+    public StringLengthValidator(int maxLength)
+        : this(0, maxLength)
     {
-        private readonly int minLength;
+    }
 
-        private readonly int maxLength;
+    public StringLengthValidator(int minLength, int maxLength)
+    {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
 
-        public string ErrorMessage { get; set; } = string.Empty;
-
-        public StringLengthValidator(int maxLength)
-            : this(0, maxLength)
+    public bool Validate(T value)
+    {
+        if (value is null)
         {
+            return true;
         }
 
-        public StringLengthValidator(int minLength, int maxLength)
-        {
-            this.minLength = minLength;
-            this.maxLength = maxLength;
-        }
+        var str = Convert.ToString(value, CultureInfo.CurrentCulture);
 
-        public bool Validate(T value)
-        {
-            if (value is null)
-            {
-                return true;
-            }
-
-            var str = Convert.ToString(value, CultureInfo.CurrentCulture);
-
-            return (str.Length >= minLength) && (str.Length <= maxLength);
-        }
+        return (str.Length >= minLength) && (str.Length <= maxLength);
     }
 }

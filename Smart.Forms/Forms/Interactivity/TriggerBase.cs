@@ -1,37 +1,36 @@
-namespace Smart.Forms.Interactivity
+namespace Smart.Forms.Interactivity;
+
+using System.Collections.Generic;
+using Xamarin.Forms;
+
+[ContentProperty("Actions")]
+public abstract class TriggerBase<TBindable> : BehaviorBase<TBindable>
+    where TBindable : BindableObject
 {
-    using System.Collections.Generic;
-    using Xamarin.Forms;
+    public IList<IAction> Actions { get; } = new List<IAction>();
 
-    [ContentProperty("Actions")]
-    public abstract class TriggerBase<TBindable> : BehaviorBase<TBindable>
-        where TBindable : BindableObject
+    protected void InvokeActions(object? parameter)
     {
-        public IList<IAction> Actions { get; } = new List<IAction>();
-
-        protected void InvokeActions(object? parameter)
+        if (AssociatedObject is null)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-
-            foreach (var action in Actions)
-            {
-                action.DoInvoke(AssociatedObject, parameter);
-            }
+            return;
         }
 
-        protected override void OnBindingContextChanged()
+        foreach (var action in Actions)
         {
-            base.OnBindingContextChanged();
+            action.DoInvoke(AssociatedObject, parameter);
+        }
+    }
 
-            foreach (var action in Actions)
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+
+        foreach (var action in Actions)
+        {
+            if (action is BindableObject bindable)
             {
-                if (action is BindableObject bindable)
-                {
-                    bindable.BindingContext = BindingContext;
-                }
+                bindable.BindingContext = BindingContext;
             }
         }
     }
