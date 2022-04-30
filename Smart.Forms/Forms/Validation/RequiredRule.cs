@@ -1,7 +1,5 @@
 namespace Smart.Forms.Validation;
 
-using System;
-
 public sealed class RequiredRule<T> : IValidator<T>
 {
     public string ErrorMessage { get; set; } = string.Empty;

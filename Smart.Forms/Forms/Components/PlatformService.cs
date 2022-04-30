@@ -1,7 +1,5 @@
 namespace Smart.Forms.Components;
 
-using System;
-
 using Xamarin.Forms;
 
 public sealed class PlatformService : IPlatformService

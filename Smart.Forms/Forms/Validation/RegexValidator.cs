@@ -1,6 +1,5 @@
 namespace Smart.Forms.Validation;
 
-using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 

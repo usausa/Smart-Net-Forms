@@ -1,7 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System;
-using System.Linq;
 using System.Reflection;
 
 using Xamarin.Forms;

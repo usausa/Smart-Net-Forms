@@ -1,7 +1,5 @@
 namespace Smart.Forms.Components;
 
-using System;
-
 public interface IPlatformService
 {
     void BeginInvokeOnMainThread(Action action);

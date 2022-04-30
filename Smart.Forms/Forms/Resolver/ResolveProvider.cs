@@ -1,7 +1,5 @@
 namespace Smart.Forms.Resolver;
 
-using System;
-
 public sealed class ResolveProvider : IResolveProvider
 {
     public static ResolveProvider Default { get; } = new();

@@ -1,7 +1,5 @@
 namespace Smart.Forms.Markup;
 
-using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

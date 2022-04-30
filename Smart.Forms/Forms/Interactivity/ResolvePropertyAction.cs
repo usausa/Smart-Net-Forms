@@ -1,6 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System;
 using System.Reflection;
 
 using Smart.Forms.Messaging;

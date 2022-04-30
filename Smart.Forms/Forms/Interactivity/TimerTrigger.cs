@@ -1,7 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System;
-
 using Xamarin.Forms;
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Ignore")]

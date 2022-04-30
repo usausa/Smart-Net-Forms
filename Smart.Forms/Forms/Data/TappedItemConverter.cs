@@ -1,6 +1,5 @@
 namespace Smart.Forms.Data;
 
-using System;
 using System.Globalization;
 
 using Xamarin.Forms;

@@ -1,7 +1,5 @@
 namespace Smart.Forms;
 
-using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 public static class ElementExtensions

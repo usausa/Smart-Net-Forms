@@ -1,7 +1,5 @@
 namespace Smart.Forms.Internal;
 
-using System;
-
 internal static class Functions
 {
     public static Func<bool> True { get; } = () => true;

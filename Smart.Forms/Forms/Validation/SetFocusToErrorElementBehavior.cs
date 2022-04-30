@@ -1,7 +1,5 @@
 namespace Smart.Forms.Validation;
 
-using System;
-
 using Smart.Forms.Interactivity;
 
 using Xamarin.Forms;

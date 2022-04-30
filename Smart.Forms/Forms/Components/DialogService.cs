@@ -1,8 +1,5 @@
 namespace Smart.Forms.Components;
 
-using System.Linq;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 public sealed class DialogService : IDialogService

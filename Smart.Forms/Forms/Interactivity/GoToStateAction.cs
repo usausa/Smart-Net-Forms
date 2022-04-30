@@ -1,7 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System;
-
 using Xamarin.Forms;
 
 public sealed class GoToStateAction : ActionBase<BindableObject>

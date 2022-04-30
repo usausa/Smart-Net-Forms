@@ -1,7 +1,5 @@
 namespace Smart.Forms.Data;
 
-using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 using Smart.Forms.Expressions;
@@ -10,11 +8,9 @@ using Xamarin.Forms;
 
 public sealed class CompareConverter<T> : IValueConverter
 {
-    [AllowNull]
-    public T TrueValue { get; set; }
+    public T TrueValue { get; set; } = default!;
 
-    [AllowNull]
-    public T FalseValue { get; set; }
+    public T FalseValue { get; set; } = default!;
 
     public ICompareExpression Expression { get; set; } = CompareExpressions.Equal;
 

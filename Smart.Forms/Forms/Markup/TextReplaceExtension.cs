@@ -1,6 +1,5 @@
 namespace Smart.Forms.Markup;
 
-using System;
 using System.Text.RegularExpressions;
 
 using Smart.Forms.Data;

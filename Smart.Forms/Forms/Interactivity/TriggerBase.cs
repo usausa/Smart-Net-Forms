@@ -1,6 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 [ContentProperty("Actions")]

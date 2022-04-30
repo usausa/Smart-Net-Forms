@@ -1,19 +1,15 @@
 namespace Smart.Forms.Data;
 
-using System;
 using System.Collections;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 using Xamarin.Forms;
 
 public sealed class ContainsConverter<T> : IValueConverter
 {
-    [AllowNull]
-    public T TrueValue { get; set; }
+    public T TrueValue { get; set; } = default!;
 
-    [AllowNull]
-    public T FalseValue { get; set; }
+    public T FalseValue { get; set; } = default!;
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

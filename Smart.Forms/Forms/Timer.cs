@@ -1,8 +1,5 @@
 namespace Smart.Forms;
 
-using System;
-using System.Threading;
-
 using Xamarin.Forms;
 
 public sealed class Timer : IDisposable

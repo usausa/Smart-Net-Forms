@@ -1,7 +1,5 @@
 namespace Smart.Forms.Resolver;
 
-using System;
-
 public sealed class DefaultResolveProvider : IResolveProvider
 {
     private Func<Type, object?> defaultResolver = Activator.CreateInstance;

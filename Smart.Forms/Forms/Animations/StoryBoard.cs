@@ -1,8 +1,5 @@
 namespace Smart.Forms.Animations;
 
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Justification = "Ignore")]

@@ -1,7 +1,5 @@
 namespace Smart.Forms.Resolver;
 
-using System;
-
 using Smart.Resolver;
 
 public sealed class SmartResolveProvider : IResolveProvider

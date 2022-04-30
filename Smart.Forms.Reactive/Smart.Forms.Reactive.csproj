@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -8,9 +8,9 @@
 
   <PropertyGroup>
     <PackageId>Usa.Smart.Forms.Reactive</PackageId>
-    <Title>Smart.Forms.Reactive .NET</Title>
-    <Description>Smart Xamarin support library for .NET</Description>
-    <Summary>Smart Xamarin support library for .NET</Summary>
+    <Title>Smart.Forms.Reactive</Title>
+    <Description>Smart Xamarin support library</Description>
+    <Summary>Smart Xamarin support library</Summary>
     <PackageTags>smart xamarin mvvm rx</PackageTags>
   </PropertyGroup>
 

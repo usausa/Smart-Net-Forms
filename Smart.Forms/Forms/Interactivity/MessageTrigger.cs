@@ -1,7 +1,5 @@
 namespace Smart.Forms.Interactivity;
 
-using System;
-
 using Smart.Forms.Messaging;
 
 using Xamarin.Forms;

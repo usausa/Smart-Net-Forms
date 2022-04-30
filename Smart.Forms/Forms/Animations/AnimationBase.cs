@@ -1,7 +1,5 @@
 namespace Smart.Forms.Animations;
 
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 public abstract class AnimationBase : BindableObject

@@ -1,7 +1,5 @@
 namespace Smart.Forms.Messaging;
 
-using System;
-
 public sealed class Messenger : IMessenger
 {
     private static readonly Type ObjectType = typeof(object);

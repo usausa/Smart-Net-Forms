@@ -1,8 +1,6 @@
 namespace Smart.Forms.Animations;
 
-using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 

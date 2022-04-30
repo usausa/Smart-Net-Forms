@@ -1,7 +1,5 @@
 namespace Smart.Forms.Resolver;
 
-using System;
-
 using Xamarin.Forms;
 
 public static class BindingContextResolver

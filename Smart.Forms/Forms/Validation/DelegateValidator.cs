@@ -1,7 +1,5 @@
 namespace Smart.Forms.Validation;
 
-using System;
-
 public sealed class DelegateValidator<T> : IValidator<T>
 {
     private readonly Func<T, bool> predicate;

@@ -1,18 +1,14 @@
 namespace Smart.Forms.Data;
 
-using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 using Xamarin.Forms;
 
 public sealed class NullToObjectConverter<T> : IValueConverter
 {
-    [AllowNull]
-    public T NullValue { get; set; }
+    public T NullValue { get; set; } = default!;
 
-    [AllowNull]
-    public T NonNullValue { get; set; }
+    public T NonNullValue { get; set; } = default!;
 
     public bool HandleEmptyString { get; set; }
 

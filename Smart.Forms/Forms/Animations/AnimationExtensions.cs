@@ -1,8 +1,5 @@
 namespace Smart.Forms.Animations;
 
-using System;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 public static class AnimationExtensions

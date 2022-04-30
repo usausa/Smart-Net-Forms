@@ -1,7 +1,5 @@
 namespace Smart.Forms.Components;
 
-using System.Threading.Tasks;
-
 public interface IDialogService
 {
     Task<bool> DisplayAlert(string? title, string? message, string? acceptButton, string? cancelButton);
