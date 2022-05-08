@@ -16,9 +16,9 @@
 
   <ItemGroup>
     <PackageReference Include="System.Reactive" Version="5.0.0" />
-    <PackageReference Include="Usa.Smart.Core" Version="2.0.15" />
-    <PackageReference Include="Usa.Smart.Reactive" Version="2.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
+    <PackageReference Include="Usa.Smart.Core" Version="2.1.0" />
+    <PackageReference Include="Usa.Smart.Reactive" Version="2.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
   </ItemGroup>
 
   <ItemGroup>
