@@ -21,8 +21,8 @@ public sealed class RegexValidator<T> : IValidator<T>
             return true;
         }
 
-        var str = Convert.ToString(value, CultureInfo.CurrentCulture);
-        var m = regex.Match(str!);
+        var str = Convert.ToString(value, CultureInfo.CurrentCulture)!;
+        var m = regex.Match(str);
 
         return m.Success && (m.Index == 0) && (m.Length == str.Length);
     }
