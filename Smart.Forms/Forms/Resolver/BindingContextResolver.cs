@@ -44,6 +44,6 @@ public static class BindingContextResolver
             disposable.Dispose();
         }
 
-        bindable.BindingContext = newValue is not null ? ResolveProvider.Default.Resolve((Type)newValue) : null;
+        bindable.BindingContext = newValue is not null ? ResolveProvider.Default.GetService((Type)newValue) : null;
     }
 }
