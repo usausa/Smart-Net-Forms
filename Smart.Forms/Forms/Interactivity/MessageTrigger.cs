@@ -10,7 +10,6 @@ public sealed class MessageTrigger : TriggerBase<BindableObject>
         nameof(Messenger),
         typeof(IMessenger),
         typeof(MessageTrigger),
-        null,
         propertyChanged: HandleMessengerPropertyChanged);
 
     public IMessenger? Messenger

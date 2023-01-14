@@ -11,7 +11,6 @@ public abstract class RequestTriggerBase<TEventArgs> : TriggerBase<BindableObjec
         nameof(Request),
         typeof(IEventRequest<TEventArgs>),
         typeof(RequestTriggerBase<TEventArgs>),
-        null,
         propertyChanged: HandleRequestPropertyChanged);
 
     public IEventRequest<TEventArgs>? Request
