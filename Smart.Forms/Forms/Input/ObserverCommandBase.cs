@@ -15,12 +15,13 @@ public abstract class ObserveCommandBase<T>
 
     public event EventHandler? CanExecuteChanged;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore.")]
+#pragma warning disable CA1030
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void RaiseCanExecuteChanged()
     {
         CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+#pragma warning restore CA1030
 
     private void HandleAllPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
@@ -43,10 +44,9 @@ public abstract class ObserveCommandBase<T>
 
     public T Observe(INotifyPropertyChanged target)
     {
-        observeObjects ??= new HashSet<INotifyPropertyChanged>();
-        if (!observeObjects.Contains(target))
+        observeObjects ??= [];
+        if (observeObjects.Add(target))
         {
-            observeObjects.Add(target);
             target.PropertyChanged += HandleAllPropertyChanged;
         }
 
@@ -55,10 +55,10 @@ public abstract class ObserveCommandBase<T>
 
     public T Observe(INotifyPropertyChanged target, string propertyName)
     {
-        observeProperties ??= new Dictionary<INotifyPropertyChanged, HashSet<string>>();
+        observeProperties ??= [];
         if (!observeProperties.TryGetValue(target, out var properties))
         {
-            properties = new HashSet<string>();
+            properties = [];
             observeProperties[target] = properties;
             target.PropertyChanged += HandlePropertyChanged;
         }
@@ -70,10 +70,9 @@ public abstract class ObserveCommandBase<T>
 
     public T ObserveCollection(INotifyCollectionChanged target)
     {
-        observeCollections ??= new HashSet<INotifyCollectionChanged>();
-        if (!observeCollections.Contains(target))
+        observeCollections ??= [];
+        if (observeCollections.Add(target))
         {
-            observeCollections.Add(target);
             target.CollectionChanged += HandleCollectionChanged;
         }
 

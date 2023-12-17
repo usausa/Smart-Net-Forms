@@ -4,9 +4,10 @@ public sealed class ValidationRequest
 {
     public event EventHandler<EventArgs>? ValidationErrorRequested;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Ignore.")]
+#pragma warning disable CA1030
     public void RaiseValidationError()
     {
         ValidationErrorRequested?.Invoke(this, EventArgs.Empty);
     }
+#pragma warning restore CA1030
 }

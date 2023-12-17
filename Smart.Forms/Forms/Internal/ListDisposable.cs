@@ -2,9 +2,10 @@ namespace Smart.Forms.Internal;
 
 using System.Collections;
 
+#pragma warning disable CA1812
 internal sealed class ListDisposable : ICollection<IDisposable>, IDisposable
 {
-    private readonly List<IDisposable> disposables = new();
+    private readonly List<IDisposable> disposables = [];
 
     public int Count => disposables.Count;
 
@@ -43,3 +44,4 @@ internal sealed class ListDisposable : ICollection<IDisposable>, IDisposable
         Array.Copy(disposables.ToArray(), 0, array, arrayIndex, array.Length - arrayIndex);
     }
 }
+#pragma warning restore CA1812

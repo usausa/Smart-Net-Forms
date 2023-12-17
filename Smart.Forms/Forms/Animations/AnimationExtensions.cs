@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 public static class AnimationExtensions
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Ignore")]
     public static async Task<bool> Animate(this VisualElement visualElement, AnimationBase animation)
     {
+#pragma warning disable CA1031
         try
         {
             animation.Target = visualElement;
@@ -19,6 +19,7 @@ public static class AnimationExtensions
         {
             return false;
         }
+#pragma warning restore CA1031
     }
 
     public static Task<bool> ColorTo(this VisualElement self, Color fromColor, Color toColor, Action<Color> callback, uint length = 250, Easing? easing = null)

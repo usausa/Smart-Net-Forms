@@ -98,7 +98,6 @@ public sealed class CallMethodBehavior : BehaviorBase<BindableObject>
         handler = null;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Ignore")]
     private void OnEvent(object sender, EventArgs e)
     {
         var target = TargetObject ?? BindingContext;

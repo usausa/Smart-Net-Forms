@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Usa.Smart.Converter" Version="2.2.0" />
     <PackageReference Include="Usa.Smart.Core" Version="2.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
   </ItemGroup>
 
 </Project>

@@ -21,13 +21,14 @@ public sealed class Timer : IDisposable
         Stop();
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrect", Justification = "Ignore")]
+#pragma warning disable CA1711
     public static Timer StartNew(TimeSpan dueTime, Action callback)
     {
         var timer = new Timer(dueTime, callback);
         timer.Start();
         return timer;
     }
+#pragma warning restore CA1711
 
     public void Start()
     {
