@@ -5,14 +5,14 @@ using System.Globalization;
 
 using Xamarin.Forms;
 
-public class MapEntry<T>
+public abstract class MapEntry<T>
 {
     public object Key { get; set; } = default!;
 
     public T Value { get; set; } = default!;
 }
 
-public sealed class MapToColorEntry : MapEntry<Color>
+public abstract class MapToColorEntry : MapEntry<Color>
 {
 }
 
