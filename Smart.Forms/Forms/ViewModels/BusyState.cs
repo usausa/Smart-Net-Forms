@@ -2,7 +2,7 @@ namespace Smart.Forms.ViewModels;
 
 using Smart.ComponentModel;
 
-public sealed class BusyState : NotificationObject, IBusyState
+public class BusyState : NotificationObject, IBusyState
 {
     private int counter;
 
